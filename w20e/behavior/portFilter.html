@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span>端口过滤</span>
+        </div>
+    </div>
+    <div class="panel-body" id="portFilterContainer">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">端口过滤:</label>
+                <div class="col-xs-6">
+                    <label class="radio-inline">
+                        <input type="radio" name="portFilterEn" value="true" checked>开启
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="portFilterEn" value="false">关闭
+                    </label>
+                </div>
+            </div>
+
+            <div id="portFilterSetting">
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <button type="button" id="addRules" class="btn btn-default">+新增过滤规则</button>
+                        <button type="button" id="delRules" class="btn btn-default btn-del">删除</button>
+                        <br class="visible-xs">
+                        <span class="text-warning">注意：如果规则有重复或有交集，则先配置的规则生效，后配置的规则无效</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover" data-bind="portFilterRules">
+                                <thead>
+                                    <tr>
+                                        <th class="th-checkbox">
+                                            <input type="checkbox" id="selectAll" />
+                                        </th>
+                                        <th>IP组</th>
+                                        <th>时间组</th>
+                                        <th>端口号</th>
+                                        <th>类型</th>
+                                        <th>状态</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal" id="portFilter-modal">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"> × </button>
+                <span> 新增过滤规则</span>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" action="/w20e/goform/setPortFilterRule">
+                    <input type="hidden" name="portFilterRuleIndex">
+                    <div class="form-group">
+                        <label class="control-label col-xs-5 col-sm-4">IP组：</label>
+                        <div class="col-xs-7 col-sm-8">
+                            <select class="form-control validatebox" name="IPGroupName" required>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-5 col-sm-4">时间组：</label>
+                        <div class="col-xs-7 col-sm-8">
+                            <select class="form-control validatebox" name="timeGroupName" required>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-5 col-sm-4">端口或端口段：</label>
+                        <div class="col-xs-7 col-sm-8">
+                            <input class="form-control control-sm validatebox" type="text" name="portFilterRuleStartPort" required data-options='{"type": "num", "args": [1,65535]}' maxlength="5">
+                            <span class="controls-text">~</span>
+                            <input class="form-control control-sm validatebox" type="text" name="portFilterRuleEndPort" required data-options='{"type": "num", "args": [1,65535]}' maxlength="5">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-5 col-sm-4">协议类型：</label>
+                        <div class="col-xs-7 col-sm-8">
+                            <select class="form-control" name="portFilterRuleProtocol">
+                                <option value="ALL">全部</option>
+                                <option value="TCP">TCP</option>
+                                <option value="UDP">UDP</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-action">
+                        <input type="submit" class="btn btn-static-sm btn-primary" id="portFilterModal-save" value="确定">
+                        <input type="reset" class="btn btn-static-sm btn-default" id="portFilterModal-cancel" data-dismiss="modal" value="取消">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-action">
+    <button class="btn btn-static-sm btn-primary" id="portFilter-save">确定</button>
+    <button class="btn btn-static-sm btn-default" id="portFilter-cancel" data-dismiss="modal">取消</button>
+</div>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e/behavior/js/portFilter.js?t=2016512174418"></script>
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span>访客网络</span>
+        </div>
+    </div>
+    <div class="panel-body" id="mainView">
+        <div class="row">
+            <label class="col-xs-12 col-sm-3 col-md-2">基本设置</label>
+            <div class="col-xs-12 col-sm-9">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3">无线开关：</label>
+                        <div class="col-xs-8 col-sm-5">
+                            <label class="radio-inline">
+                                <input type="radio" name="wifiGuestEn" value="true" checked>开启
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="wifiGuestEn" value="false">关闭
+                            </label>
+                        </div>
+                    </div>
+                    <div id="wifiGuestEnWrap">
+                        <div class="form-group">
+                            <label class="control-label col-xs-4 col-sm-3">客户端隔离：</label>
+                            <div class="col-xs-8 col-sm-5">
+                                <label class="radio-inline">
+                                    <input type="radio" name="wifiGuestIsolate" value="true" checked>开启
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="wifiGuestIsolate" value="false">关闭
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-4 col-sm-3">无线名称：</label>
+                            <div class="col-xs-8 col-sm-5">
+                                <input class="form-control controls-ma validatebox" required maxlength="32" name="wifiGuestSSID" data-options='[{"type":"byteLen", "args": [1, 32], "msg": "无线名称不能超过32个字节"},{"type":"chkHalf"}]'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-4 col-sm-3">无线名称编码：</label>
+                            <div class="col-xs-8 col-sm-5">
+                                <select class="form-control" name="wifiGuestSSIDEncode">
+                                    <option value="utf-8">UTF-8</option>
+                                    <option value="gb2312">GB2312</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-4 col-sm-3">加密方式：</label>
+                            <div class="col-xs-8 col-sm-5">
+                                <select class="form-control" name="wifiGuestSecurity">
+                                    <option value="none">不加密</option>
+                                    <option value="wpapsk">WPA个人加密</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="encryption-wrap none">
+                            <div class="form-group">
+                                <label class="control-label col-xs-4 col-sm-3">认证类型：</label>
+                                <div class="col-xs-8 col-sm-5">
+                                    <select class="form-control" name="wifiGuestAuthType">
+                                        <option value="psk">WPA-PSK</option>
+                                        <option value="psk2">WPA2-PSK</option>
+                                        <option value="psk psk2">WPA-PSK&WPA2-PSK</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-4 col-sm-3">加密算法：</label>
+                                <div class="col-xs-8 col-sm-5">
+                                    <select class="form-control" name="wifiGuestEncryption">
+                                        <option value="aes">AES</option>
+                                        <option value="tkip">TKIP</option>
+                                        <option value="tkip+aes">AES&TKIP</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-4 col-sm-3">无线密码：</label>
+                                <div class="col-xs-8 col-sm-5">
+                                    <input type="password" class="form-control controls-ma validatebox" name="wifiGuestPwd" maxlength="63" required data-options='[{"type": "ascii", "args": [8, 63]},{"type": "chkHalf"},{"type": "noBlank"}]'>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <label class="col-xs-12 col-sm-3 col-md-2">访客网络LAN口IP</label>
+            <div class="col-xs-12 col-sm-9">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3">LAN口IP：</label>
+                        <div class="col-xs-8 col-sm-5">
+                            <input class="form-control controls-ma validatebox" required name="wifiGuestLanIP">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3">子网掩码：</label>
+                        <div class="col-xs-8 col-sm-5 form-control-static"> 255.255.255.0</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-action">
+    <button class="btn btn-static-sm btn-primary" id="wifiGueSet-save">确定</button>
+    <button class="btn btn-static-sm btn-default" id="wifiGueSet-cancel" data-dismiss="modal">取消</button>
+</div>
+</body>
+
+</html>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e/wifi/js/wifiGuest.js?t=2016512174418"></script>
+
+</body>
+</html>

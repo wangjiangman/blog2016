@@ -1,0 +1,78 @@
+/*portmapping*/
+
+.form-group .progress{
+    width: 160px;
+    height: 35px;
+}
+
+.form-group .progress .progress-bar {
+    width: 100%;
+    height: 100%;
+    line-height: 30px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-right: 20px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.form-group .progress span {
+    position: relative;
+    width: 66.24%;
+    padding-left: 0;
+    padding-top:0;
+}
+
+
+.progress-bar span{
+    color:#fff;
+}
+
+.progress-btm {
+    float: left;
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+    width: 0;
+    height: 33px;
+    line-height: 30px;
+    text-align: center;
+    background: rgb(181,180,180);
+    border-radius: 4px 0 0 4px;
+    color: #aaa;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.progress-txt {
+    /*position: absolute;*/
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: block;
+    text-align: center;
+    line-height: 30px;
+    margin-left: 5px;
+    color: #A4DEF6;
+}
+
+.usb-related {
+    width: 170px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#bar1, #bar2, #bar3, #bar4{
+    color:#D82228;
+    font-size: 18px;
+}
+
+.orayLink {
+    text-decoration:underline;
+    color:#333333
+}

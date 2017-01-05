@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Tenda</title>
+<link rel="stylesheet" href="/a9/common/css/reasy-mobile-ui.css">
+
+<!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 
+HTML5SHIV需放在头部，RESPOND.JS需要服务器--> 
+<!--[if lt IE 9]>
+<script src="./js/libs/respond.min.js"></script>
+<script src="./js/libs/html5shiv.min.js"></script>
+<![endif]-->
+</head>
+<body >
+
+<div class="page" id="pageAdvMenu">
+	<header class="page-header">
+		<div class="h1 page-title">更多设置</div>
+	</header>
+
+	<section class="page-content">
+		<div class="control-group control-group-icon get-more">
+			<label for="" class="control-label icon icon-modify-pwd"></label>
+			<div class="controls" id="goSysPwd">扩展器登录密码</div>
+		</div>
+		<div class="control-group control-group-icon get-more">
+			<label for="" class="control-label icon icon-reboot"></label>
+			<div class="controls" id="rebootExtender">重启扩展器</div>
+		</div>
+		<div class="control-group control-group-icon get-more">
+			<label for="" class="control-label icon icon-refresh"></label>
+			<div class="controls" id="goRestore">恢复出厂设置</div>
+		</div>
+		<div class="listback-btn-wrap">
+			<div class="btn-groupwrap box-space">
+				<a class="btn btn-block" id="advanceBackBtn">返回</a>
+			</div>			
+		</div>
+	</section>
+</div>
+
+<!-- 修改密码 -->
+<div class="page none" id="pageSysPwd">
+	<header class="page-header">
+		<div class="h1 page-title page-title-back" id="pageSysPwdTitle">修改密码</div>
+	</header>
+
+	<section class="page-content">
+		<div class="control-group none" data-widget="visible" data-bind="hasPwd">
+			<label for="" class="control-label">旧密码</label>
+			<div class="controls controls-password">
+				<input type="password" class="input-block validatebox" data-name='旧密码' maxlength="12" required name="oldPwd" id="oldPwd" data-options='{"type": "loginPassword","args":[3,12]}'>
+				<i class="icon see-pwd-icon icon-seepwd"></i>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label for="" class="control-label">新密码</label>
+			<div class="controls controls-password">
+				<input type="password" name="newPwd" id="newPwd" class="input-block validatebox" data-name='新密码' maxlength="12" required  data-options='[{"type": "loginPassword","args":[3,12]},{"combineType": "notequal", "relativeElems": ["self", "#oldPwd"], "msg": "新密码旧密码不能一样"}]'> 
+				<i class="icon see-pwd-icon icon-seepwd"></i>
+			</div>
+		</div>
+		<div class="control-group">
+			<label for="" class="control-label">确认密码</label>
+			<div class="controls controls-password">
+				<input type="password" class="input-block validatebox" data-name='确认密码' name="confirmPwd" maxlength="12" required data-options='[{"type": "loginPassword","args":[3,12]},{"combineType": "equal", "relativeElems": ["self", "#newPwd"], "msg": "两次输入的密码不一致"}]'>
+				<i class="icon see-pwd-icon icon-seepwd"></i>
+			</div>
+		</div> 
+		<div class="btn-group btn-group-couple">
+			<a class="btn btn-primary" id="sysPwdSave">保存</a>
+		</div>
+
+	</section>
+</div>
+
+<script src="/a9/common/js/libs/zepto.min.js"></script> 
+<script src="/a9/common/js/libs/reasy-ui-1.0.5.js"></script> 
+<script src="/a9/common/js/libs/sea.js"></script>
+<script src="/a9/common/js/common.js"></script>
+
+<script>
+	seajs.config({
+		base: "./js/"
+	});
+	seajs.use("advance", function(module) {
+		//module.update(); 
+	});
+</script>
+</body>
+</html>          

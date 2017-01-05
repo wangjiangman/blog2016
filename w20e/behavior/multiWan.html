@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span> 多WAN策略</span>
+        </div>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" role="form" id="multiWanContainer">
+            <div class="form-group">
+                <label class="col-sm-2 control-legend">多WAN策略:</label>
+                <div class="col-xs-12 col-sm-10">
+                    <label class="radio-inline">
+                        <input type="radio" name="wanRoutePolicyType" value="auto" checked>智能负载均衡</label>
+                </div>
+                <div class="col-xs-12 col-sm-10">                        
+                    <label class="radio-inline">
+                        <input type="radio" name="wanRoutePolicyType" value="custom">自定义策略</label>
+                </div>
+            </div>
+            <div id="userSetting">
+                <div class="form-group">
+                    <div class="col-xs-12 col-sm-4">
+                        <button type="button" id="addRules" class="btn btn-default">+新增规则</button>
+                        <button type="button" id="delRules" class="btn btn-default btn-del">删除</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12"> 
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover" data-bind="multiWanRules">
+                                <thead>
+                                    <tr>
+                                        <th class="th-checkbox">
+                                            <input type="checkbox" name="selectAll" id="selectAll" />
+                                        </th>
+                                        <th>用户组</th>
+                                        <th>WAN口</th>
+                                        <th>状态</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal" id="multiWan-modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <span> 新增规则</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <form action="/w20e/goform/setWanRouteRule">
+                        <input type="hidden" name="wanRouteRuleIndex">
+                        <div class="form-group">
+                            <label class="control-label col-xs-4">IP组：</label>
+                            <div class="col-xs-7">
+                                <select class="form-control validatebox" name="IPGroupName" required>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-4">指定WAN口：</label>
+                            <div class="col-xs-7">
+                                <label class="radio-inline">
+                                    <input type="radio" name="wanRouteRuleWAN" value="WAN1" checked>WAN1
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="wanRouteRuleWAN" value="WAN2">WAN2
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="wanRouteRuleWAN" value="WAN3">WAN3
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="wanRouteRuleWAN" value="WAN4">WAN4
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-action">
+                            <input type="submit" class="btn btn-static-sm btn-primary" id="multiWanModal-save" value="确定">
+                            <input type="reset" class="btn btn-static-sm btn-default" id="multiWanModal-cancel" data-dismiss="modal" value="取消">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-action">
+    <button class="btn btn-static-sm btn-primary" id="multiWan-save">确定</button>
+    <button class="btn btn-static-sm btn-default" id="multiWan-cancel" data-dismiss="modal">取消</button>
+</div>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e/behavior/js/multiWan.js?t=2016512174418"></script>
+
+</body>
+</html>

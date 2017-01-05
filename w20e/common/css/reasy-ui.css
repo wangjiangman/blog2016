@@ -1,0 +1,633 @@
+/*!
+ * REasy UI CSS v1.0.5 2015-06-17
+ *
+ * Copyright 2015 ET.W
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * The CSS for REasy UI.
+ */
+
+
+/**
+ * UI animate.
+ *
+ * @section animate
+ */
+.ani-init {
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.ani-final {
+  opacity: 1;
+}
+
+/**
+ * UI mask.
+ *
+ * @section mask
+ */
+.overlay, .overlay-white {
+  position: fixed;
+  z-index: 1999;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  /* for ie6 ,does not work with position fixed*/
+  _position: absolute;
+  _top: expression((0 + (ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop)) + 'px');
+  _right: expression((0 + (ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft)) + 'px');
+  _height: 980px;
+}
+
+.overlay {
+  background: #000;
+  opacity: 0.7;
+  filter: alpha(opacity=70);
+}
+
+.overlay-white {
+  background: #fff;
+  opacity: 0.5;
+  filter: alpha(opacity=80);
+}
+
+
+/* Placeholder */
+.placeholder-content {
+  position: relative;
+}
+
+input.placeholder-text,
+.placeholder-text {
+  color: #c6c3c0;
+  opacity: 1;
+}
+
+.placeholder-content .placeholder-text {
+  position: absolute;
+  min-width: 200px;
+  top: -5px;
+  left: 7px;
+  z-index: 1;
+}
+
+/**
+ * UI message for ajax.
+ *
+ * @section message
+ */
+.message-ajax {
+  position: fixed;
+  z-index: 2000;
+  top: 20%;
+  left: 0;
+  width: 100%;
+  height: 0;
+  text-align: center;
+  transform-style: preserve-3d;
+  perspective: 1200px;
+  /* 	
+  left: 44%;
+  width: 220px;
+  background: #ffcc00;
+  @include border-radius($ajax-msg-bd-radius);
+  @include towColorGradient($ajax-msg-start-color, $ajax-msg-end-color); 
+  */
+}
+.message-ajax .message-ajax-txt {
+  display: inline-block;
+  min-width: 200px;
+  padding: 18px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: normal;
+  font-size: 18px;
+  background-color: rgba(0,0,0,0.7);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr=#aa000000, endColorstr=#aa000000, GradientType=0);
+}
+
+:root .message-ajax .message-ajax-txt {
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr=#00000000, endColorstr=#00000000, GradientType=0);
+} 
+
+.message-ajax.ani-init {
+  /* transform: rotateX(90deg); */
+  transform: translate(0, -30px);
+  transform-origin: 0 0;
+  transition: all 1s;
+}
+.message-ajax.ani-final {
+  transform: none;
+}
+
+
+/**
+ * UI validate.
+ *
+ * @section validate
+ */
+.validatebox-tip-wrap {
+  /* position: relative; */
+  z-index: 999;
+}
+.validatebox-tip-wrap.ani-init {
+  transition: all .0s;
+  transform: translate(0px, 10px);
+}
+
+.validatebox-tip-wrap.ani-final {
+  transform: none;
+}
+
+.validatebox-tip-wrap.none {
+	display: none !important;
+}
+.validatebox-tip {
+  position: absolute;
+  /*visibility: hidden;*/
+  top: 105%;
+  z-index: 999;
+  height: auto;
+  cursor: pointer;
+}
+
+.validatebox-em .validatebox-tip {
+  position: absolute;
+  left: 0px;
+  top: 36px;
+}
+
+.validatebox-tip-content {
+  position: relative;
+	font-size: 14px;
+  line-height: 20px;
+	z-index: 999;
+	display: inline-block;
+  width: 200px;
+	max-width: 220px;
+  min-width: 130px;
+	padding: 6px 15px 6px 5px;
+	color: #f00;
+	border: 1px solid #c93;
+  border-radius: 4px;
+  box-shadow: 1px 1px 3px #888;
+	background-color: #ffc;
+  white-space: pre-wrap;
+}
+
+
+.validatebox-tip-pointer {
+	position: absolute;
+	z-index: 1000;
+	top: -7px;
+	left: 8px;
+	display: inline-block;
+	width: 19px;
+	height: 16px;
+	background: url('/w20e/common/img/validatebox_arrows.png') no-repeat -27px center;
+}
+.validatebox-invalid, input.validatebox-invalid, input.validatebox-invalid:focus {
+	border: 1px solid #f00;
+}
+.validatebox-invalid input.text {
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+}
+
+.validatebox-error-icon {
+  position: absolute;
+  z-index: 998;
+  top: 9px;
+  right: 1px;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url('/w20e/common/img/validate-error-icon.png') no-repeat center;
+  background-size: 100% 100%;
+  cursor: pointer;
+}
+
+.validatebox-tip-close {
+  position: absolute;
+  right: 1px; 
+  top: 1px;
+  color: #c93;
+  font-size: 14px; 
+  line-height: 14px;
+  cursor: pointer;
+}
+.validate-elem-wrap {
+  position: relative;
+  display: inline-block;
+
+
+}
+@media (max-width: 480px) {
+    .validate-elem-wrap{
+        max-width: 100%;
+    }
+    .validatebox-tip-content {
+        max-width: 140px;
+    }
+}
+.modal .validate-elem-wrap{
+    max-width: 100%;
+}
+
+
+@media (min-width: 768px) {
+  .validatebox-tip {
+    top: 0px;
+    left: 100%;
+    margin-left: 7px; 
+  }
+  .validatebox-tip-pointer {
+    top: 9px;
+    left: -8px;
+    width: 9px;
+    background-position: 0px 0px;
+  }
+  .validatebox-tip-content {
+      min-width: 150px;
+      max-width: 180px;
+  }
+}
+
+
+.form-control {
+	display: inline-block;
+}
+.none{
+	display:none;
+}
+.hide {
+  visibility: hidden;
+}
+
+
+
+/*.control-label {
+    float: left;
+    width: 170px;
+    text-align: right;
+    padding-top: 7px;
+}*/
+@media (max-width: 767px) {
+  .controls {
+    padding-right: 45px;
+  }
+  .panel {
+    border-radius: 0;
+  }
+  .panel .panel-heading {
+    border-radius: 0;
+    border: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .controls {
+    float: right;
+    padding-right: 45px;
+    width: 245px;
+  }
+}
+
+.controls-text {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  padding-top: 7px;
+}
+
+body { 
+  overflow-x: hidden;
+}
+
+body .controls-xs {
+  width: 50px;
+}
+
+body .controls-sm {
+  width: 150px;
+}
+
+body .controls-md {
+  width: 300px;
+}
+
+body .controls-lg {
+  width: 550px !important;
+}
+
+body .control-xs {
+  width: 40px;
+}
+
+body .control-sm {
+  width: 80px;
+}
+
+body .control-md {
+  width: 150px;
+}
+
+body .control-fit {
+  width: 130px;
+}
+
+body .control-lg {
+  width: 300px;
+}
+
+.dl-horizontal dt {
+  width: 140px !important;
+}
+
+.dl-horizontal dd {
+  margin-right: 15px;
+}
+
+.dl-inline dd {
+  float: left;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.field-label {
+  font-weight: normal;
+  padding-top: 7px;
+  color: #d82228;
+}
+
+table thead {
+  background: #f3f3f3;
+}
+
+select.form-control {
+  padding-top: 4px;
+}
+
+@media (max-width: 480px) {
+  .form-control, .input-append input {
+    width: 150px;
+  }
+}
+
+@media (min-width: 480px) {
+  .form-control, .input-append input {
+    width: 220px;
+  }
+}
+
+@media (min-width: 768px) {
+  .form-control, .input-append input {
+    width: 240px;
+  }
+}
+
+.modal .form-control, .modal .input-append input {
+  /* max-width: 100%; */ 
+}
+
+.th-checkbox {
+  width: 30px;
+}
+
+.th-index {
+  width: 60px;
+}
+
+.controls-inline {
+  width: 100% !important;
+}
+
+.controls-inline > input {
+  display: inline-block;
+}
+
+.controls-inline > span {
+  display: inline;
+}
+
+.help-inline {
+  display: inline;
+}
+
+table td .operate {
+  cursor: pointer;
+}
+
+table td .operate span {
+  background: url(/w20e/common/img/operate.png) no-repeat;
+  padding: 10px 12px;
+}
+
+table td .operate span.enable {
+  background-position: 0 9px;
+}
+
+table td .operate span.disable {
+  background-position: 0 -40px;
+}
+
+table td .operate span.edit {
+  background-position: 0 -86px;
+}
+
+table td .operate span.delete {
+  background-position: 0 -137px;
+}
+
+button.btn-del {
+  background-image: url(/w20e/common/img/operate.png);
+  padding-left: 31px;
+  background-repeat: no-repeat;
+  background-position: 6px -142px;
+}
+
+button.btn-del:focus {
+  background-image: url(/w20e/common/img/operate.png);
+}
+
+.btn.pageNum, .btn.prev, .btn.next {
+  display: inline-block;
+  line-height: 25px;
+  width: 32px;
+  margin-left: 3px;
+  padding: 1px 2px;
+  color: #555;
+  cursor: pointer;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.pageGo {
+  display: inline-block;
+  margin-bottom: -12px;
+}
+
+.dl-horizontal + .dl-horizontal {
+  border-top: 1px solid #F2F2F2;
+  padding-top: 18px;
+}
+
+label.file {
+  position: relative;
+}
+
+label.file input[type='file'] {
+  opacity: 0;
+  background: transparent;
+  height: 100%;
+  width: 100%;
+  filter: alpha(opacity=0);
+  height: 0\0;
+  width: 0\0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.btn-static-sm {
+  min-width: 80px;
+}
+
+.modal-backdrop {
+  background: #000;
+}
+
+.modal-backdrop.in {
+  background: #000;
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+}
+
+@media (min-width: 768px) {
+  .checkbox-list[id="appFilterList"] label {
+    width: 121px;
+    float: left;
+  }
+  .checkbox-list[id="urlFilterGroupList"] label {
+    width: 116px;
+    float: left;
+  }
+}
+
+@media (max-width: 767px) {
+  .checkbox-list[id="appFilterList"] label {
+    width: 95px;
+    float: left;
+  }
+  .checkbox-list[id="urlFilterGroupList"] label {
+    width: 90px;
+    float: left;
+  }
+}
+
+.modal-backdrop.fade {
+  -webkit-transition: opacity 0.1s linear;
+  transition: opacity 0.1s linear;
+}
+
+.modal-dialog.modal-md {
+  width: 455px;
+}
+
+.modal-dialog.modal-lg {
+  width: 600px;
+}
+
+.modal-body {
+  /* max-height: 400px; */
+  /* overflow-y: auto; */
+  /*
+    .control-label {
+        width: 135px;
+    }
+    */
+}
+
+@media (max-width: 600px) {
+  .modal-body {
+    overflow-x: auto;
+  }
+}
+
+.modal-body .controls {
+  padding-left: 150px;
+  width: 350px;
+}
+
+.modal-footer {
+  border-top: none;
+}
+
+a {
+  cursor: pointer;
+}
+
+.msgbox {
+  position: fixed;
+  top: 140px;
+  left: 50%;
+  margin-left: -119px;
+  width: 222px;
+  padding: 28px 8px;
+  color: #fff;
+  font-size: 14px;
+  z-index: 9999;
+  text-align: center;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background-color: #666;
+  opacity: .9;
+  filter: alpha(opacity=90);
+}
+
+.text-static {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-wrap: keep-all;
+  white-space: nowrap;
+}
+
+td span.text-static {
+  max-width: 400px;
+  display: inline-block;
+}
+
+.table-page-navbtn {
+  text-align: right;
+}
+
+.table-page-navbtn label {
+  display: none;
+}
+
+.table-page-navbtn .pageGo {
+  display: none;
+}
+
+.control-legend {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 30px;
+  margin-bottom: 0;
+  min-height: 34px;
+}
+
+.form-action {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

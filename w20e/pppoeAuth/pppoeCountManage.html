@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default" id="userArea">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span>帐号管理</span>
+        </div>
+    </div>
+    <div class="panel-body" id="userlistWrap">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <div class="pull-left col-xs-7 col-sm-4">
+                    <button type="button" class="btn btn-default add-rule">+新增帐号</button>
+                    <button type="button" class="btn btn-default btn-del del-rule">删除</button>
+                </div>
+                <div class="controls">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="searchTxt">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" id="searchBtn">搜索</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-xs-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" data-bind="authList">
+                        <thead>
+                            <tr>
+                                <th class="th-checkbox">
+                                    <input type="checkbox" name="choseIP" id="choseIP" />
+                                </th>
+                                <th>用户名</th>
+                                <th>密码</th>
+                                <th>流控策略</th>
+                                <th>备注（可不填）</th>
+                                <th>到期时间</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="pull-left col-xs-4 col-sm-2">
+                    <button type="button" class="btn btn-default export-rule">导出数据</button>
+                </div>
+                <div class="input-group col-xs-7 col-sm-5">
+                    <input type="text" class="form-control input-group-addon" id="fileName">
+                    <span class="input-group-btn">
+                        <label class="btn btn-default file" type="button" style="border-radius: 0;" for="fileSearch" name="searchBtn">浏览.. <input type="file" id="fileSearch" class="file-hidden" name="fileSearch"></label>
+                    </span>
+                    <span class="input-group-btn">
+                        <button type="button" id="recoveryBtn" class="btn btn-primary btns-xs" name="backBtn">导入数据</button>
+                    </span>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal modal-edit">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                    <span> 编辑用户</span>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" action="/w20e/goform/modifyPPPoEServerUser">
+                        <input type="hidden" name="pppoeServerUserIndex">
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4">用户名：</label>
+                            <div class="col-xs-7">
+                                <input type="text" class="form-control controls-sm validatebox" name="pppoeServerUserName" readonly="readonly" required maxlength="32" data-options='[{"type":"ascii"}, {"type":"noBlank"}]'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4">密码：</label>
+                            <div class="col-xs-7">
+                                <input type="text" class="form-control controls-sm validatebox" name="pppoeServerUserPwd" required maxlength="32" data-options='[{"type":"ascii"}, {"type":"noBlank"}]'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4">备注：</label>
+                            <div class="col-xs-7">
+                                <input type="text" class="form-control controls-sm validatebox" name="pppoeServerUserNote" maxlength="16" data-options='{"type": "remarkTxt", "args": [1,16]}'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4">流控策略：</label>
+                            <div class="col-xs-7">
+                                <select name="pppoeServerUserQosRuleName" class="form-control controls-sm"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4">到期时间：</label>
+                            <div class="col-xs-7 input-groups">
+                                <span>
+                                    <input type="text" maxlength="4" class="form-control controls-xs validatebox"
+                                        data-options='{"type": "num","args": [1970,2037]}' id="sysYear" name="sysYear">年
+                                    <input type="text" class="form-control controls-xs validatebox"
+                                        data-options='{"type": "num","args": [1,12]}' id="sysMonth" name="sysMonth">月
+                                <span>
+                                <span class="control-br">
+                                    <input type="text" class="form-control controls-xs validatebox"
+                                        data-options='{"type": "num","args": [1,31]}' id="sysDay" name="sysDay">日
+                                <span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4">状态：</label>
+                            <div class="col-xs-7">
+                                <label class="radio-inline">
+                                    <input type="radio" name="pppoeServerUserEn" value="true">启用
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="pppoeServerUserEn" value="false">禁用
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-action">
+                            <input type="submit" class="btn btn-static-sm btn-primary" id="auth-rule-edit-save" value="确定">
+                            <input type="reset" class="btn btn-static-sm btn-default" id="auth-rule-edit-cancel" data-dismiss="modal" value="取消">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal modal-add">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                    <span> 新增用户</span>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" action="/w20e/goform/addPPPoEServerUser">
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4">用户名：</label>
+                            <div class="col-xs-7">
+                                <input id="addName" type="text" class="form-control controls-sm validatebox" required maxlength="32" data-options=''>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4">密码：</label>
+                            <div class="col-xs-7">
+                                <input type="text" class="form-control controls-sm validatebox" required maxlength="32" data-options='[{"type":"ascii"}, {"type":"noBlank"}]'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4">备注：</label>
+                            <div class="col-xs-7">
+                                <input type="text" class="form-control controls-sm validatebox" maxlength="16" data-options='{"type": "remarkTxt", "args": [1,16]}'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4">流控策略：</label>
+                            <div class="col-xs-7">
+                                <select name="pppoeServerUserQosRuleName" class="form-control controls-sm"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4">到期时间：</label>
+                            <div class="col-xs-7 input-groups">
+                                <span>
+                                    <input type="text" maxlength="4" class="form-control controls-xs validatebox"
+                                        data-options='{"type": "num","args": [1970,2037]}' id="sysYear" name="sysYear">年
+                                    <input type="text" class="form-control controls-xs validatebox"
+                                        data-options='{"type": "num","args": [1,12]}' id="sysMonth" name="sysMonth">月
+                                <span>
+                                <span class="control-br">
+                                    <input type="text" class="form-control controls-xs validatebox"
+                                        data-options='{"type": "num","args": [1,31]}' id="sysDay" name="sysDay">日
+                                <span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4">状态：</label>
+                            <div class="col-xs-7">
+                                <label class="radio-inline">
+                                    <input type="radio" name="countEn" value="true" checked>启用
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="countEn" value="false">禁用
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-action">
+                            <input type="submit" class="btn btn-static-sm btn-primary" id="auth-rule-edit-save" value="确定">
+                            <input type="reset" class="btn btn-static-sm btn-default" id="auth-rule-edit-cancel" data-dismiss="modal" value="取消">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e/pppoeAuth/js/pppoeCountManage.js?t=2016512174418"></script>
+
+    <script src="/w20e/common/js/libs/ajaxfileupload.min.js?t=2016512174418"></script>
+
+</body>
+</html>

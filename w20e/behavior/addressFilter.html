@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span>网址分类过滤</span>
+        </div>
+    </div>
+    <div class="panel-body">
+        <form id="webAuth" class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">网址分类过滤: </label>
+                <div class="col-xs-8 col-sm-4">
+                    <label class="radio-inline">
+                        <input type="radio" name="setAdd" value="open" checked>开启
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="setAdd" value="close">关闭
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <button type="button" id="addAPolicy" class="btn btn-default">+新增过滤规则</button>
+                    <button type="button" id="removeAPolicy" class="btn btn-default btn-del">删除</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <input type="checkbox" name="choseAdd" id="choseAdd" />
+                                    </th>
+                                    <th>IP组</th>
+                                    <th>时间</th>
+                                    <th>过滤网址</th>
+                                    <th>状态</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <input type="checkbox" /><span>允许未启用规则和列表外的主机访问互联网</span>
+                </div>
+            </div>
+        </form>
+        <hr>
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">网址分类管理</lebel>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <td id="l0">+新增分类</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="text-center">
+    <label class="btn btn-static-sm btn-primary" id="portmap-save">确定</label>
+    <label class="btn btn-static-sm btn-default" id="portmap-cancel" data-dismiss="modal">取消</label>
+</div>
+</body>
+
+</html>

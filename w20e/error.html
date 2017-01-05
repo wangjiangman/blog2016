@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+<script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+<script>
+
+	var searchStr = location.href.split('?')[1],
+		urlData = searchStr.split('&'),
+		args = {},
+		url,
+		i;
+	for(i = urlData.length -1; i >= 0; i--) {
+		var one = urlData[i].split('=');
+		args[one[0]] = one[1];
+	}
+	switch(args['error']) {
+		case 'uploadfileError':
+			alert(MSG.fileTypeError);
+			break;
+		case 'notSupport':
+			alert(MSG.firmwareNotMatch);
+			break;
+		case 'upgradeFailed':
+			alert(MSG.upgradeFail);
+			break;
+		case 'upgradeSuccess':
+			alert(MSG.upgradeSuc);
+			break;
+		case 'uploadSuccess':
+			alert(MSG.mirrorUploadOk);
+			break;
+		case 'cfgfileError':
+			alert(MSG.cfgTypeError);
+			break;
+		case 'authError':
+			alert(MSG.authFail);
+			break;
+		case 'memoryShortage':
+			alert(MSG.memoryShortage);
+			break;
+		case 'apInUpgrading':
+			alert(MSG.apInUpgrading);
+			break;
+		case 'acInUpgrading':
+			alert(MSG.acInUpgrading);
+			break;
+		default:
+			alert(args['error']);
+	}
+	history.back();
+
+</script>
+</head>
+<body>
+</body>
+</html>

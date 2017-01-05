@@ -1,0 +1,386 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/acManage/css/acCss.css?t=2016512174418"> 
+    <link rel="stylesheet" href="/acManage/css/placeholder.css?t=2016512174418">  
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default" id="userArea">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span>无线策略</span>
+        </div>
+    </div>
+    <div class="panel-body" id="wrlPolicyWrap">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <div class="pull-left col-xs-9 col-sm-6">
+                    <button type="button" id="addPortFilter" class="btn btn-default add-rule">+新增策略</button>
+                    <button type="button" id="delPortFilter" class="btn btn-default btn-del" id="delete">删除策略</button>
+                    <button type="button" class="btn btn-default" id="refresh">刷新</button>
+                </div>
+                <div class="col-xs-5 col-sm-5">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="searchTxt" placeHolder="策略名称, SSID, 无线密码">
+                        <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" id="searchBtn">搜索</button>
+                              </span>
+                    </div>
+                </div>
+            </div>
+            <p>总策略条数:<span id="wrlPolicyCount"></span>条</p>
+            <div class="form-group col-xs-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" data-bind="wrlPolicyList">
+                        <thead>
+                            <tr>
+                                <th class="th-checkbox">
+                                    <input type="checkbox" name="chosePolicy" id="chosePolicy" />
+                                </th>
+                                <th>策略名称</th>
+                                <th>SSID</th>
+                                <th>无线密码</th>
+                                <th>信道</th>
+                                <th>VLAN</th>
+                                <th>功率</th>
+                                <th>带宽</th>
+                                <th>隐藏SSID</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal modal-add">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <ul class="nav nav-tabs userlist-tabs" id="navCon">
+                        <li id="basicSetting" class="basic active"><a class="settype" href="#">基本设置</a>
+                        </li>
+                        <li id="radioFreqSetting" class="radioFre active"><a class="settype" href="#">射频设置</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" action="/w20e/goform/addPPPoEServerUser" id="basic">
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4">策略名称：</label>
+                            <div class="col-xs-7">
+                                <input id="policyName" type="text" class="form-control input-medium validatebox" data-options='{"type":"remarkTxt","args":[1,32]}'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4">SSID：</label>
+                            <div class="col-xs-7">
+                                <input id="ssid" type="text" class="form-control input-medium" maxlength="32">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4">加密方式：</label>
+                            <div class="col-xs-7">
+                                <select id="secType" class="input-medium form-control">
+                                    <option value="0">不加密</option>
+                                    <option value="1">WPA-PSK</option>
+                                    <option value="2">WPA2-PSK</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4">加密规则：</label>
+                            <div class="col-xs-7">
+                                <label class="radio-inline">
+                                    <input type="radio" name="secMode" value="0" checked>AES
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="secMode" value="1">TKIP
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="secMode" value="2">TKIP&AES
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4">密钥：</label>
+                            <div class="col-xs-7">
+                                <input id="secPwd" type="text" class="form-control input-medium" maxlength="63">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4">密钥周期：</label>
+                            <div class="col-xs-7">
+                                <input id="secTime" type="text" class="form-control input-medium" maxlength="6">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4">最大客户端数：</label>
+                            <div class="col-xs-7">
+                                <input type="text" id="clientNum" class="form-control input-medium">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4">VLAN ID：</label>
+                            <div class="col-xs-7">
+                                <input type="text" id="vlanId" class="input-medium form-control">
+                                <p class="text-info" name="vlanTip">在射频设置中启用 VLAN 使此项生效</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4">客户端隔离：</label>
+                            <div class="col-xs-7">
+                                <label class="checkbox" for="clientIsolation">
+                                    <input type="checkbox" id="clientIsolation"><span data-lang="enable">开启</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4">隐藏SSID：</label>
+                            <div class="col-xs-7">
+                                <label class="checkbox" for="ssidHide">
+                                    <input type="checkbox" id="ssidHide"><span data-lang="enable">开启</span>
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+
+                    <form class="form-horizontal none" action="/w20e/goform/addPPPoEServerUser" id="radio">
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4">国家：</label>
+                            <div class="col-xs-7">
+                                <select id="country" class="input-medium form-control">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4">类型选择：</label>
+                            <div class="col-xs-7">
+                                <label class="radio-inline">
+                                    <input type="radio" name="wifiRadio" id="wrlRadio" value="0">2.4G
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="wifiRadio" id="wrlRadio2" value="1">5G
+                                </label>
+                            </div>
+                        </div>
+                        <div id="radio_2g" class="none">
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 col-sm-4" data-lang="wifiFunc">无线功能</label>
+                                <div class="col-xs-7">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="wifiEn" value="1">开启
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="wifiEn" value="0">关闭
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 col-sm-4" data-lang="netMode">网络模式</label>
+                                <div class="col-xs-7">
+                                    <select id="netMode" class="input-medium form-control">
+                                        <option value="0">11 b/g</option>
+                                        <option value="1">11 b</option>
+                                        <option value="2">11 g</option>
+                                        <option value="3">11 b/g/n</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 col-sm-4" data-lang="bandwidth">带宽</label>
+                                <div class="col-xs-7">
+                                    <label class="radio-inline" for="wrlBandwidth">
+                                        <input type="radio" name="bandwidth" id="wrlBandwidth" value="0">20
+                                    </label>
+                                    <label class="radio-inline" for="wrlBandwidth2">
+                                        <input type="radio" name="bandwidth" id="wrlBandwidth2" value="1">40
+                                    </label>
+                                    <label class="radio-inline" for="wrlBandwidth3">
+                                        <input type="radio" name="bandwidth" id="wrlBandwidth3" value="2">Auto
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 col-sm-4" data-lang="channel">信道</label>
+                                <div class="col-xs-7">
+                                    <select id="channel" class="input-medium form-control"></select>
+                                </div>
+                            </div>
+                            <div class="form-group" id="extSet">
+                                <label class="control-label col-xs-5 col-sm-4" data-lang="extChannel">扩展信道</label>
+                                <div class="col-xs-7">
+                                    <select id="extChannel" class="input-medium form-control"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 col-sm-4" data-lang="powerAdjust">功率调整</label>
+                                <div class="col-xs-7">
+                                    <input type="text" id="power" style="width:152px;" class="input-small form-control"> <span data-lang="dBm">单位：dBm</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 col-sm-4">RSSI灵敏度</label>
+                                <div class="col-xs-7">
+                                    <span style="width: 13px;display: inline-block;text-align: right;">-</span>
+                                    <input type="text" name="rssi" id="rssi" maxlength="2" class="input-small form-control" style="margin-left: -13px;background: transparent;padding-left: 14px;width:152px;">
+                                    <span data-lang="dBm">单位：dbm</span>
+                                    <br>
+                                    <span class="text-info">范围：-90~-60</span>
+                                </div>
+                            </div>
+                            <div class="form-group" style="padding-left: 100px;">
+                                <label class="checkbox-inline" for="wmmEn">
+                                    <input type="checkbox" id="wmmEn"><span data-lang="">开启WMM</span>
+                                </label>
+                                <label class="checkbox-inline" for="ssidIsolationEn">
+                                    <input type="checkbox" id="ssidIsolationEn"><span data-lang="">开启SSID隔离</span>
+                                </label>
+                            </div>
+
+                            <div class="form-group" style="padding-left: 100px;">
+
+                                <label class="checkbox-inline" for="apsdEn">
+                                    <input type="checkbox" id="apsdEn"><span data-lang="">开启 APSD </span>
+                                </label>
+                                <label class="checkbox-inline" for="vlanEn">
+                                    <input type="checkbox" id="vlanEn"><span data-lang="">开启VLAN</span>
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                        <div id="radio_5g">
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 col-sm-4" data-lang="wifiFunc">无线功能</label>
+                                <div class="col-xs-7">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="wifiEn_5g" value="1">开启
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="wifiEn_5g" value="0">关闭
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 col-sm-4" data-lang="netMode">网络模式</label>
+                                <div class="col-xs-7">
+                                    <select id="netMode_5g" class="input-medium form-control">
+                                        <option value="0">11 a</option>
+                                        <option value="1">11 ac</option>
+                                        <option value="2">11 a/n</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 col-sm-4" data-lang="bandwidth">带宽</label>
+                                <div class="col-xs-7">
+                                    <label class="radio-inline" for="wrlBandwidth_5g">
+                                        <input type="radio" name="bandwidth_5g" id="wrlBandwidth_5g" value="0">20
+                                    </label>
+                                    <label class="radio-inline" for="wrlBandwidth2_5g">
+                                        <input type="radio" name="bandwidth_5g" id="wrlBandwidth2_5g" value="1">40
+                                    </label>
+                                    <label class="radio-inline" for="wrlBandwidth3_5g">
+                                        <input type="radio" name="bandwidth_5g" id="wrlBandwidth3_5g" value="2">80
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 col-sm-4">信道</label>
+                                <div class="col-xs-7">
+                                    <select id="channel_5g" class="input-medium form-control"></select>
+                                </div>
+                            </div>
+                            <div class="form-group" id="extSet_5g">
+                                <label class="control-label col-xs-5 col-sm-4" data-lang="extChannel">扩展信道</label>
+                                <div class="col-xs-7">
+                                    <select id="extChannel_5g" class="input-medium form-control"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 col-sm-4" data-lang="powerAdjust">功率调整</label>
+                                <div class="col-xs-7">
+                                    <input type="text" id="power_5g" style="width:152px;" class="input-small form-control"> <span data-lang="dBm">单位：dBm</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 col-sm-4">RSSI灵敏度</label>
+                                <div class="col-xs-7">
+                                    <span style="width: 13px;display: inline-block;text-align: right;">-</span>
+                                    <input type="text" name="rssi_5g" id="rssi_5g" maxlength="2" class="input-small form-control" style="margin-left: -13px;background: transparent;padding-left: 14px;width:152px;">
+                                    <span data-lang="dBm">单位：dbm</span>
+                                    <br>
+                                    <span class="text-info">范围：-90~-60</span>
+                                </div>
+                            </div>
+                            <div class="form-group" style="padding-left: 100px;">
+
+                                <label class="checkbox-inline" for="wmmEn_5g">
+                                    <input type="checkbox" id="wmmEn_5g"><span data-lang="">开启WMM</span>
+                                </label>
+                                <label class="checkbox-inline" for="ssidIsolationEn_5g">
+                                    <input type="checkbox" id="ssidIsolationEn_5g"><span data-lang="">开启SSID隔离</span>
+                                </label>
+                            </div>
+                            <div class="form-group" style="padding-left: 100px;">
+                                <label class="checkbox-inline" for="apsdEn_5g">
+                                    <input type="checkbox" id="apsdEn_5g"><span data-lang=""> 开启 APSD </span>
+                                </label>
+                                <label class="checkbox-inline" for="vlanEn_5g">
+                                    <input type="checkbox" id="vlanEn_5g"><span data-lang="">开启VLAN</span>
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="form-action">
+                        <input type="submit" class="btn btn-static-sm btn-primary" id="save" value="确定">
+                        <input type="reset" class="btn btn-static-sm btn-default" id="cancel" data-dismiss="modal" value="取消">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/acManage/js/countryCode.js?t=2016512174418"></script>
+
+    <script src="/acManage/js/wrlPolicy.js?t=2016512174418"></script>
+
+</body>
+</html>

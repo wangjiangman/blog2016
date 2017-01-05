@@ -1,0 +1,10 @@
+{
+    "wifiBasic" :{
+        "wifiSSID":"Tenda_48EE60", 
+        "wifiNoPwd":"true", 
+        "wifiHideSSID":"true",  
+        "wifiPwd":"12345678",
+        "wifiSecurityMode":"NONE" 
+    }
+}
+

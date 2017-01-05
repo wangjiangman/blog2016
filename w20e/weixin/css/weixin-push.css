@@ -1,0 +1,98 @@
+.html-content {
+    font-family: 'Microsoft YaHei', 'Times New Roman';
+    font-size: .8em;
+    position: relative;
+    z-index: 800;
+    top: 75px;
+    overflow: hidden;
+    width: 198px;
+    height: 293px;
+    color: #fff;
+    background-color: #fff;
+}
+
+.html-content-main {
+    position: relative;
+    height: 260px;
+}
+
+.html-content-ad-title {
+    font-size: 12px;
+    font-weight: bold;
+    overflow: hidden;
+    height: 36px;
+    margin: 0;
+    padding: 10px 0;
+    text-align: center;
+    word-wrap: break-word;
+    word-break: break-all;
+    background: #FF6600;
+}
+
+.html-content-ad-href {
+    height: 48px;
+}
+
+.html-content-ad-href a {
+    line-height: 28px;
+    position: absolute;
+    bottom: 40px;
+    left: 48px;
+    display: block;
+    width: 104px;
+    height: 30px;
+    margin: auto;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.html-content-ad-pic {
+    position: relative;
+    overflow: hidden;
+    width: 220px;
+    height: 253px;
+    margin: 0;
+    background: #fff;
+}
+
+.phoneview {
+    margin-left: 10px;
+    width: 250px;
+    height: 450px !important;
+    background: url(/w20e/common/img/phone.png) no-repeat;
+}
+
+.weWifi {
+    cursor: pointer;
+    margin-top: 7px;
+}
+
+#ad-pic {
+    width: 100%;
+}
+
+.file {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+}
+
+.file input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+#pushWrap {
+    width: 198px; 
+    height: 314px;
+    margin:0;
+    padding:0;
+}

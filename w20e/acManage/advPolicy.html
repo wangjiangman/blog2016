@@ -1,0 +1,290 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/acManage/css/placeholder.css?t=2016512174418">  
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default" id="userArea">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span>高级策略</span>
+        </div>
+    </div>
+    <div class="panel-body" id="advPolicyWrap">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <div class="pull-left col-xs-9 col-sm-6">
+                    <button type="button" id="addRebootPolicy" class="btn btn-default">+重启策略</button>
+                    <button type="button" id="addALertPolicy" class="btn btn-default">+告警策略</button>
+                    <button type="button" class="btn btn-default btn-del">删除</button>
+                    <button type="button" class="btn btn-default" id="refresh">刷新</button>
+                </div>
+                <div class="col-xs-5 col-sm-5">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="searchTxt" placeholder="策略名称">
+                        <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" id="searchBtn">搜索</button>
+                              </span>
+                    </div>
+                </div>
+            </div>
+            <p>总策略条数:<span id="advPolicyCount"></span>条</p>
+            <div class="form-group col-xs-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" data-bind="advPolicyList">
+                        <thead>
+                            <tr>
+                                <th class="th-checkbox">
+                                    <input type="checkbox" name="choseAdvPolicy" id="choseAdvPolicy" />
+                                </th>
+                                <th>策略名称</th>
+                                <th>LED状态</th>
+                                <th>重启/告警</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal modal-add">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span>×</span>
+                    </button>
+                    <span>重启设置</span>
+                </div>
+                <div class="modal-body" id="reboot">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4 col-xs-5 col-sm-4" data-lang="policyName">策略名称：</label>
+                            <div class="col-xs-7">
+                                <input type="text" id="policyName" class="input-small form-control validatebox" data-options='{"type":"remarkTxt","args":[1,32]}'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4" data-lang="ledState">LED 状态：</label>
+                            <div class="col-xs-7">
+                                <label class="checkbox-inline" for="ledEn">
+                                    <input type="checkbox" id="ledEn"><span data-lang="enable">开启</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4" data-lang="rebootSet">重启设置：</label>
+                            <div class="col-xs-7">
+                                <label class="checkbox-inline" for="rebootEn">
+                                    <input type="checkbox" id="rebootEn"><span data-lang="enable">开启</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div id="reboot-setting" class="none">
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 col-sm-4" data-lang="rebootType">重启类型：</label>
+                                <div class="col-xs-7">
+                                    <label class="checkbox-inline" style="padding-left: 0px;" for="rebootType2">
+                                        <input type="radio" name="rebootType" id="rebootType2" value="0"><span data-lang="circleReboot">循环重启</span>
+                                    </label>
+                                    <label class="checkbox-inline" for="rebootType1">
+                                        <input type="radio" name="rebootType" id="rebootType1" value="1"><span data-lang="schelduleReboot">定时重启</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 col-sm-4" data-lang="rebootTime" id="rebootTimeType">重启时间设置：</label>
+                                <div class="col-xs-7">
+                                    <input type="text" class="control-sm form-control" id="hour"> :
+                                    <input type="text" class="control-sm form-control" id="min">
+                                </div>
+                            </div>
+                            <div class="form-group" id="selWeekDay">
+                                <label class="checkbox-inline weekday-box" style="margin-left: 105px;" for="everyday">
+                                    <input type="checkbox" id="everyday"><span data-lang="everyday">每天</span>
+                                </label>
+                                <label class="checkbox-inline weekday-box" for="day1">
+                                    <input type="checkbox" id="day1"><span data-lang="Mon">星期一</span>
+                                </label>
+                                <label class="checkbox-inline weekday-box" for="day2">
+                                    <input type="checkbox" id="day2"><span data-lang="Tue">星期二</span>
+                                </label>
+                                <label class="checkbox-inline weekday-box" for="day3">
+                                    <input type="checkbox" id="day3"><span data-lang="Wed">星期三</span>
+                                </label>
+                                <label class="checkbox-inline weekday-box" style="margin-left: 105px;" for="day4">
+                                    <input type="checkbox" id="day4"><span data-lang="Thu">星期四</span>
+                                </label>
+                                <label class="checkbox-inline weekday-box" for="day5">
+                                    <input type="checkbox" id="day5"><span data-lang="Fri">星期五</span>
+                                </label>
+                                <label class="checkbox-inline weekday-box" for="day6">
+                                    <input type="checkbox" id="day6"><span data-lang="Sat">星期六</span>
+                                </label>
+                                <label class="checkbox-inline weekday-box" for="day7">
+                                    <input type="checkbox" id="day7"><span data-lang="Sun">星期日</span>
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="form-action">
+                        <input type="submit" class="btn btn-static-sm btn-primary" id="rebootSave" value="确定">
+                        <input type="reset" class="btn btn-static-sm btn-default" id="rebootCancel" data-dismiss="modal" value="取消">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal modal-add">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span>×</span>
+                    </button>
+                    <span>告警设置</span>
+                </div>
+                <div class="modal-body" id="alert">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4 col-xs-5 col-sm-4" data-lang="policyName">策略名称：</label>
+                            <div class="col-xs-7">
+                                <input type="text" class="input-small form-control validatebox" id="alertPolicyName" data-options='{"type":"remarkTxt","args":[1,32]}'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4 col-xs-5 col-sm-4">
+                                <div class="checkbox" for="desktopAlarm">
+                                    <input type="checkbox" id="desktopAlarmEn"><span data-lang="desktopAlarm">桌面告警：</span>
+                                </div>
+                            </label>
+                            <div class="col-xs-7" style="position: relative">
+                                <input type="text" class="input-small form-control" id="alertIp" maxlength="32" placeholder="请输入IP地址"/>
+                            </div>
+                        </div>
+                        <hr style="width:80%;background-color:#ddd;" />
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4 col-xs-5 col-sm-4">
+                                <div class="checkbox" for="emailAlarm">
+                                    <input type="checkbox" id="emailAlarmEn"><span data-lang="mailAlarm">邮件告警：</span>
+                                </div>
+                            </label>
+                            <div class="col-xs-7" style="position: relative">
+                                <input type="text" style="width: 195px;" class="input-small form-control" id="alertEmail" maxlength="32" placeholder="请输入Email地址"/>
+                                <a id="testMailBox" data-lang="testMailBox" class="button" title="testMailBoxTitle">测试</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4 col-xs-5 col-sm-4" data-lang="emailPwd">邮箱密码：</label>
+                            <div class="col-xs-7">
+                                <input type="password" style="width: 195px;" class="input-small form-control" id="emailPwd" maxlength="32" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4 col-xs-5 col-sm-4" data-lang="alertInterval">告警间隔：</label>
+                            <div class="col-xs-7">
+                                <select class="input-small form-control" style="width: 148px;" id="emailGap">
+                                    <option value="1">1</option>
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="30">30</option>
+                                    <option value="40">40</option>
+                                    <option value="60">60</option>
+                                </select><span data-lang="suffix_minute"> (单位：分钟)</span>
+                            </div>
+                        </div>
+                        <hr style="width:80%;background-color:#ddd;" />
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4 col-xs-5 col-sm-4" data-lang="apTrafficAlarm">AP流量告警：</label>
+                            <div class="col-xs-7">
+                                <label class="radio-inline">
+                                    <input type="radio" name="trafficAlarmEn" value="1">开启
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="trafficAlarmEn" value="0">关闭
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4 col-xs-5 col-sm-4" data-lang="alertTraffic">限制流量：</label>
+                            <div class="col-xs-7">
+                                <input type="text" class="input-small form-control" maxlength="9" id="trafficNum" style="width: 148px;"><span data-lang="suffix_mb"> (单位：MB)</span>
+                            </div>
+                        </div>
+                        <hr style="width:80%;background-color:#ddd;" />
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4 col-xs-5 col-sm-4" data-lang="apLinkFlowAlarm">AP接入数告警：</label>
+                            <div class="col-xs-7">
+                                <label class="radio-inline">
+                                    <input type="radio" name="apNumAlarmEn" value="1">开启
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="apNumAlarmEn" value="0">关闭
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4 col-xs-5 col-sm-4" data-lang="limitAccess">限制接入数：</label>
+                            <div class="col-xs-7">
+                                <select class="input-small form-control" id="apNum">
+                                    <option value="60">60</option>
+                                    <option value="50">50</option>
+                                    <option value="40">40</option>
+                                    <option value="30">30</option>
+                                    <option value="25">25</option>
+                                    <option value="20">20</option>
+                                    <option value="15">15</option>
+                                    <option value="10">10</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="form-action">
+                        <input type="submit" class="btn btn-static-sm btn-primary" id="alertSave" value="确定">
+                        <input type="reset" class="btn btn-static-sm btn-default" id="alertCancel" data-dismiss="modal" value="取消">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/acManage/js/advPolicy.js?t=2016512174418"></script>
+
+</body>
+</html>

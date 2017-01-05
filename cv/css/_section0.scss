@@ -1,0 +1,60 @@
+#section0{
+	background-color:#258c95;
+	position:relative;
+	min-width:1280px;
+	min-height:660px;
+}
+.avatar{
+	position:absolute;
+	left:30%;
+	top:15%;
+	width:210px;
+	height:210px;
+	border-radius:50%;
+	background-image:url(../img/avatar.png);
+	background-size:cover;
+	background-repeat:no-repeat;
+	border:10px solid #aaa;
+	cursor:pointer;
+	&:hover{
+		border:10px solid #D6D6D6;
+		box-shadow:0 0 10px #D6D6D6;
+	}
+}
+
+.info{
+	position:absolute;
+	left:50%;
+	top:18%;
+	width:400px;
+	h1{
+		font-size:3em;
+		margin-bottom:20px;
+		text-shadow:4px 4px 4px #aaa;
+	}
+	p{
+		font-size:1.4em;
+		line-height:2em;
+		color:#fff;
+		span{
+			font-family: 'Shadows Into Light',cursive,arial, sans-serif;
+		}
+	}
+}
+
+.des{
+	position:absolute;
+	top:55%;
+	width:100%;
+	text-align:center;	
+	p{
+		font-size:1.5em;
+		font-family: 'Shadows Into Light',cursive,arial, sans-serif;
+		line-height:1.8em;
+		color:#fff;
+		span{
+			font-size:1.1em;
+			color:burlywood;
+		}
+	}	
+}

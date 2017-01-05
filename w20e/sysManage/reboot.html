@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">重启</h3>
+    </div>
+    <div class="panel-body" id="rebootContainer">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <div class="text-center">
+                    <button type="button" class="btn btn-static-sm btn-primary" id="reboot">重启</button>
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <lable class="">
+                    重启设备将断开当前所有连接，过程约1分钟</lable>
+            </div>
+        </form>
+        <hr>
+        <form class="form-horizontal" role="form" id="rebootSet">
+            <div class="form-group">
+                <label class="control-label col-xs-4 col-sm-3 col-sm-offset-1">定时重启：</label>
+                <div class="col-xs-8 col-sm-3">
+                    <label class="radio-inline">
+                        <input type="radio" name="scheduledRebootEnable" value="true">开启
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="scheduledRebootEnable" value="false">关闭
+                    </label>
+                </div>
+            </div>
+        </form>
+        <div id="scheduledRebootOption" class="none">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="control-label col-xs-4 col-sm-3 col-sm-offset-1">重启时间：</label>
+                    <div class="col-xs-8 col-sm-4">
+                        <span>
+                            <select style="display:inline;width:80px" class="form-control" name="scheduledRebootTimeHour">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                            </select>
+                            <span>时</span>
+                        <span>
+                        <span class="control-br">
+                            <select style="display:inline;width:80px" class="form-control" name="scheduledRebootTimeMin">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                                <option value="32">32</option>
+                                <option value="33">33</option>
+                                <option value="34">34</option>
+                                <option value="35">35</option>
+                                <option value="36">36</option>
+                                <option value="37">37</option>
+                                <option value="38">38</option>
+                                <option value="39">39</option>
+                                <option value="40">40</option>
+                                <option value="41">41</option>
+                                <option value="42">42</option>
+                                <option value="43">43</option>
+                                <option value="44">44</option>
+                                <option value="45">45</option>
+                                <option value="46">46</option>
+                                <option value="47">47</option>
+                                <option value="48">48</option>
+                                <option value="49">49</option>
+                                <option value="50">50</option>
+                                <option value="51">51</option>
+                                <option value="52">52</option>
+                                <option value="53">53</option>
+                                <option value="54">54</option>
+                                <option value="55">55</option>
+                                <option value="56">56</option>
+                                <option value="57">57</option>
+                                <option value="58">58</option>
+                                <option value="59">59</option>
+                            </select>
+                            <span>分</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-4 col-sm-3 col-sm-offset-1">重复：</label>
+                    <div class="col-xs-8 col-sm-3" id="rebootPolicyOption">
+                        <label class="radio-inline">
+                            <input type="radio" name="scheduledRebootPolicy" value="everyday">每天
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="scheduledRebootPolicy" value="specificDate">指定日
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-4 col-sm-3 col-sm-offset-1"></label>
+                    <div class="col-xs-8">
+                        <input type="checkbox" name="scheduledRebootDate" value="0" group-index="0" /><span>星期一</span>
+                        <input type="checkbox" name="scheduledRebootDate" value="1" group-index="1" /><span>星期二</span>
+                        <input type="checkbox" name="scheduledRebootDate" value="2" group-index="2" /><span>星期三</span>
+                        <input type="checkbox" name="scheduledRebootDate" value="3" group-index="3" /><span>星期四</span>
+                        <input type="checkbox" name="scheduledRebootDate" value="4" group-index="4" /><span>星期五</span>
+                        <input type="checkbox" name="scheduledRebootDate" value="5" group-index="5" /><span>星期六</span>
+                        <input type="checkbox" name="scheduledRebootDate" value="6" group-index="6" /><span>星期日</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal none" id="reboot-modal">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" id="rebootClose">
+                    <span>×</span>
+                </button>
+                <span> 重启设备</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group text-center">
+                        <span>重启设备将断开当前所有连接，过程约1分钟</span>
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="button" class="btn btn-primary" name="quickReboot">立即重启</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-action">
+    <button class="btn btn-static-sm btn-primary" id="reboot-save">确定</button>
+    <button class="btn btn-static-sm btn-default" id="reboot-cancel" data-dismiss="modal">取消</button>
+</div>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e/sysManage/js/reboot.js?t=2016512174418"></script>
+
+</body>
+</html>

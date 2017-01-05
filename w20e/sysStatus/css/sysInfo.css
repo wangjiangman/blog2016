@@ -1,0 +1,17 @@
+.wan-status {
+    float: left; 
+    width:75px;
+}
+
+.image {
+    height:41px;
+}
+
+.img-center {
+    width: 43px;
+    margin: auto;
+}
+
+.span-size {
+    font-size: 12px;
+}

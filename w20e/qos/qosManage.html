@@ -1,0 +1,215 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span>流量控制</span>
+        </div>
+    </div>
+    <div class="panel-body" id="qosContainer">
+        <div class="row">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="control-label col-xs-5 col-sm-3 col-sm-offset-2">主网络流控：</label>
+                    <div class="col-xs-7 col-sm-5">
+                        <label class="radio-inline">
+                            <input type="radio" name="qosPolicy" value="disable" checked>禁用
+                        </label>
+                        <br class="control-br">
+                        <label class="radio-inline">
+                            <input type="radio" name="qosPolicy" value="auto">智能流控
+                        </label>
+                        <br class="control-br">
+                        <label class="radio-inline">
+                            <input type="radio" name="qosPolicy" value="user">自定义流控
+                        </label>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="userSetting">
+            <hr>
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <div class="col-xs-12 col-sm-3">
+                        <button type="button" id="addRules" class="btn btn-default">+新增规则</button>
+                        <button type="button" id="delRules" class="btn btn-default btn-del">删除</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover" data-bind="qosList">
+                                <thead>
+                                    <tr>
+                                        <th class="th-checkbox">
+                                            <input type="checkbox">
+                                        </th>
+                                        <th>IP组</th>
+                                        <th>时间组</th>
+                                        <th>单台并发连接数</th>
+                                        <th>模式</th>
+                                        <th>上传速率</th>
+                                        <th>下载速率</th>
+                                        <th>状态</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12 col-sm-5'">
+                        <input type="checkbox" name="qosDefaultRuleEn"><span>未受控的主机默认为：</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-11"></label>
+                    <div class="col-xs-9 col-xs-offset-3 col-sm-offset-0">
+                        <span class="controls-text">最大上传：</span>
+                        <input class="form-control validatebox control-sm" type="text" name="qosDefaultRuleUpstream" data-options='{"type": "num", "args": [1, 128000]}' required maxlength="6">KB/s
+                        <span class="control-br">
+                            <span class="controls-text"> 最大下载：</span>
+                            <input class="form-control validatebox control-sm" type="text" name="qosDefaultRuleDownstream" data-options='{"type": "num", "args": [1, 128000]}' required maxlength="6">KB/s
+                        </span>
+                        <p class="control-br" style="margin-top: 10px;">
+                            <span class="controls-text"> 最大并发连接数：</span>
+                            <input class="form-control validatebox control-sm" type="text" name="qosDefaultRuleConnecttedNum" data-options='{"type": "num", "args": [1, 9999]}' required maxlength="4">
+                        </p>
+                    </div>
+                </div>
+            </form>
+            <hr>
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-2 col-md-2">访客网络流控</label>
+                    <label class="control-label col-xs-7 col-sm-3">单台设备最大上传速率：</label>
+                    <div class="col-xs-5 col-sm-4">
+                        <input type="text" name="qosGuestUpstream" class="form-control validatebox control-sm" data-options='{"type": "num", "args": [1, 12800]}' required maxlength="5"><span class="help-block help-inline">KB/s</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-7 col-sm-3 col-sm-offset-2">单台设备最大下载速率：</label>
+                    <div class="col-xs-5 col-sm-4">
+                        <input type="text" name="qosGuestDownstream" class="form-control validatebox control-sm" data-options='{"type": "num", "args": [1, 12800]}' required maxlength="5"><span class="help-block help-inline">KB/s</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="text-center">
+    <input type="submit" class="btn btn-default btn-static-sm btn-primary" id="qosSave" value="确认">
+    <input type="reset" class="btn btn-default btn-static-sm" id="qosCancel" value="取消">
+</div>
+<div class="modal" id="qosModal">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <span>新增规则</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <form action="/w20e/goform/editQos" method="post">
+                        <div class="form-group">
+                            <input type="hidden" name="qosListIndex">
+                            <input type="hidden">
+                            <label class="control-label col-xs-5">IP组：</label>
+                            <div class="col-xs-7">
+                                <select class="form-control controls-sm validatebox" name="qosListIPGroupRemark" id="IPGroupName" required>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5">时间组：</label>
+                            <div class="col-xs-7">
+                                <select class="form-control controls-sm validatebox" name="qosListTimeGroupRemark" id="timeGroupName" required>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5">单台设备并发连接数：</label>
+                            <div class="col-xs-7">
+                                <input type="text" class="form-control controls-sm validatebox" name="qosListConnecttedNum" data-options='{"type": "num", "args": [1, 9999]}' required maxlength="4">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5">限制模式：</label>
+                            <div class="col-xs-7">
+                                <div class="radio-group">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="qosListMode" value="share" checked>共享
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="qosListMode" value="private">独享
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5">上传速率：</label>
+                            <div class="col-xs-7">
+                                <input class="form-control validatebox control-sm" type="text" name="qosListUpstream" data-options='{"type": "num", "args": [1, 128000]}' required maxlength="6">KB/s
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5">下载速率：</label>
+                            <div class="col-xs-7">
+                                <input class="form-control validatebox control-sm" type="text" name="qosListDownstream" data-options='{"type": "num", "args": [1, 128000]}' required maxlength="6">KB/s
+                            </div>
+                        </div>
+                        <div class="form-action">
+                            <input type="submit" class="btn btn-static-sm btn-primary" value="确定">
+                            <input type="reset" class="btn btn-static-sm btn-default" data-dismiss="modal" value="取消">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e/qos/js/qosManage.js?t=2016512174418"></script>
+
+</body>
+</html>

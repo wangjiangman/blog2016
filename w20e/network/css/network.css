@@ -1,0 +1,45 @@
+.wan-status {
+    float: left; 
+    width:75px;
+}
+
+.image {
+    height:41px;
+}
+
+.img-center {
+    width: 43px;
+    margin: auto;
+}
+
+.span-size {
+    font-size: 12px;
+}
+
+.model {
+    float:left;
+}
+.model1 {
+    width:59%;
+}
+.model2 {
+    width:16%;
+}
+.model3 {
+    width:45%;
+}
+.model4 {
+    width:27%;
+}
+.model5 {
+    width:29%;
+}
+.model6 {
+    width:44%;
+}
+.model7 {
+    width:16%;
+}
+.model8 {
+    width:56%;
+}

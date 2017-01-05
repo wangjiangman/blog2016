@@ -1,0 +1,123 @@
+{
+    "connectInfo": {
+        "upperWifiSsid": "<>/&",
+        "connectState": "2",
+        "connectDuration": "60000",
+        "extenderSsid": "Tenda_extender",
+        "extenderPwd": "87654321"
+    },
+    "wifiScan": [{
+            "wifiScanSSID": "PSST-ruanjian-Fanhong-Realtek>?<?",
+            "wifiScanSecurityMode": "UNKNOW",
+            "wifiScanSignalStrength": "-65",
+            "wifiScanChannel":"1",
+            "wifiScanMAC":"12:3A:35:00:9D:20"
+        },
+        {
+            "wifiScanSSID": "PSST-ruanjian-hongtao-Realtek",
+            "wifiScanSecurityMode": "WPA2/AES",
+            "wifiScanSignalStrength": "-50",
+            "wifiScanChannel":"2",
+            "wifiScanMAC":"14:3A:35:00:9D:20"
+        },
+        {
+            "wifiScanSSID": "&<>\"",
+            "wifiScanSecurityMode": "WPA2/AES",
+            "wifiScanSignalStrength": "-75",
+            "wifiScanChannel":"3",
+            "wifiScanMAC":"16:3A:35:00:9D:20"
+        },
+        {
+            "wifiScanSSID": "Tenda_78",
+            "wifiScanSecurityMode": "WPA2/AES",
+            "wifiScanSignalStrength": "-85",
+            "wifiScanChannel":"5",
+            "wifiScanMAC":"C8:3A:35:00:9D:20"
+        },
+        {
+            "wifiScanSSID": "Tenda_34",
+            "wifiScanSecurityMode": "NONE",
+            "wifiScanSignalStrength": "-50",
+            "wifiScanChannel":"2",
+            "wifiScanMAC":"14:3A:35:00:9D:20"
+        },
+        {
+            "wifiScanSSID": "Tenda_56",
+            "wifiScanSecurityMode": "WPA2/AES",
+            "wifiScanSignalStrength": "-75",
+            "wifiScanChannel":"3",
+            "wifiScanMAC":"16:3A:35:00:9D:20"
+        },
+        {
+            "wifiScanSSID": "Fanhong-Realtek>?<?",
+            "wifiScanSecurityMode": "WPA2/AES",
+            "wifiScanSignalStrength": "-85",
+            "wifiScanChannel":"5",
+            "wifiScanMAC":"C8:3A:35:00:9D:20"
+        },
+        {
+            "wifiScanSSID": "Tenda_34",
+            "wifiScanSecurityMode": "NONE",
+            "wifiScanSignalStrength": "-50",
+            "wifiScanChannel":"2",
+            "wifiScanMAC":"14:3A:35:00:9D:20"
+        },
+        {
+            "wifiScanSSID": "Tenda_56",
+            "wifiScanSecurityMode": "WPA2/AES",
+            "wifiScanSignalStrength": "-75",
+            "wifiScanChannel":"3",
+            "wifiScanMAC":"16:3A:35:00:9D:20"
+        },
+        {
+            "wifiScanSSID": "Tenda_78",
+            "wifiScanSecurityMode": "WPA2/AES",
+            "wifiScanSignalStrength": "-85",
+            "wifiScanChannel":"5",
+            "wifiScanMAC":"C8:3A:35:00:9D:20"
+        },
+        {
+            "wifiScanSSID": "Tenda_34",
+            "wifiScanSecurityMode": "NONE",
+            "wifiScanSignalStrength": "-50",
+            "wifiScanChannel":"2",
+            "wifiScanMAC":"14:3A:35:00:9D:20"
+        },
+        {
+            "wifiScanSSID": "Tenda_56",
+            "wifiScanSecurityMode": "WPA2/AES",
+            "wifiScanSignalStrength": "-75",
+            "wifiScanChannel":"3",
+            "wifiScanMAC":"16:3A:35:00:9D:20"
+        },
+        {
+            "wifiScanSSID": "Tenda_78",
+            "wifiScanSecurityMode": "WPA2/AES",
+            "wifiScanSignalStrength": "-85",
+            "wifiScanChannel":"5",
+            "wifiScanMAC":"C8:3A:35:00:9D:20"
+        },
+        {
+            "wifiScanSSID": "Tenda_34",
+            "wifiScanSecurityMode": "NONE",
+            "wifiScanSignalStrength": "-50",
+            "wifiScanChannel":"2",
+            "wifiScanMAC":"14:3A:35:00:9D:20"
+        },
+        {
+            "wifiScanSSID": "Tenda_56",
+            "wifiScanSecurityMode": "WPA2/AES",
+            "wifiScanSignalStrength": "-75",
+            "wifiScanChannel":"3",
+            "wifiScanMAC":"16:3A:35:00:9D:20"
+        },
+        {
+            "wifiScanSSID": "Tenda_78",
+            "wifiScanSecurityMode": "WPA2/AES",
+            "wifiScanSignalStrength": "-85",
+            "wifiScanChannel":"5",
+            "wifiScanMAC":"C8:3A:35:00:9D:20"
+        }
+    ]
+
+}

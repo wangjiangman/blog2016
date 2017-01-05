@@ -1,0 +1,241 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/acManage/css/placeholder.css?t=2016512174418">  
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default" id="userArea">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span>批量维护</span>
+        </div>
+    </div>
+    <div class="panel-body" id="userlistWrap">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <div class="pull-left col-xs-9 col-sm-6">
+                    <button type="button" class="btn btn-default wrlset">无线配置</button>
+                    <button type="button" class="btn btn-default advset">高级配置</button>
+                    <button type="button" class="btn btn-default defset">缺省配置</button>
+                    <button type="button" class="btn btn-default btn-del">删除</button>
+                </div>
+                <div class="col-xs-5 col-sm-5">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="searchTxt" placeHolder="型号, MAC, SSID">
+                        <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" id="searchBtn">搜索</button>
+                              </span>
+                    </div>
+                </div>
+            </div>
+            <p>在线总设备数:<span id="onlineCount"></span>台</p>
+            <div class="form-group col-xs-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" data-bind="devList" id="apMultiTable">
+                        <thead>
+                            <tr>
+                                <th class="th-checkbox">
+                                    <input type="checkbox" name="choseDev" id="choseDev" />
+                                </th>
+                                <th>型号</th>
+                                <th>MAC地址</th>
+                                <th>SSID</th>
+                                <th>LED状态</th>
+                                <th>重启状态</th>
+                                <th>告警状态</th>
+                                <th>状态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal modal-add">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span>×</span>
+                    </button>
+                    <span>策略选择</span>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4 col-xs-5 col-sm-4" data-lang="rebootPolicy">重启策略</label>
+                            <div class="col-xs-7">
+                                <select id="rebootPolicy" class="input-medium form-control">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4 col-xs-5 col-sm-4" data-lang="alertPolicy">告警策略</label>
+                            <div class="col-xs-7">
+                                <select id="alertPolicy" class="input-medium form-control">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group none">
+                            <label class="control-label col-xs-5 col-sm-4 col-xs-5 col-sm-4">密码策略</label>
+                            <div class="col-xs-7">
+                                <select id="pwdPolicy" class="input-medium form-control">
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="form-action">
+                        <input type="submit" class="btn btn-static-sm btn-primary" id="save" value="确定">
+                        <input type="reset" class="btn btn-static-sm btn-default" id="cancel" data-dismiss="modal" value="取消">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal modal-add">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content" id="ssidDialog">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span>×</span>
+                    </button>
+                    <span>无线配置</span>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4 col-xs-5 col-sm-4" data-lang="ssidRadio">SSID频段</label>
+                            <div class="col-xs-7">
+                                <label class="radio-inline" for="radio1">
+                                    <input type="radio" name="ssidBand" id="radio1" value="0">2.4G
+                                </label>
+                                <label class="radio-inline" for="radio2">
+                                    <input type="radio" name="ssidBand" id="radio2" value="1">5G
+                                </label>
+                            </div>
+                        </div>
+                        <div id="wrlRadio_2g">
+                            <div class="form-group" id="div_radio_2g_1">
+                                <label class="control-label col-xs-5 col-sm-4 col-xs-5 col-sm-4" data-lang="sel_policy1">选择SSID 1</label>
+                                <div class="col-xs-7">
+                                    <select class="input-medium form-control" name="radio_2g_1" id="radio_2g_1"></select>
+                                </div>
+                            </div>
+                            <div class="form-group" id="div_radio_2g_2">
+                                <label class="control-label col-xs-5 col-sm-4 col-xs-5 col-sm-4" data-lang="sel_policy2">选择SSID 2</label>
+                                <div class="col-xs-7">
+                                    <select class="input-medium form-control" name="radio_2g_2" id="radio_2g_2"></select>
+                                </div>
+                            </div>
+                            <div class="form-group" id="div_radio_2g_3">
+                                <label class="control-label col-xs-5 col-sm-4 col-xs-5 col-sm-4" data-lang="sel_policy3">选择SSID 3</label>
+                                <div class="col-xs-7">
+                                    <select class="input-medium form-control" name="radio_2g_3" id="radio_2g_3"></select>
+                                </div>
+                            </div>
+                            <div class="form-group" id="div_radio_2g_4">
+                                <label class="control-label col-xs-5 col-sm-4 col-xs-5 col-sm-4" data-lang="sel_policy4">选择SSID 4</label>
+                                <div class="col-xs-7">
+                                    <select class="input-medium form-control" name="radio_2g_4" id="radio_2g_4"></select>
+                                </div>
+                            </div>
+                            <div class="form-group" id="div_radio_2g_5">
+                                <label class="control-label col-xs-5 col-sm-4 col-xs-5 col-sm-4" data-lang="sel_policy5">选择SSID 5</label>
+                                <div class="col-xs-7">
+                                    <select class="input-medium form-control" name="radio_2g_5" id="radio_2g_5"></select>
+                                </div>
+                            </div>
+                            <div class="form-group" id="div_radio_2g_6">
+                                <label class="control-label col-xs-5 col-sm-4 col-xs-5 col-sm-4" data-lang="sel_policy6">选择SSID 6</label>
+                                <div class="col-xs-7">
+                                    <select class="input-medium form-control" name="radio_2g_6" id="radio_2g_6"></select>
+                                </div>
+                            </div>
+                            <div class="form-group" id="div_radio_2g_7">
+                                <label class="control-label col-xs-5 col-sm-4 col-xs-5 col-sm-4" data-lang="sel_policy7">选择SSID 7</label>
+                                <div class="col-xs-7">
+                                    <select class="input-medium form-control" name="radio_2g_7" id="radio_2g_7"></select>
+                                </div>
+                            </div>
+                            <div class="form-group" id="div_radio_2g_8">
+                                <label class="control-label col-xs-5 col-sm-4 col-xs-5 col-sm-4" data-lang="sel_policy8">选择SSID 8</label>
+                                <div class="col-xs-7">
+                                    <select class="input-medium form-control form-control" name="radio_2g_8" id="radio_2g_8"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="wrlRadio_5g" class="none">
+                            <div class="form-group" id="div_radio_5g_1">
+                                <label class="control-label col-xs-5 col-sm-4 col-xs-5 col-sm-4" data-lang="sel_policy1">选择SSID 1</label>
+                                <div class="col-xs-7">
+                                    <select class="input-medium form-control" name="radio_5g_1" id="radio_5g_1"></select>
+                                </div>
+                            </div>
+                            <div class="form-group" id="div_radio_5g_2">
+                                <label class="control-label col-xs-5 col-sm-4 col-xs-5 col-sm-4" data-lang="sel_policy2">选择SSID 2</label>
+                                <div class="col-xs-7">
+                                    <select class="input-medium form-control" name="radio_5g_2" id="radio_5g_2"></select>
+                                </div>
+                            </div>
+                            <div class="form-group" id="div_radio_5g_3">
+                                <label class="control-label col-xs-5 col-sm-4 col-xs-5 col-sm-4" data-lang="sel_policy3">选择SSID 3</label>
+                                <div class="col-xs-7">
+                                    <select class="input-medium form-control" name="radio_5g_3" id="radio_5g_3"></select>
+                                </div>
+                            </div>
+                            <div class="form-group" id="div_radio_5g_4">
+                                <label class="control-label col-xs-5 col-sm-4 col-xs-5 col-sm-4" data-lang="sel_policy4">选择SSID 4</label>
+                                <div class="col-xs-7">
+                                    <select class="input-medium form-control" name="radio_5g_4" id="radio_5g_4"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="form-action">
+                        <input type="submit" class="btn btn-static-sm btn-primary" id="saveSsid" value="确定">
+                        <input type="reset" class="btn btn-static-sm btn-default" id="cancelSsid" data-dismiss="modal" value="取消">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/acManage/js/apStat.js?t=2016512174418"></script>
+
+    <script src="/acManage/js/apMultiManage.js?t=2016512174418"></script>
+
+</body>
+</html>

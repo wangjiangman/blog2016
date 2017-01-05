@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/sysStatus/css/sysInfo.css?t=2016512174418">  
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span>系统信息</span>
+        </div>
+    </div>
+    <div class="panel-body" id="sysInfo">
+        <div class="row none">
+            <label class="col-xs-12 col-sm-2 col-md-2">端口信息</label>
+            <div class="panel-body" id="wanStatus" style="margin-left:23%; text-align: center;">
+                <div class="wan-status">
+                    <div class="img-center">
+                        <img id="port0" class="image" src="/w20e/common/img/on.png">
+                    </div>
+                    <span class="span-size">LAN0</span>
+                </div>
+                <div class="wan-status">
+                    <div class="img-center">
+                        <img id="port1" class="image" src="/w20e/common/img/off.png">
+                    </div>
+                    <span name="portName1" class="span-size">LAN1</span>
+                    <span name="portName2" class="span-size">LAN1</span>
+                    <span name="portName3" class="span-size">LAN1</span>
+                    <span name="portName4" class="span-size">WAN3</span>
+                </div>
+                <div class="wan-status">
+                    <div class="img-center">
+                        <img id="port2" class="image" src="/w20e/common/img/on.png">
+                    </div>
+                    <span name="portName1" class="span-size">LAN2</span>
+                    <span name="portName2" class="span-size">LAN2</span>
+                    <span name="portName3" class="span-size">WAN2</span>
+                    <span name="portName4" class="span-size">WAN2</span>
+                </div>
+                <div class="wan-status">
+                    <div class="img-center">
+                        <img id="port3" class="image" src="/w20e/common/img/off.png">
+                    </div>
+                    <span name="portName1" class="span-size">LAN3</span>
+                    <span name="portName2" class="span-size">WAN1</span>
+                    <span name="portName3" class="span-size">WAN1</span>
+                    <span name="portName4" class="span-size">WAN1</span>
+                </div>
+                <div class="wan-status">
+                    <div class="img-center">
+                        <img id="port4" class="image" src="/w20e/common/img/on.png">
+                    </div>
+                    <span class="span-size">WAN1</span>
+                </div>
+            </div>
+        </div>
+        <!-- <hr> -->
+        <div class="row">
+            <label class="col-xs-12 col-sm-2 col-md-2">系统信息</label>
+            <div class="col-xs-12 col-sm-10">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="control-label col-xs-5 col-sm-3">设备名称：</label>
+                        <div class="col-xs-7 col-sm-5">
+                            <div class="controls-text" data-bind="sysInfoDevName"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-5 col-sm-3">系统时间：</label>
+                        <div class="col-xs-7 col-sm-5">
+                            <div class="controls-text" data-bind="sysInfoSysTime"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-5 col-sm-3">运行时间：</label>
+                        <div class="col-xs-7 col-sm-5">
+                            <div class="controls-text" data-bind="sysInfoRunTime"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-5 col-sm-3">软件版本号：</label>
+                        <div class="col-xs-7 col-sm-5">
+                            <div class="controls-text" data-bind="sysInfoSoftVersion"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-5 col-sm-3">CPU使用率：</label>
+                        <div class="col-xs-7 col-sm-5">
+                            <div class="controls-text" data-bind="cpuUsePercent"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-5 col-sm-3">内存使用率：</label>
+                        <div class="col-xs-7 col-sm-5">
+                            <div class="controls-text" data-bind="memoryUsePercent"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <label class="col-xs-12 col-sm-2 col-md-2">LAN口信息</label>
+            <div class="col-xs-12 col-sm-10">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="control-label col-xs-5 col-sm-3">LAN MAC地址：</label>
+                        <div class="col-xs-7 col-sm-5">
+                            <div class="controls-text" data-bind="lanMac"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-5 col-sm-3">LAN IP：</label>
+                        <div class="col-xs-7 col-sm-5">
+                            <div class="controls-text" data-bind="lanIp"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <label class="col-xs-12 col-sm-2 col-md-2">WAN口信息</label>
+            <div class="col-xs-12 col-sm-10">
+                <form class="form-horizontal" role="form">
+                    <div class="col-sm-6 none" id="wan1Info">
+
+                    </div>
+                    <hr class="visible-xs">
+                    <div class="col-sm-6 none" id="wan2Info">
+
+                    </div>
+                    <div class="col-sm-6 none" id="wan3Info">
+
+                    </div>
+                    <hr class="visible-xs">
+                    <div class="col-sm-6 none" id="wan4Info">
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e/sysStatus/js/sysInfo.js?t=2016512174418"></script>
+
+</body>
+</html>

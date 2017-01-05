@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span>PPTP/L2TP客户端</span>
+        </div>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" role="form" id="mainview">
+            <div class="form-group">
+                <label class="control-label col-xs-6 col-sm-3 col-sm-offset-2">PPTP/L2TP客户端：</label>
+                <div class="col-xs-6 col-sm-3">
+                    <label class="radio-inline">
+                        <input type="radio" name="vpnClientEn" value="true" checked>开启
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="vpnClientEn" value="false">关闭
+                    </label>
+                </div>
+            </div>
+            <div id="pptpClientEnWrap">
+                <div class="form-group">
+                    <label class="control-label col-xs-6 col-sm-3 col-sm-offset-2">客户端类型：</label>
+                    <div class="col-xs-6 col-sm-4">
+                        <label class="radio-inline">
+                            <input type="radio" name="vpnClientType" value="pptp">PPTP客户端
+                        </label>
+                        <span>&nbsp;&nbsp;&nbsp;</span>
+                        <label class="radio-inline">
+                            <input type="radio" name="vpnClientType" value="l2tp">L2TP客户端
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-6 col-sm-3 col-sm-offset-2">WAN口：</label>
+                    <div class="col-xs-6 col-sm-6">
+                        <label class="radio-inline">
+                            <input type="radio" name="vpnClientWAN" value="WAN1">WAN1
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="vpnClientWAN" value="WAN2">WAN2
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="vpnClientWAN" value="WAN3">WAN3
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="vpnClientWAN" value="WAN4">WAN4
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-6 col-sm-3 col-sm-offset-2">服务器IP/域名：</label>
+                    <div class="col-xs-6 col-sm-3">
+                        <input type="text" class="form-control controls-ma validatebox" name="vpnClientServerAddr" required data-options='{"type": "domain"}'>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-6 col-sm-3 col-sm-offset-2">用户名：</label>
+                    <div class="col-xs-6 col-sm-3">
+                        <input type="text" class="form-control controls-ma validatebox" name="vpnClientUser" maxlength="32"  data-options='[{"type": "ascii", "args": [1, 32]},{"type":"specialChar", "args":["&#39;\&#34;&amp;"]}]'>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-6 col-sm-3 col-sm-offset-2">密码：</label>
+                    <div class="col-xs-6  col-sm-3">
+                        <input type="text" class="form-control controls-ma validatebox" name="vpnClientPwd" maxlength="32"  data-options='[{"type": "ascii", "args": [1, 32]},{"type":"specialChar", "args":["&#39;\&#34;&amp;"]}]'>
+                    </div>
+                </div>
+                <div id="encryptWrap" class="none">
+                    <div class="form-group">
+                        <label class="control-label col-xs-6 col-sm-3 col-sm-offset-2">加密：</label>
+                        <div class="col-xs-6 col-sm-3">
+
+                                <label class="radio-inline">
+                                    <input type="radio" name="vpnClientEncryptEn" value="true" checked>开启
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="vpnClientEncryptEn" value="false">关闭
+                                </label>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-6 col-sm-3 col-sm-offset-2">VPN代理上网：</label>
+                    <div class="col-xs-6 col-sm-3">
+                        <label class="radio-inline">
+                            <input type="radio" name="vpnClientAgentEn" value="true" checked>开启
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="vpnClientAgentEn" value="false">关闭
+                        </label>
+                    </div>
+                </div>
+                <div class="none" id="vpnEnWrap">
+                    <div class="form-group">
+                        <label class="control-label col-xs-6 col-sm-3 col-sm-offset-2">服务器内网网段：</label>
+                        <div class="col-xs-6 col-sm-3">
+                            <input type="text" class="form-control controls-ma validatebox" name="vpnClientServerNetAddr" required data-options='[{"type": "ipSegment"}, {"combineType": "ipSegment", "relativeElems": ["self", "[name=vpnClientServerNetMask]"]}]'>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-6 col-sm-3 col-sm-offset-2">内网子网掩码：</label>
+                        <div class="col-xs-6 col-sm-3">
+                            <input type="text" class="form-control controls-ma validatebox" name="vpnClientServerNetMask" required data-options='{"type": "mask"}'>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group none" id="clientConnStatusWrap">
+                    <label class="control-label col-xs-6 col-sm-3 col-sm-offset-2">状态：</label>
+                    <div class="col-xs-6 col-sm-4">
+                        <span class="controls-text" id="clientConnStatus"></span>
+                    </div>
+                </div>
+                <div class="form-group none" id="gotIPWrap">
+                    <label class="control-label col-xs-6 col-sm-3 col-sm-offset-2">获取的IP地址：</label>
+                    <div class="col-xs-6 col-sm-4">
+                        <span class="controls-text" id="gotIP"></span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="form-action">
+    <button class="btn btn-static-sm btn-primary" id="saveBtn">确定</button>
+    <button class="btn btn-static-sm btn-default" id="cancelBtn" data-dismiss="modal">取消</button>
+</div>
+
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e/vpn/js/pptpClient.js?t=2016512174418"></script>
+
+</body>
+</html>

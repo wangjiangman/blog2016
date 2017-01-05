@@ -1,0 +1,260 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span>无线访问过滤</span>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <label class="col-xs-12 col-sm-2 control-legend text-static" data-bind="wifiFilterSSID">主网络</label>
+            <div class="col-xs-12 col-sm-10">
+                <form class="form-horizontal" role="form" id="form">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <label class=" checkbox-inline">
+                                <input type="checkbox" name="wifiFilterEn">启用无线访问过滤
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-6 col-sm-3">
+                            <label class="radio-inline">
+                                <input type="radio" name="wifiFilterMode" value="accept" checked>仅允许
+                            </label>
+                        </div>
+                        <div class="col-xs-6 col-sm-3 control-br">
+                            <label class="radio-inline">
+                                <input type="radio" name="wifiFilterMode" value="forbid">仅禁止
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <button type="button" class="btn btn-default add-rule">+新增MAC</button>
+                            <button type="button" class="btn btn-default btn-del del-rule">删除</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <input type="checkbox" name="">
+                                            </th>
+                                            <th>MAC地址</th>
+                                            <th>状态</th>
+                                            <th>备注（可不填）</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <label class="col-xs-12 col-sm-2 control-legend text-static" data-bind="wifiFilterSSID">次网络</label>
+            <div class="col-xs-12 col-sm-10">
+                <form class="form-horizontal" role="form" id="form1">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="wifiFilterEn">启用无线访问过滤
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-6 col-sm-3">
+                            <label class="radio-inline">
+                                <input type="radio" name="wifiFilterMode" value="accept" checked>仅允许
+                            </label>
+                        </div>
+                        <div class="col-xs-6 col-sm-3">
+                            <label class="radio-inline">
+                                <input type="radio" name="wifiFilterMode" value="forbid">仅禁止
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <button type="button" class="btn btn-default add-rule">+新增MAC</button>
+                            <button type="button" class="btn btn-default btn-del del-rule">删除</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <input type="checkbox" name="">
+                                            </th>
+                                            <th>MAC地址</th>
+                                            <th>状态</th>
+                                            <th>备注（可不填）</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal modal-add none">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <span> 新增MAC列表</span>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" action="/w20e/goform/addWifiFilterRules">
+                    <input type="hidden" name="SSIDIndex">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>MAC地址</th>
+                                    <th>状态</th>
+                                    <th>备注（可不填）</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody class="add-tbody">
+                                <tr>
+                                    <td>
+                                        <input type="text" name="wifiFilterListDeviceMAC" class="form-control controls-sm validatebox" required data-options='{"type": "mac"}'>
+                                    </td>
+                                    <td>
+                                        <select class="form-control control-sm" name="wifiFilterListEn">
+                                            <option value="true">启用</option>
+                                            <option value="false">禁用</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="wifiFilterListRemark" class="form-control controls-sm validatebox" data-options=''>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-default control-xs btn-add"> + </a>
+                                        <a class="btn btn-default control-xs btn-remove"> - </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="form-action">
+                        <input type="submit" class="btn btn-static-sm btn-primary add-save" value="确定">
+                        <input type="reset" class="btn btn-static-sm btn-default add-cancel" data-dismiss="modal" value="取消">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal modal-edit">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <span> 编辑MAC</span>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" action="/w20e/goform/modifyWifiFilterRules">
+                    <input type="hidden" name="SSIDIndex">
+                    <input type="hidden" name="wifiFileterListIndex">
+                    <div class="form-group">
+                        <label class="control-label col-xs-5">MAC地址：</label>
+                        <div class="col-xs-7">
+                            <input type="text" name="wifiFilterListDeviceMAC" class="form-control controls-sm validatebox" required data-options='{"type": "mac"}'>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-5">状态：</label>
+                        <div class="col-xs-7">
+                            <select class="form-control controls-sm" name="wifiFilterListEn">
+                                <option value="true">启用</option>
+                                <option value="false">禁用</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-5">备注（可不填）：</label>
+                        <div class="col-xs-7">
+                            <input type="text" class="form-control controls-sm validatebox" name="wifiFilterListRemark"  data-options='{"type": "remarkTxt", "args": [1,16]}'>
+                        </div>
+                    </div>
+                    <div class="form-action">
+                        <input type="submit" class="btn btn-static-sm btn-primary" id="auth-rule-edit-save" value="确定">
+                        <input type="reset" class="btn btn-static-sm btn-default" id="auth-rule-edit-cancel" data-dismiss="modal" value="取消">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-action">
+    <button class="btn btn-static-sm btn-primary" id="wifiFilterSet-save">确定</button>
+    <button class="btn btn-static-sm btn-default" id="wifiFilterSet-cancel">取消</button>
+</div>
+</body>
+
+</html>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e/wifi/js/wifiFilter.js?t=2016512174418"></script>
+
+</body>
+</html>

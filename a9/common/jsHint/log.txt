@@ -1,0 +1,12 @@
+common.js: line 6, col 9, Expected an assignment or function call and instead saw an expression.
+common.js: line 25, col 10, Don't make functions within a loop.
+common.js: line 504, col 66, Expected an assignment or function call and instead saw an expression.
+common.js: line 542, col 37, Expected an assignment or function call and instead saw an expression.
+common.js: line 641, col 57, Expected an assignment or function call and instead saw an expression.
+common.js: line 648, col 78, Expected an assignment or function call and instead saw an expression.
+common.js: line 737, col 22, Expected an assignment or function call and instead saw an expression.
+common.js: line 786, col 34, Expected an assignment or function call and instead saw an expression.
+common.js: line 791, col 34, Expected an assignment or function call and instead saw an expression.
+common.js: line 799, col 38, Expected an assignment or function call and instead saw an expression.
+common.js: line 869, col 70, Expected an assignment or function call and instead saw an expression.
+common.js: line 873, col 72, Expected an assignment or function call and instead saw an expression.

@@ -1,0 +1,127 @@
+.usertype{
+    height:104px;
+    text-align:center;
+   /* padding: 10px 0px !important;*/
+}
+
+.num{
+    font-size:30px;
+}
+
+.num: hover {
+    color:#FF6600;
+}
+
+.num: active {
+    color:#ED7020;
+}
+
+/* .panel-body {
+    padding: 0px;
+}
+ */
+
+.userlist-tabs-wrap {
+	position: relative;
+	height: 109px;
+	margin: 0px 11px 10px 11px;
+	overflow: hidden;
+}
+
+
+/* 左右按钮 */
+.scroll-btn	{
+	position: absolute;
+	z-index: 1;
+	top: 10px;
+	display: none;
+	width: 50px;
+	height: 90px;
+	line-height: 90px;
+	background: #666;
+	opacity: 0.5;
+	color: #fff;
+	filter: alpha(opacity=50);
+	text-align: center;
+	font-size: 40px;
+	cursor: pointer;
+}
+.scroll-btn:hover {
+	background: #aaa;
+}
+
+.scroll-btn-left {
+	left: 20px;
+}
+.scroll-btn-right {
+	right: 20px;
+}
+
+.scroll-btn i {
+	display: block;
+	width: 0;
+	height: 0;	
+	margin: 0 auto;
+	margin-top: 20px;
+}
+.scroll-btn-left i {
+
+	border-top: 25px solid transparent;
+	border-bottom: 25px solid transparent;
+	border-right: 30px solid #fff;
+}
+
+.scroll-btn-right i {
+
+	border-top: 25px solid transparent;
+	border-bottom: 25px solid transparent;
+	border-left: 30px solid #fff;
+}
+/* 左右按钮 over*/
+
+.userlist-tabs {
+	position: absolute;
+	min-width: 797px;
+	text-align: center;
+	border:none;
+	margin-bottom: 10px;
+}
+
+.userlist-tabs > li {
+	display: inline-block;
+	float:none;
+	width: 130px;
+}
+
+.userlist-tabs > li > a {
+	display: block;
+  	background: #f2f2f2;
+	padding: 10px 0;
+	margin: 3px;
+	border-radius: 4px;
+	border:none;
+}
+
+.userlist-tabs > li.active > a, .userlist-tabs > li.active > a:hover, .userlist-tabs > li.active > a:focus {
+  background: #e8e8e8;
+  color: #d82228;
+  border: none;
+}
+
+a {
+    color: #555555;
+}
+
+@media (max-width: 767px) {
+	.userlist-tabs {
+		position: absolute;
+		min-width: 690px;
+		text-align: center;
+		border:none;
+		margin-bottom: 10px;
+	}
+	.userlist-tabs > li {
+	  width: 110px;
+	  padding: 0;
+	}
+}

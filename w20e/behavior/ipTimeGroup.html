@@ -1,0 +1,241 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/behavior/css/behavior.css?t=2016512174418">  
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">IP组和时间组</div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <label class="col-xs-12 col-sm-2 col-md-2">时间组设置</label>
+            <div class="col-xs-12 col-sm-10">
+                <form class="form-horizontal" role="form" id="timeGroupContainer">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <button type="button" id="addTime" class="btn btn-default">+新增时间组</button>
+                            <button type="button" id="delTime" class="btn btn-default btn-del">删除</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover" data-bind="timeGroupTable">
+                                    <thead>
+                                        <tr>
+                                            <th class="th-checkbox">
+                                                <input type="checkbox" name="choseTime" id="choseTime" />
+                                            </th>
+                                            <th>组名称</th>
+                                            <th>星期</th>
+                                            <th>时间</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <label class="col-xs-12 col-sm-2 col-md-2">IP组设置</label>
+            <div class="col-xs-12 col-sm-10">
+                <form class="form-horizontal" role="form" id="IPGroupContainer">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <button type="button" id="addIP" class="btn btn-default">+新增IP组</button>
+                            <button type="button" id="delIP" class="btn btn-default btn-del">删除</button>
+                            <br class="visible-xs">
+                            <span class="text-warning">注意：设置IP组后，IP组列表以外的设备将禁止上网</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover" data-bind="ipGroupTable">
+                                    <thead>
+                                        <tr>
+                                            <th class="th-checkbox">
+                                                <input type="checkbox" name="choseIP" id="choseIP" />
+                                            </th>
+                                            <th>IP组名称</th>
+                                            <th>IP信息</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="timeGroup-modal">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"> × </button>
+                <span>新增时间组</span>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" action="/w20e/goform/setTimeGroup">
+                    <input type="hidden" name="timeGroupIndex">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">组名称：</label>
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control validatebox" name="timeGroupName" maxlength="16" required data-options='{"type": "username", "args": [1,16]}'>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">时间：</label>
+                        <div class="col-xs-8" id="timeGroupInput">
+                            <span>
+                                <input type="text" class="form-control control-xs validatebox" name="timeGroupStartHour"
+                                  required data-options='{"type": "tNum", "args": [0,23]}' maxlength="2">
+                                :
+                                <input type="text" class="form-control control-xs validatebox" name="timeGroupStartMinute" 
+                                  required data-options='{"type": "tNum", "args": [0,59]}' maxlength="2">
+                                ~ 
+                            </span>
+                            <span class="control-br">
+                              <input type="text" class="form-control control-xs validatebox" name="timeGroupEndHour"  
+                                required data-options='{"type": "tNum", "args": [0,23]}' maxlength="2">
+                              :
+                              <input type="text" class="form-control control-xs validatebox" name="timeGroupEndMinute" 
+                                required data-options='{"type": "tNum", "args": [0,59]}' maxlength="2">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">星期：</label>
+                        <div class="col-xs-8">
+                            <label class="radio-inline">
+                                <input type="radio" name="setWeek" value="all" checked> 全选 </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="setWeek" value="manual"> 自定义 </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-10 col-xs-offset-2 col-sm-8 col-sm-offset-4">
+                            <div class="control-week">
+                                <input type="checkbox" group-index="0" name="timeGroupWeekday" checked/>
+                                <span>星期日</span>
+                            </div>
+                            <div class="control-week">
+                                <input type="checkbox" group-index="1" name="timeGroupWeekday" checked/>
+                                <span>星期一</span>
+                            </div>
+                            <div class="control-week">
+                                <input type="checkbox" group-index="2" name="timeGroupWeekday" checked/>
+                                <span>星期二</span>
+                            </div>
+                            <div class="control-week">
+                                <input type="checkbox" group-index="3" name="timeGroupWeekday" checked/>
+                                <span>星期三</span>
+                            </div>
+                            <div class="control-week">
+                                <input type="checkbox" group-index="4" name="timeGroupWeekday" checked/>
+                                <span>星期四</span>
+                            </div>
+                            <div class="control-week">
+                                <input type="checkbox" group-index="5" name="timeGroupWeekday" checked/>
+                                <span>星期五</span>
+                            </div>
+                            <div class="control-week">
+                                <input type="checkbox" group-index="6" name="timeGroupWeekday" checked/>
+                                <span>星期六</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-action">
+                        <input type="submit" class="btn btn-static-sm btn-primary" id="timeGroup-save" value="确定">
+                        <input type="reset" class="btn btn-static-sm btn-default" id="timeGroup-cancel" data-dismiss="modal" value="取消">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="IPGroup-modal">
+    <div class="modal-dialog" style="width: 510px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"> <span>×</span> <span class="sr-only">Close</span> </button>
+                <span> 新增IP组</span> </div>
+            <div class="modal-body">
+                <form class="form-horizontal" action="/w20e/goform/setIPGroup">
+                    <input type="hidden" name="IPGroupIndex">
+                    <div class="form-group">
+                        <label class="control-label col-xs-5 col-sm-3">组名称：</label>
+                        <div class="col-xs-7 col-sm-9">
+                            <input type="text" class="form-control control-fit validatebox" name="IPGroupName" maxlength="16" required data-options='{"type": "username", "args": [1,16]}'>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-5 col-sm-3">IP组或IP段：</label>
+                        <div class="col-xs-7 col-sm-9">
+                            <span>
+                                <input type="text" class="form-control control-fit validatebox" maxlength="15" name="IPGroupStartIP" 
+                                    required data-options='{"type": "ip"}'> ~
+                            </span>
+                            <span class="control-br">
+                                <input type="text" class="form-control control-fit validatebox" maxlength="15" name="IPGroupEndIP" 
+                                    required data-options='{"type": "ip"}'>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-action">
+                        <input type="submit" class="btn btn-static-sm btn-primary" id="IPGroup-save" value="确定">
+                        <input type="reset" class="btn btn-static-sm btn-default" id="IPGroup-cancel" data-dismiss="modal" value="取消">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e/behavior/js/ipTimeGroup.js?t=2016512174418"></script>
+
+</body>
+</html>

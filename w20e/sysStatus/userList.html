@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/sysStatus/css/userList.css?t=2016512174418">  
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span>用户列表</span>
+        </div>
+    </div>
+    <br>
+    <div class="panel-body" id="sysInfo">
+        <div class="row">
+            <div class="userlist-tabs-wrap">
+
+                <div class="scroll-btn scroll-btn-left"><i></i></div>
+                <div class="scroll-btn scroll-btn-right"><i></i></div>
+
+                <ul class="nav nav-tabs userlist-tabs" id="navCon">
+                    <li id="dhcp" class="active "><a class="usertype" href="#">DHCP用户<br/><br/><span class="num" id="dhcpUserNum"></span></a></li>
+                    <li id="wifi" class=""><a class="usertype" href="#">无线客户端<br/><br/><span class="num" id="wifiUserNum"></span></a></li>
+                    <li id="vpn" class=""><a class="usertype" href="#">VPN用户<br/><br/><span class="num" id="vpnUserNum"></span></a></li>
+                    <li id="pppoe" class=""><a class="usertype" href="#">PPPoE在线用户<br/><br/><span class="num" id="pppoeUserNum"></span></a></li>
+                    <li id="web" class=" "><a class="usertype" href="#">WEB认证在线<br/><br/><span class="num" id="webUserNum"></span></a></li>
+                     <li id="ipsec" class=" "><a class="usertype" href="#">IPSEC安全联盟<br/><br/><span class="num" id="ipsecUserNum"></span></a></li>
+                </ul>
+            </div>
+
+            <div class="col-xs-12">
+                <div id="dhcpUserTable">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>IP地址</th>
+                                    <th>MAC地址</th>
+                                    <th>在线时长</th>
+                                    <th>剩余租期</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="wifiUserTable" class="none">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>MAC地址</th>
+                                    <th>IP地址</th>
+                                    <th>连接速率</th>
+                                    <th>连接时长</th>
+                                    <th>连接SSID</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="vpnUserTable" class="none">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>用户名</th>
+                                    <th>备注</th>
+                                    <th>拨入IP</th>
+                                    <th>分配IP</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="pppoeUserTable" class="none">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>帐号</th>
+                                    <th>备注</th>
+                                    <th>IP地址</th>
+                                    <th>上传速率</th>
+                                    <th>下载速率</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="webUserTable" class="none">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>用户名</th>
+                                    <th>备注</th>
+                                    <th>认证时间</th>
+                                    <th>IP地址</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="ipsecUserTable" class="none">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>名称</th>
+                                    <th>SPI</th>
+                                    <th>方向</th>
+                                    <th>隧道两端</th>
+                                    <th>数据流</th>
+                                    <th>安全协议</th>
+                                    <th>AH验证算法</th>
+                                    <th>ESP验证算法</th>
+                                    <th>ESP加密算法</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e/sysStatus/js/userList.js?t=2016512174418"></script>
+
+</body>
+</html>

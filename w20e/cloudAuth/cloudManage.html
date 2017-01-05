@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span>云认证</span>
+        </div>
+    </div>
+    <div class="panel-body" id="cloudContanier">
+        <div class="row">
+            <div>
+                <label class="col-xs-12 col-sm-2 col-md-2"></label>
+                <div class="col-xs-12 col-sm-10">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-3">云认证：</label>
+                            <div class="col-xs-7">
+                                <label class="radio-inline">
+                                    <input type="radio" name="cloudManageEn" value="true">开启
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="cloudManageEn" value="false">关闭
+                                </label>
+                            </div>
+                        </div>
+                        <div id="cloudDetail">
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 col-sm-3">认证平台：</label>
+                                <div class="col-xs-7">
+                                    <select name="cloudServerIndex"  class="form-control" id="authPlatform">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 col-sm-3">服务器地址：</label>
+                                <div class="col-xs-7" id="cloudServerAddress">
+                                    <input type="text" class="form-control validatebox" name="cloudServerAddress" required data-options='[{"type": "url"}, {"type": "byteLen","args": [1, 64]}]'>
+                                    <a href="#" target="_blank" id="goToCloud">前往云服务器</a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 col-sm-3">认证帐号：</label>
+                                <div class="col-xs-7">
+                                    <input type="text" class="form-control validatebox" name="cloudManageAccount" maxlength="32" required data-options='[{"type":"charTxt"}]'>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 col-sm-3">端口号：</label>
+                                <div class="col-xs-7">
+                                    <input type="text" class="form-control validatebox" name="cloudServerPort" required data-options='{"type": "num", "args": [1,65535]}'>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 col-sm-3">设备序列号：</label>
+                                <div class="col-xs-7">
+                                    <div class="controls-text" data-bind="deviceSerialNumber"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 col-sm-3">免责声明：</label>
+                                <div class="col-xs-7">
+                                <div class="controls-text"><input type="checkbox" id="annouce">我已阅读<a href="/cloudInstructions.html" target="_blank">《云平台免责声明》</a></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 col-sm-3">认证状态：</label>
+                                <div class="col-xs-7">
+                                    <div class="controls-text" data-bind="cloudRegisterStatus"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-action">
+    <button class="btn btn-static-sm btn-primary" id="save">确定</button>
+    <button class="btn btn-static-sm btn-default" id="cancel" data-dismiss="modal">取消</button>
+</div>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e/cloudAuth/js/cloudManage.js?t=2016512174418"></script>
+
+</body>
+</html>

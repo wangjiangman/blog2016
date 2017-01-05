@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">USB打印共享</h3>
+    </div>
+    <div class="panel-body" id="usbPrintContainer">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-xs-4 col-sm-3 col-sm-offset-2 control-label">USB打印共享: </label>
+                <div class="radio-group col-xs-8 col-sm-4">
+                    <label class="radio-inline">
+                        <input type="radio" name="usbPrintEn" value="true">开启
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="usbPrintEn" value="false">关闭
+                    </label>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="form-action">
+    <button class="btn btn-static-sm btn-primary" id="usbPrintSet-save">确定</button>
+    <button class="btn btn-static-sm btn-default" id="usbPrintSet-cancel" data-dismiss="modal">取消</button>
+</div>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e/USB/js/usbPrintShare.js?t=2016512174418"></script>
+
+</body>
+</html>

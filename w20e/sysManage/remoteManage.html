@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">远端WEB管理</h3>
+    </div>
+    <div class="panel-body" id="remoteManageContainer">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="control-label col-xs-5 col-sm-3 col-sm-offset-2">远端WEB管理：</label>
+                <div id="remoteSet" class="col-xs-7 col-sm-3">
+                    <label class="radio-inline">
+                        <input type="radio" name="remoteEn" value="true">开启
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="remoteEn" value="false">关闭
+                    </label>
+                </div>
+            </div>
+        </form>
+        <div id="remoteManageOption" class="none">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="control-label col-xs-5 col-sm-3 col-sm-offset-2">WAN口：</label>
+                    <div style="width:40%;" class="radio-group col-xs-7 col-sm-3">
+                        <label class="radio-inline">
+                            <input type="radio" name="remoteWan" value="wan1">WAN1
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="remoteWan" value="wan2">WAN2
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="remoteWan" value="wan3">WAN3
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="remoteWan" value="wan4">WAN4
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-5 col-sm-3 col-sm-offset-2">可管理IP：</label>
+                    <div class="col-xs-7 col-sm-6">
+                        <span>
+                            <select class="form-control controls-sm" name="remoteType">
+                                <option value="anyone">全部IP地址</option>
+                                <option value="someone">特定IP地址</option>
+                            </select>
+                        <span>
+                        <span class="control-br">
+                            <input type="text" class="form-control controls-sm validatebox"
+                                name="remoteIP" data-options='{"type":"ip"}'>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-5 col-sm-3 col-sm-offset-2">端口号：</label>
+                    <div class="col-xs-7 col-sm-2">
+                        <input type="text" class="form-control controls-sm validatebox" name="remotePort"
+                            required data-options='{"type":"num","args":[1024,65535]}'>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="form-action">
+    <button class="btn btn-static-sm btn-primary" id="remoteManageSet-save">确定</button>
+    <button class="btn btn-static-sm btn-default" id="remoteManageSet-cancel" data-dismiss="modal">取消</button>
+</div>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e/sysManage/js/remoteManage.js?t=2016512174418"></script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+getRoleList({
+  "status": "10000",
+  "message": "success",
+  "result": {
+  	"roleList": [
+  		{
+  			"roleId": 10000,
+  			"name": "局长",
+  			"users": ["张三"],
+  			"operations": ["update", "copy", "delete", "sort"]
+  		},
+  		{
+  			"roleId": 10001,
+  			"name": "职员",
+  			"users": ["向小威", "张小露"],
+  			"operations": ["update", "copy", "delete", "sort"]
+  		},
+  		{
+  			"roleId": 100021,
+  			"name": "校长",
+  			"users": ["王顺"],
+  			"operations": ["update", "copy", "delete", "sort"]
+  		},
+  		{
+  			"roleId": 10003,
+  			"name": "教师",
+  			"users": ["马丽丽", "李四", "王五"],
+  			"operations": ["update", "copy", "delete", "sort"]
+  		},
+  		{
+  			"roleId": 10004,
+  			"name": "职工",
+  			"users": ["卢小翠"],
+  			"operations": ["update", "copy", "delete", "sort"]
+  		}
+  	]
+  }
+})

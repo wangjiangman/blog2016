@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/USB/css/index.css?t=2016512174418">  
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span> USB文件共享</span>
+        </div>
+    </div>
+    <div class="panel-body" id="usbContainer">
+        <div class="row">
+            <label class="col-xs-12 col-sm-2 col-md-2"> 基本设置</label>
+            <div class="col-xs-12 col-sm-10">
+                <form id="usbInfo" class="form-horizontal" role="form">
+                    <div id="notice" style="color:#8a6d3b" class="controls-text">未获取到USB存储设备信息，请插入USB存储设备</div>
+                    <div class="form-group" id='usb1'>
+                        <label class="control-label col-xs-5 col-sm-3">USB1(Tenda)：</label>
+                        <div class="col-xs-7">
+                            <div class="progress" style="float:left">
+                                <div id="status_usb_bar1" class="progress-bar">
+                                    <span class="progress-btm" id="bar1">60%</span>
+                                </div>
+                            </div>
+                            <button type="button" id="btn0" class="btn btn-default usb-btn">安全弹出</button>
+                        </div>
+                    </div>
+                    <div class="form-group" id='usb2'>
+                        <label class="control-label col-xs-5 col-sm-3">USB2(Tenda)：</label>
+                        <div class="col-xs-7">
+                            <div class="progress" style="float:left">
+                                <div id="status_usb_bar2" class="progress-bar">
+                                    <span class="progress-btm" id="bar2">60%</span>
+                                </div>
+                            </div>
+                            <button type="button" id="btn1" class="btn btn-default usb-btn">安全弹出</button>
+                        </div>
+                    </div>
+                    <div class="form-group" id='usb3'>
+                        <label class="control-label col-xs-5 col-sm-3">USB3(Tenda)：</label>
+                        <div class="col-xs-7">
+                            <div class="progress" style="float:left">
+                                <div id="status_usb_bar3" class="progress-bar">
+                                    <span class="progress-btm" id="bar3">60%</span>
+                                </div>
+                            </div>
+                            <button type="button" id="btn2" class="btn btn-default usb-btn">安全弹出</button>
+                        </div>
+                    </div>
+                    <div class="form-group" id='usb4'>
+                        <label class="control-label col-xs-5 col-sm-3">USB4(Tenda)：</label>
+                        <div class="col-xs-7">
+                            <div class="progress" style="float:left">
+                                <div id="status_usb_bar4" class="progress-bar">
+                                    <span class="progress-btm" id="bar4">60%</span>
+                                </div>
+                            </div>
+                            <button type="button" id="btn3" class="btn btn-default usb-btn">安全弹出</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-5 col-sm-3">本地访问：</label>
+                        <div class="col-xs-7 col-sm-6">
+                            <div id="localAccess"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-5 col-sm-3">允许互联网访问：</label>
+                        <div class="radio-group col-xs-7 col-sm-6">
+                            <label class="radio-inline">
+                                <input type="radio" name="internetAccessUSBEn" value="true">启用
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="internetAccessUSBEn" value="false" checked>禁用
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group" id="internetAccess">
+                        <label class="control-label col-xs-5 col-sm-3">互联网访问：</label>
+                        <div class="col-xs-7 col-sm-7" id="netAccess">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <div role="form" id="userForm">
+            <div class="row">
+                <label class="col-xs-12 col-sm-2 col-md-2"> 帐号访问管理</label>
+                <div class="col-xs-12 col-sm-10 col-md-9">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th> 用户名</th>
+                                    <th> 密码</th>
+                                    <th>用户权限</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <input type="text" class="form-control control-md validatebox" name="usbPrivilegedUserName" maxlength="32" required data-options='{"type":"pwd"}'>
+                                    </td>
+                                    <td>
+                                        <input type="password" class="form-control control-md validatebox" name="usbPrivilegedUserPwd" data-role="visiblepassword" maxlength="32" required data-options='{"type":"pwd"}'>
+                                    </td>
+                                    <td><span data-bind="admin"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="text" class="form-control control-md validatebox" name="usbOrdinaryUserName" maxlength="32" required data-options='{"type":"pwd"}'>
+                                    </td>
+                                    <td>
+                                        <input type="password" class="form-control control-md validatebox" name="usbOrdinaryUserPwd" data-role="visiblepassword" maxlength="32" required data-options='{"type":"pwd"}'>
+                                    </td>
+                                    <td><span data-bind="guest"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-action">
+    <button class="btn btn-static-sm btn-primary" id="usbFileSet-save">确定</button>
+    <button class="btn btn-static-sm btn-default" id="usbFileSet-cancel" data-dismiss="modal">取消</button>
+</div>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e/USB/js/usbFileShare.js?t=2016512174418"></script>
+
+</body>
+</html>

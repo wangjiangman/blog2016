@@ -1,0 +1,25 @@
+{ 
+    "lan" : {
+        "lanIP": "192.168.0.1",
+        "lanMask": "255.255.255.0"
+    }, 
+    "wan" : [{
+        "wanIP": "192.168.9.1",
+        "wanMask": "255.255.0.0"
+    },{
+    "wanIP": "192.168.10.1",
+        "wanMask": "255.255.255.0"
+    }],
+    "pppoes": {
+        "pppoesIP": "192.168.8.1",
+        "pppoesMask": "255.255.255.0"
+    },
+    "dhcpServer" : {
+        "dhcpServerEn" : true,
+        "dhcpServerStartIP" : "192.168.0.2",
+        "dhcpServerEndIP" : "192.168.0.254",
+        "dhcpServerReleaseTime" : "30",
+        "dhcpServerDns1": "192.168.0.1",
+        "dhcpServerDns2": "192.168.0.1"
+    }
+}

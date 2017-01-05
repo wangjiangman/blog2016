@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/weixin/css/weixin-push.css?t=2016512174418">  
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span>微信连WiFi</span>
+        </div>
+    </div>
+    <div class="panel-body" id="weContainer">
+        <div class="row">
+            <div>
+                <label class="col-xs-12 col-sm-2 col-md-2"></label>
+                <div class="col-xs-12 col-sm-10" id="weWifiDetail">
+                    <form class="form-horizontal" role="form">
+                        <input type="hidden" name="wewifiOnlineTime" value="" />
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-3">微信连WiFi：</label>
+                            <div class="col-xs-7">
+                                <label class="radio-inline">
+                                    <input type="radio" name="wewifiEn" value="true" checked>开启
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="wewifiEn" value="false">关闭
+                                </label>
+                            </div>
+                        </div>
+                        <div id="weWifiSetting">
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 col-sm-3">SSID：</label>
+                                <div class="col-xs-7">
+                                    <input class="form-control controls-ma validatebox" name="wewifiSsid" required data-options='[{"type":"byteLen", "args": [1, 32], "msg": "SSID不能超过32个字节"},{"type":"chkHalf"}]'>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 col-sm-3">shopID：</label>
+                                <div class="col-xs-7">
+                                    <input class="form-control controls-ma validatebox" name="wewifiShopId" maxlength="15" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 col-sm-3">appID：</label>
+                                <div class="col-xs-7">
+                                    <input class="form-control controls-ma validatebox" name="wewifiAppId" maxlength="64" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 col-sm-3">secretKey：</label>
+                                <div class="col-xs-7">
+                                    <input class="form-control controls-ma validatebox" name="wewifiSecretKey" required data-options='[{"type": "ascii", "args": [1, 64]},{"type": "chkHalf"},{"type": "noBlank"}]'>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-5 col-sm-3">认证有效期：</label>
+                                <div class="col-xs-7 col-sm-9">
+                                    <input type="text" class="form-control controls-xs validatebox" data-options='{"type": "num","args": [0,24]}' id="confHour" required>小时
+                                    <input type="text" class="form-control controls-xs validatebox" data-options='{"type": "num","args": [0,59]}' id="confMinute" required>分
+                                    <span style="color:#8a6d3b;margin-left: 5px;">连网时间超出认证有效期后需再次认证才能上网</span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-xs-12">
+                    <span>提示</span>
+                    <ol>
+                        <li>请参照“<a href="javascript:void(0)" id="wewifiHelp">微信Wi-Fi设置教程</a>”，打开“<a href='https://mp.weixin.qq.com/cgi-bin/loginpage?t=wxm2-login&lang=zh_CN' target="_blank" id="wewifiBack">公众号后台</a>” 完成微信设置。</li>
+                        <li>SSID、shopID、appID、secretKey 均来源于:</li>如果一个门店下面只存在一个SSID：微信连WIFI——设备管理——查看详情——查看设备改造信息<br>如果一个门店下添加了多个SSID：微信连WIFI——设备管理——查看详情——查看设备列表——查看设备改造信息
+                        <li>点击“确定”后，无线设置中的2.4G主网络无线名称将自动更改成SSID，并关闭主网络无线密码。</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-center">
+    <input type="submit" class="btn btn-default btn-static-sm btn-primary" id="weWifiSave" value="确定">
+    <input type="reset" class="btn btn-default btn-static-sm" id="weWifiCancel" value="取消">
+</div>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e/weixin/js/weWifi.js?t=2016512174418"></script>
+
+</body>
+</html>

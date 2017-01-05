@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e//network/css/network.css?t=2016512174418">  
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span>上网设置</span>
+        </div>
+    </div>
+    <div class="panel-body" id="wanNumContain">
+        <div class="row none">
+            <label class="col-xs-12 col-sm-2 col-md-2">WAN口个数</label>
+            <div class="col-xs-12 col-sm-10">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3">WAN口个数：</label>
+                        <div class="col-xs-8 col-sm-4">
+                            <select class="form-control" name="wanNum" id="wanNum">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body none" id="wanStatus" style="margin-left:34%; text-align: center;">
+        <div class="wan-status">
+            <div class="img-center">
+                <img id="port0" class="image" src="/w20e/common/img/on.png">
+            </div>
+            <span class="span-size">LAN0</span>
+        </div>
+        <div class="wan-status">
+            <div class="img-center">
+                <img id="port1" class="image" src="/w20e/common/img/off.png">
+            </div>
+            <span name="portName1" class="span-size">LAN1</span>
+            <span name="portName2" class="span-size">LAN1</span>
+            <span name="portName3" class="span-size">LAN1</span>
+            <span name="portName4" class="span-size">WAN3</span>
+        </div>
+        <div class="wan-status">
+            <div class="img-center">
+                <img id="port2" class="image" src="/w20e/common/img/on.png">
+            </div>
+            <span name="portName1" class="span-size">LAN2</span>
+            <span name="portName2" class="span-size">LAN2</span>
+            <span name="portName3" class="span-size">WAN2</span>
+            <span name="portName4" class="span-size">WAN2</span>
+        </div>
+        <div class="wan-status">
+            <div class="img-center">
+                <img id="port3" class="image" src="/w20e/common/img/off.png">
+            </div>
+            <span name="portName1" class="span-size">LAN3</span>
+            <span name="portName2" class="span-size">WAN1</span>
+            <span name="portName3" class="span-size">WAN1</span>
+            <span name="portName4" class="span-size">WAN1</span>
+        </div>
+        <div class="wan-status">
+            <div class="img-center">
+                <img id="port4" class="image" src="/w20e/common/img/on.png">
+            </div>
+            <span class="span-size">WAN1</span>
+        </div>
+        <div>
+            <img style="margin-left: -27%;" id="lineStatus" src="/w20e/common/img/1.png">
+        </div>
+        <div id="model1" name="model" style="height:17px;" class="none">
+            <div class="model model1">
+                <span>LAN口模式</span>
+            </div>
+            <div class="model mode2">
+                <span>WAN口模式</span>
+            </div>
+        </div>
+        <div id="model2" name="model" style="height:17px;" class="none">
+            <div class="model model3">
+                <span>LAN口模式</span>
+            </div>
+            <div class="model model4">
+                <span>WAN口模式</span>
+            </div>
+        </div>
+        <div id="model3" name="model" style="height:17px;" class="none">
+            <div class="model model5">
+                <span>LAN口模式</span>
+            </div>
+            <div class="model model6">
+                <span>WAN口模式</span>
+            </div>
+        </div>
+        <div id="model4" name="model" style="height:17px;" class="none">
+            <div class="model model7">
+                <span>LAN口模式</span>
+            </div>
+            <div class="model model8">
+                <span>WAN口模式</span>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body" id="network">
+
+    </div>
+</div>
+<div class="form-action">
+    <button class="btn btn-static-sm btn-primary" id="submitBtn">确定</button>
+    <button class="btn btn-static-sm btn-default" id="cancel" data-dismiss="modal">取消</button>
+</div>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e//network/js/wanSet.js?t=2016512174418"></script>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">恢复出厂设置</h3>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" role="form">
+            <div class="form-group text-center">
+                <button type="button" id="resetBtn" class="btn btn-primary btns-lg" name="setReboot">恢复出厂设置</button>
+            </div>
+            <div class="form-group text-center">
+                <span class="center-text">恢复出厂设置将清空当前配置并将路由器还原到出厂状态</span>
+            </div>
+        </form>
+    </div>
+    <div class="modal" id="reset-modal">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button id="resetClose" type="button" class="close" data-dismiss="modal">
+                        <span>×</span>
+                    </button>
+                    <span id="modalTitle">&nbsp;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group text-center">
+                            <span>恢复出厂设置后本设备会重启，确定恢复？</span>
+                        </div>
+                        <div class="form-action">
+                            <button id="resetNow" type="button" class="btn btn-static-sm btn-primary" name="quickReboot">确定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e/sysManage/js/backtoInitial.js?t=2016512174418"></script>
+
+</body>
+</html>

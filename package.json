@@ -1,0 +1,18 @@
+{
+  "name": "wangjiangman.github.io",
+  "version": "1.0.0",
+  "description": "WJM-HOME",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wangjiangman/wangjiangman.github.io.git"
+  },
+  "author": "wangjiangman (fiona_914@163.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wangjiangman/wangjiangman.github.io/issues"
+  },
+  "homepage": "https://wangjiangman.github.io"
+}

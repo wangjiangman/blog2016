@@ -1,0 +1,346 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default" id="pageWrap">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span>IPSec</span>
+        </div>
+    </div>
+    <div class="panel-body" id="ipsecListWrap">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <button type="button" class="btn btn-default add-rule">+新增隧道</button>
+                    <button type="button" class="btn btn-default btn-del del-rule">删除</button>
+                </div>
+            </div>
+            <div class="form-group col-xs-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" data-bind="list">
+                        <thead>
+                            <tr>
+                                <th class="th-checkbox">
+                                    <input type="checkbox" name="" id="" />
+                                </th>
+                                <th>IPSec状态</th>
+                                <th>WAN口</th>
+                                <th>连接名称</th>
+                                <th>隧道协议</th>
+                                <th>远端网关地址</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div id="formWrap" class="none">
+        <form class="form-horizontal" role="form" id="ipsecEditWrap">
+            <input type="hidden" name="IPsecTunnelIndex">
+            <div class="form-group">
+                <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">IPSec：</label>
+                <div class="col-xs-8 col-sm-3">
+                    <label class="radio-inline">
+                        <input type="radio" name="IPsecEn" value="true" checked>开启
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="IPsecEn" value="false">关闭
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">WAN口：</label>
+                <div class="col-xs-8 col-sm-3">
+                    <select class="form-control" name="IPsecWAN">
+                        <option value="WAN1">WAN1</option>
+                        <option value="WAN2">WAN2</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">连接名称：</label>
+                <div class="col-xs-8 col-sm-3">
+                    <input type="text" class="form-control validatebox" name="IPsecConnectName" required data-options='{"type": "username", "args": [1, 16]}'>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">隧道协议：</label>
+                <div class="col-xs-8 col-sm-3">
+                    <select class="form-control" name="IPsecTunnelProtocol">
+                        <option value="ESP">ESP</option>
+                        <option value="AH">AH</option>
+                        <option value="AH+ESP">AH+ESP</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">远端网关地址：</label>
+                <div class="col-xs-8 col-sm-3">
+                    <input type="text" class="form-control validatebox" name="IPsecGateway" required data-options='{"type": "domain"}'>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">本地内网网段/掩码：</label>
+                <div class="col-xs-8 col-sm-3">
+                    <input type="text" class="form-control validatebox" name="IPsecLocalNet" required data-options='[{"type": "segAndMask"},{"type": "localNetValid"}, {"type":"IPMask"}]'>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">远端内网网段/掩码：</label>
+                <div class="col-xs-8 col-sm-3">
+                    <input type="text" class="form-control validatebox" name="IPsecRemoteNet" required data-options='[{"type": "segAndMask"},{"type": "remoteNetValid"}, {"type":"IPMask"}]'>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">密钥协商方式：</label>
+                <div class="col-xs-8 col-sm-3">
+                    <select class="form-control" name="IPsecNegotiation">
+                        <option value="auto">自动协商</option>
+                        <option value="manual">手动设置</option>
+                    </select>
+                </div>
+            </div>
+            <div id="autoWrap">
+                <div class="form-group">
+                    <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">认证方式：</label>
+                    <div class="col-xs-8 col-sm-3">
+                        <input type="hidden" name="IPsecSecurity" value="psk">
+                        <span class="controls-text">共享密钥</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">预共享密钥：</label>
+                    <div class="col-xs-8 col-sm-3">
+                        <input type="text" class="form-control validatebox" name="IPsecSharePwd" maxlength="128" required data-options='{"type": "ascii", "args": [3,128]}'>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2"></label>
+                    <div class="col-xs-8 col-sm-3">
+                        <a href="javascript:void(0);" id="toggleAdv">显示高级设置...</a>
+                    </div>
+                </div>
+                <div id="advanceWrap" class="none">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">阶段1</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">模式：</label>
+                        <div class="col-xs-8 col-sm-3">
+                            <select class="form-control" name="IPsecMode">
+                                <option value="main">MAIN</option>
+                                <option value="aggresive">AGGRESSIVE</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">加密算法：</label>
+                        <div class="col-xs-8 col-sm-3">
+                            <select class="form-control" name="IPsecEncrypt1">
+                                <option value="DES">DES</option>
+                                <option value="3DES" selected>3DES</option>
+                                <option value="AES-128">AES-128</option>
+                                <option value="AES-192">AES-192</option>
+                                <option value="AES-256">AES-256</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">完整性验证算法：</label>
+                        <div class="col-xs-8 col-sm-3">
+                            <select class="form-control" name="IPsecVerify1">
+                                <option value="MD5">MD5</option>
+                                <option value="SHA1">SHA1</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">Diffie-Hellman分组：</label>
+                        <div class="col-xs-8 col-sm-3">
+                            <select class="form-control" name="IPsecDH1">
+                                <option value="768">768</option>
+                                <option value="1024">1024</option>
+                                <option value="1536">1536</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">密钥生命周期：</label>
+                        <div class="col-xs-8 col-sm-3">
+                            <input type="text" class="form-control validatebox" name="IPsecPwdValidity1" maxlength="10" required data-options='{"type": "num", "args": [600, 604800]}'>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">阶段2</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">PFS：</label>
+                        <div class="col-xs-8 col-sm-3">
+                            <input type="checkbox" name="IPsecPFSEn" checked="checked">启用
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">加密算法：</label>
+                        <div class="col-xs-8 col-sm-3">
+                            <select class="form-control" name="IPsecEncrypt2">
+                                <option value="DES">DES</option>
+                                <option value="3DES" selected>3DES</option>
+                                <option value="AES-128">AES-128</option>
+                                <option value="AES-192">AES-192</option>
+                                <option value="AES-256">AES-256</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">完整性验证算法：</label>
+                        <div class="col-xs-8 col-sm-3">
+                            <select class="form-control" name="IPsecVerify2">
+                                <option value="MD5">MD5</option>
+                                <option value="SHA1">SHA1</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" id="DH2Wrap">
+                        <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">Diffie-Hellman分组：</label>
+                        <div class="col-xs-8 col-sm-3">
+                            <select class="form-control" name="IPsecDH2">
+                                <option value="768">768</option>
+                                <option value="1024">1024</option>
+                                <option value="1536">1536</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">密钥生命周期：</label>
+                        <div class="col-xs-8 col-sm-3">
+                            <input type="text" class="form-control validatebox" name="IPsecPwdValidity2" maxlength="10" required data-options='{"type": "num", "args": [600, 604800]}'>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="espWrap">
+                <div class="form-group">
+                    <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">ESP加密算法：</label>
+                    <div class="col-xs-8 col-sm-3">
+                        <select class="form-control" name="IPsecESPEncrypt">
+                            <option value="DES">DES</option>
+                            <option value="3DES" selected>3DES</option>
+                            <option value="AES-128">AES-128</option>
+                            <option value="AES-192">AES-192</option>
+                            <option value="AES-256">AES-256</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">ESP加密密钥：</label>
+                    <div class="col-xs-8 col-sm-3">
+                        <input type="text" class="form-control validatebox" name="IPsecESPEncryptPwd" required data-options='{"type": "espEnPwd"}'>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">ESP认证算法：</label>
+                    <div class="col-xs-8 col-sm-3">
+                        <select class="form-control" name="IPsecESPVerify">
+                            <option value="NONE">NONE</option>
+                            <option value="MD5">MD5</option>
+                            <option value="SHA1">SHA1</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" id="espPwdWrap">
+                    <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">ESP认证密钥：</label>
+                    <div class="col-xs-8 col-sm-3">
+                        <input type="text" class="form-control validatebox" name="IPsecESPVerifyPwd" required data-options='{"type": "espVePwd"}'>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">ESP外出SPI：</label>
+                    <div class="col-xs-8 col-sm-3">
+                        <input type="text" class="form-control validatebox" name="IPsecESPOutSPI" required data-options='[{"type": "num", "args": [256, 2147483647]}]'>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">ESP进入SPI：</label>
+                    <div class="col-xs-8 col-sm-3">
+                        <input type="text" class="form-control validatebox" name="IPsecESPInSPI" required data-options='[{"type": "num", "args": [256, 2147483647]}, {"combineType": "notequal", "relativeElems": ["self", "[name=IPsecESPOutSPI]"], "msg": "外出SPI、内出SPI不能相同"}]'>
+                    </div>
+                </div>
+            </div>
+            <div id="ahWrap">
+                <div class="form-group">
+                    <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">AH认证算法：</label>
+                    <div class="col-xs-8 col-sm-3">
+                        <select class="form-control" name="IPsecAHVerify">
+                            <option value="MD5">MD5</option>
+                            <option value="SHA1">SHA1</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">AH认证密钥：</label>
+                    <div class="col-xs-8 col-sm-3">
+                        <input type="text" class="form-control validatebox" name="IPsecAHVerifyPwd" required data-options='{"type": "ahEnPwd"}'>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">AH外出SPI：</label>
+                    <div class="col-xs-8 col-sm-3">
+                        <input type="text" class="form-control validatebox" name="IPsecAHOutSPI" required data-options='[{"type": "num", "args": [256, 2147483647]}]'>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-4 col-sm-3 col-sm-offset-2">AH进入SPI：</label>
+                    <div class="col-xs-8 col-sm-3">
+                        <input type="text" class="form-control validatebox" name="IPsecAHInSPI" required data-options='[{"type": "num", "args": [256, 2147483647]}, {"combineType": "notequal", "relativeElems": ["self", "[name=IPsecAHOutSPI]"], "msg": "外出SPI、内出SPI不能相同"}]'>
+                    </div>
+                </div>
+            </div>
+            <div class="form-action">
+                <a class="btn btn-static-sm btn-primary" id="ipsec-save">确定</a>
+                <a class="btn btn-static-sm btn-default" id="ipsec-cancel" data-dismiss="modal">取消</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e/vpn/js/ipsec.js?t=2016512174418"></script>
+
+</body>
+</html>

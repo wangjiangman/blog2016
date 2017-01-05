@@ -1,0 +1,7 @@
+.placeholder-content .placeholder-text {
+  padding-left: 0px;
+  width: 100%;
+  left: -260px; 
+  top: 14px;
+  z-index: 1000;
+}

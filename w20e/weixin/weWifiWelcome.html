@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/weixin/css/weixin-push.css?t=2016512174418">  
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span>微信连WIiFi欢迎页</span>
+        </div>
+    </div>
+    <div class="panel-body" id="weWifiWelContainer">
+        <div class="row">
+            <div class="col-sm-4 phoneview hidden-xs">
+                <div class="html-content">
+                    <iframe id="pushWrap" src="../wewifi/portal_wewifi.html" frameborder="0">
+                    </iframe> 
+                </div>
+            </div>
+            <div class="col-sm-7 form-horizontal">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-xs-5 col-sm-4 col-md-3 control-label">店铺名称：</label>
+                        <div class="col-xs-6 col-sm-7 col-md-5" style="margin-bottom: 5px;">
+                            <input type="text" class="form-control validatebox" name="shopName" maxlength="15" value="" placeholder="请输入不超过15个字的店铺名称">
+                        </div>
+                        <label class="col-xs-5 col-sm-4 col-md-3 control-label">图片轮播时间：</label>
+                        <div class="col-xs-6 col-sm-7 col-md-5">
+                            <input type="text" class="form-control controls-xs validatebox" name="picShowTime" data-options='{"type": "num","args": [1,60]}' value="">秒
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top: 40px;">
+                        <label class="col-xs-12"><span style="color:red;padding-left: 80px;">注意</span><span class="text-warning">：图片不大于300KB，支持JPG(推荐使用)、PNG格式</span></label>
+                        <label class="col-xs-5 col-sm-4 col-md-3 control-label">图片1：</label>
+                        <div class="col-xs-6 col-sm-7 col-md-5" style="margin-bottom: 5px;">
+                            <a href="javascript:void(0);" class="file btn btn-default"><span id="selPicBtn1">选择图片</span>
+                                <input type="file" name="uploadFile" id="pushImg1">
+                            </a>
+                            <button type="button" id="delPic1" class="btn btn-default none">删除</button>
+                        </div>
+                        <label class="col-xs-5 col-sm-4 col-md-3 control-label">图片1链接：</label>
+                        <div class="col-xs-6 col-sm-7 col-md-5" style="margin-top: 6px;">
+                            <div style="width: 49px;border:none;text-align: right;padding-right: 0;line-height: 20px;">http://</div>
+                            <input type="text" class="form-control" id="picLink1" name="picLink1" maxlength="256" value="" style="display: block;margin-top:-27px;padding-left:50px;">
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top: 35px;">
+                        <label class="col-xs-5 col-sm-4 col-md-3 control-label">图片2：</label>
+                        <div class="col-xs-6 col-sm-7 col-md-5" style="margin-bottom: 5px;">
+                            <a href="javascript:void(0);" class="file btn btn-default"><span id="selPicBtn2">选择图片</span>
+                                <input type="file" name="uploadFile" id="pushImg2">
+                            </a>
+                            <button type="button" id="delPic2" class="btn btn-default none">删除</button>
+                        </div>
+                        <label class="col-xs-5 col-sm-4 col-md-3 control-label">图片2链接：</label>
+                        <div class="col-xs-6 col-sm-7 col-md-5" style="margin-top: 6px;">
+                            <div style="width: 49px;border:none;text-align: right;padding-right: 0;line-height: 20px;">http://</div>
+                            <input type="text" class="form-control" id="picLink2" name="picLink2" maxlength="256" value="" style="display: block;margin-top:-27px;padding-left:50px;">
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top: 35px;">
+                        <label class="col-xs-5 col-sm-4 col-md-3 control-label">图片3：</label>
+                        <div class="col-xs-6 col-sm-7 col-md-5" style="margin-bottom: 5px;">
+                            <a href="javascript:void(0);" class="file btn btn-default"><span id="selPicBtn3">选择图片</span>
+                                <input type="file" name="uploadFile" id="pushImg3">
+                            </a>
+                            <button type="button" id="delPic3" class="btn btn-default none">删除</button>
+                        </div>
+                        <label class="col-xs-5 col-sm-4 col-md-3 control-label">图片3链接：</label>
+                        <div class="col-xs-6 col-sm-7 col-md-5" style="margin-top: 6px;">
+                            <div style="width: 49px;border:none;text-align: right;padding-right: 0;line-height: 20px;">http://</div>
+                            <input type="text" class="form-control" id="picLink3" name="picLink3" maxlength="256" value="" style="display: block;margin-top:-27px;padding-left:50px;">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-center">
+    <input type="submit" class="btn btn-default btn-static-sm btn-primary" id="weWifiAuthSave" value="确定">
+    <input type="reset" class="btn btn-default btn-static-sm" id="weWifiAuthCancel" value="取消">
+</div>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e/weixin/js/weWifiWelcome.js?t=2016512174418"></script>
+
+    <script src="/w20e/common/js/libs/ajaxfileupload.min.js?t=2016512174418"></script>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title> </title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/wewifi/css/push.css?t=2016512174418">  
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="container-fluid  col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2" id="mainBody">
+    <section class="slider-section">
+        <div class="row">
+            <div class="slider-container" id="slider" style="position:relative;">
+                <div class="html-content-ad-title" id="pre-text"></div>
+                <div class="slider-items" style="position:relative;width:100%;">
+                    <div class="play-item active">
+                        <a href="#" target="_blank"><img alt="" src="" class="ad-pic"></a>
+                    </div>
+                    <div class="play-item" style="display: none;">
+                        <a href="#" target="_blank"><img alt="" src="" class="ad-pic"></a>
+                    </div>
+                    <div class="play-item" style="display: none;">
+                        <a href="#" target="_blank"><img alt="" src="" class="ad-pic"></a>
+                    </div>
+                </div>
+                <div class="slide-position">
+                    <ul style="padding-left:0px;">
+                        <li class=""></li>
+                        <li class="active"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="login-section" style="padding-top:10px;">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+            <div class="form-container row">
+                <form class="form" style="padding-top: 20px;">
+                    <div class="form-group weichart-code">
+                        <input type="button" class="btn btn-weichart" onclick="callWechatBrowser()" value="微信认证上网" />
+                    </div>
+                    <div class="form-group weichart-code col-xs-12">
+                        <a id="weichart_qrcode" style="font-size: 12px;color:#555555">点击查看我的二维码</a>
+                        <div class="weichart-main-content none">
+                            <div class="weichart-main-content-qrcode" id="qrcode_zone" style="width:200px;"></div>
+                            <div class="main__content-info">使用微信扫描二维码</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+<!--/div-->
+<!--end .dialog-container -->
+<div class="modal-backdrop fade in" style="display:none"></div>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/wewifi/js/weChatUtil.js?t=2016512174418"></script>
+
+    <script src="/wewifi/js/slider.js?t=2016512174418"></script>
+
+    <script src="/wewifi/js/md5.js?t=2016512174418"></script>
+
+    <script src="/wewifi/js/pcAuth.js?t=2016512174418"></script>
+
+    <script src="/wewifi/js/portal_wewifi.js?t=2016512174418"></script>
+
+</body>
+</html>

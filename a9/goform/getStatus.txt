@@ -1,0 +1,11 @@
+{
+    "sysStatusInfo": {
+        "statusOnlineNumber": 6,
+        "statusBlackNum": 2,
+        "hasLoginPwd": "false",
+        "extended": "1",
+        "wifiRate": "-55",
+        "routerName": "WJM_router",
+        "extendName": "WJM_extender"
+    }
+}

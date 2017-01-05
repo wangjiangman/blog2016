@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span>流量统计</span>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="container" id="chartContainer">
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <canvas id="qosLineChart" style="width:100%; height:280px;"></canvas>
+                </div>
+                <div class="col-sm-6 col-xs-12" id="description">
+                    <img style="width:50px;padding-left:30px;height:2px;" src="/w20e/common/img/upline.png"><span>上行(单位：Mb/s)</span>&nbsp;&nbsp;
+                    <img style="width:20px;height:2px;" src="/w20e/common/img/down.png"><span>下行(单位：Mb/s)</span>
+                </div>
+                <div class="form-group">
+                    <div class="radio-group col-sm-6 col-xs-11" id="type" style="padding:0px;"> 
+                        <label class="radio-inline">
+                            <input type="radio" name="type" value="all" checked="">全部
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="type" value="wan1">WAN1
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="type" value="wan2">WAN2
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="type" value="wan3">WAN3
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="type" value="wan4">WAN4
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="qosCountContainer">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>IP地址</th>
+                            <th>连接数</th>
+                            <th>上行速率</th>
+                            <th>下行速率</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e/common/js/libs/Chart.min.js?t=2016512174418"></script>
+
+    <script src="/w20e/sysStatus/js/qosCount.js?t=2016512174418"></script>
+
+</body>
+</html>

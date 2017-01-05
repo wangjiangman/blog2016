@@ -1,0 +1,380 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">基本设置</h3>
+    </div>
+    <div class="panel-body" id="authContainer">
+        <div data-bind="pppoeServer">
+            <div class="row">
+                <label class="col-xs-12 col-sm-2 col-md-2"> PPPoE服务器</label>
+                <div class="col-xs-12 col-sm-10">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-3">PPPoE认证：</label>
+                            <div class="radio-group col-xs-7 col-sm-6">
+                                <label class="radio-inline">
+                                    <input type="radio" name="pppoeServerEn" value="true" checked>开启
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="pppoeServerEn" value="false">关闭
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-3">服务器IP地址：</label>
+                            <div class="col-xs-7 col-sm-6">
+                                <input type="text" name="pppoeServerIP" id="pppoeServerIP" class="form-control validatebox" required data-options='{"type": "ip"}'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-3">PPPoE用户起始IP：</label>
+                            <div class="col-xs-7 col-sm-6">
+                                <input type="text" name="pppoeServerStartIP"  id="pppoeServerStartIP" class="form-control validatebox" required data-options='{"type": "ip"}'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-3">PPPoE用户结束IP：</label>
+                            <div class="col-xs-7 col-sm-6">
+                                <input type="text" name="pppoeServerEndIP"  id="pppoeServerEndIP" class="form-control validatebox" required data-options='{"type": "ip"}'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-3">首选DNS服务器：</label>
+                            <div class="col-xs-7 col-sm-6">
+                                <input type="text" name="pppoeServerDns1" class="form-control validatebox" required data-options='{"type": "ip"}'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-3">备选DNS服务器：</label>
+                            <div class="col-xs-7 col-sm-6">
+                                <input type="text" name="pppoeServerDns2" class="form-control validatebox" data-options='{"type": "ip"}'>
+                                <span style="color:#8a6d3b">(可选)</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <label class="col-xs-12 col-sm-2 col-md-2">帐号到期提醒</label>
+                <div class="col-xs-12 col-sm-10">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-3">到期前提醒时间</label>
+                            <div class="radio-group col-xs-7 col-sm-6">
+                                <select name="pppoeServeNotifyTime" id="AuthTimeOut" class="form-control" style="width:180px;">
+                                    <option value="1">1天</option>
+                                    <option value="2">2天</option>
+                                    <option value="3">3天</option>
+                                    <option value="4">4天</option>
+                                    <option value="5">5天</option>
+                                    <option value="6">6天</option>
+                                    <option value="7">7天</option>
+                                </select>
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-3">帐号到期前提醒页面</label>
+                            <div class="col-xs-7 col-sm-6">
+                                <button type="button" id="preAuthPage" class="btn btn-default">配置页面</button>
+                                <a href="/preTimeout.asp" target="_blank" id="showAuthPage" class="btn btn-link">预览页面</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-3">帐号已到期提醒页面</label>
+                            <div class="col-xs-7 col-sm-6">
+                                <button type="button" id="setAuthPage" class="btn btn-default">配置页面</button>
+                                <a href="/timeout.asp" target="_blank" id="showAuthPage" class="btn btn-link">预览页面</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <form class="form-horizontal" role="form" id="authlist">
+            <div class="form-group">
+                <label class="col-xs-12 col-sm-3 col-md-2">不需要认证的主机</label>
+                <div class="col-xs-12 col-sm-9">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <button type="button" id="addRules" class="btn btn-default">+新增主机</button>
+                            <button type="button" id="removeRules" class="btn btn-default btn-del">删除</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover" data-bind="pppoeWhiteUser">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <input type="checkbox" />
+                                            </th>
+                                            <th>MAC地址</th>
+                                            <th>备注（可不填）</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="authRuleTbody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <hr>
+        <form class="form-horizontal" role="form" id="qoslist">
+            <div class="form-group">
+                <label class="col-xs-12 col-sm-3 col-md-2">用户流控策略</label>
+                <div class="col-xs-12 col-sm-9">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover" data-bind="pppoeUserQosRules">
+                                    <thead>
+                                        <tr>
+                                            <th>策略名称</th>
+                                            <th>上行速率</th>
+                                            <th>下行速率</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="qosRuleTbody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal none" id="auth-modal-add">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                <span> 新增不需要认证的主机</span>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" action="/w20e/goform/addPPPoEServerWhiteMac">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th> MAC地址</th>
+                                    <th> 备注（可不填）</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="authAddTable">
+                                <tr>
+                                    <td>
+                                        <input type="text" class="form-control controls-sm validatebox" name="authAddUser" required data-options='{"type": "mac"}'>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control controls-sm validatebox" id="" name="authAddNote" data-options='{"type": "remarkTxt", "args": [1,16]}'>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-default control-xs btn-add"> + </a>&nbsp;
+                                        <a class="btn btn-default control-xs btn-remove"> - </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="form-action">
+                            <input type="submit" class="btn btn-static-sm btn-primary" id="auth-add-save" value="确定">
+                            <input type="reset" class="btn btn-static-sm btn-default" id="auth-add-cancel" data-dismiss="modal" value="取消">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="auth-modal-edit">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <span> 编辑规则</span>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" action="/w20e/goform/modifyPPPoEServerWhiteMAC">
+                    <input type="hidden" name="pppoeServerWhiteMacIndex">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-4">MAC地址：</label>
+                        <div class="col-xs-7">
+                            <input type="text" class="form-control controls-sm validatebox" name="pppoeWhiteMac" required data-options='{"type": "mac"}'>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-4">备注：</label>
+                        <div class="col-xs-7">
+                            <input type="text" class="form-control controls-sm validatebox" name="pppoeWhiteMacNote" maxlength="16" data-options='{"type": "remarkTxt", "args": [1,16]}'>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" class="btn btn-static-sm btn-primary" id="auth-rule-edit-save" value="确定">
+                        <input type="reset" class="btn btn-static-sm btn-default" id="auth-rule-edit-cancel" data-dismiss="modal" value="取消">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="qos-modal-edit">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <span>编辑流控策略</span>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" action="/w20e/goform/setPPPoEUserQosRule">
+                    <input type="hidden" name="userQosRuleIndex">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-4">策略名称：</label>
+                        <div class="col-xs-7">
+                            <input type="text" class="form-control controls-sm" name="userQosRuleName" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4">上行速率：</label>
+                            <div class="col-xs-7">
+                                <input type="text" style="width:80px;" class="form-control controls-xs validatebox" name="userQosRuleUpRate" required data-options='{"type": "num", "args":[1,128000]}' maxlength="6">KB/s
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-5 col-sm-4">下行速率：</label>
+                            <div class="col-xs-7">
+                                <input type="text" style="width:80px;" class="form-control controls-xs validatebox" name="userQosRuleDownRate" maxlength="6" required data-options='{"type": "num", "args":[1,128000]}'>KB/s
+                            </div>
+                        </div>
+                    <div class="text-center">
+                        <input type="submit" class="btn btn-static-sm btn-primary" id="qos-rule-edit-save" value="确定">
+                        <input type="reset" class="btn btn-static-sm btn-default" id="qos-rule-edit-cancel" data-dismiss="modal" value="取消">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="preauth-modal-cfg-page">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                <span>帐号到期前提醒页面</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <form action="/w20e/goform/setPreTimeoutNotify" onSubmit="return false">
+                        <div class="form-group">
+                            <label class="control-label col-xs-4 col-sm-3">公告标题：</label>
+                            <div class="col-xs-8">
+                                <input type="text" class="form-control validatebox" id="webAuthTitle" name="preTimeoutTitle" required data-options='{"type": "len", "args": [1,64]}'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-4 col-sm-3">公告内容：</label>
+                            <div class="col-xs-8">
+                                <textarea class="form-control validatebox" name="preTimeoutContent" id="preTimeoutContent" maxlength="256" rows="5" required></textarea>
+                                <span id="precharCountTip">0/256</span>
+                            </div>
+                        </div>
+                        <div class="form-action">
+                            <input type="submit" class="btn btn-static-sm btn-primary" id="auth-cfg-page-save" value="确定">
+                            <input type="reset" class="btn btn-static-sm btn-default" id="auth-cfg-page-cancel" data-dismiss="modal" value="取消">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="timeout-modal-cfg-page">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                <span>帐号到期提醒页面</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <form action="/w20e/goform/setTimeoutNotify" onSubmit="return false">
+                        <div class="form-group">
+                            <label class="control-label col-xs-4 col-sm-3">公告标题：</label>
+                            <div class="col-xs-8">
+                                <input type="text" class="form-control validatebox" id="timeoutTitle" name="timeoutTitle" maxlength="64" required data-options='{"type": "len", "args": [1,64]}'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-4 col-sm-3">公告内容：</label>
+                            <div class="col-xs-8">
+                                <textarea class="form-control validatebox" name="timeoutContent" id="timeoutContent" maxlength="256" rows="5" required></textarea>
+                                <span id="charCountTip">0/256</span>
+                            </div>
+                        </div>
+                        <div class="form-action">
+                            <input type="submit" class="btn btn-static-sm btn-primary" id="timeout-cfg-page-save" value="确定">
+                            <input type="reset" class="btn btn-static-sm btn-default" id="timeout-cfg-page-cancel" data-dismiss="modal" value="取消">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-action">
+    <button class="btn btn-static-sm btn-primary" id="auth-save">确定</button>
+    <button class="btn btn-static-sm btn-default" id="auth-cancel" data-dismiss="modal">取消</button>
+</div>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e/pppoeAuth/js/pppoeBasicSetting.js?t=2016512174418"></script>
+
+</body>
+</html>

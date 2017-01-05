@@ -1,0 +1,29 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background: #000;
+    color: #fff;
+}
+
+p {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    text-align: center;
+}
+
+#container p {
+    font: bold 100px/1.5 arial,sans-serif;
+    text-shadow: 0 0 5px #fff,0 0 20px #fefcc9,10px -10px 30px #feec85,-20px -20px 40px #ffae34,20px -40px 50px #ec760c,-20px -60px 60px #cd4606,0 -80px 70px #973716,10px -90px 80px #451b0e;
+}
+
+#container div {
+    text-align: center;
+    margin-top: 40px;
+    cursor: pointer;
+}

@@ -1,0 +1,256 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/behavior/css/behavior.css?t=2016512174418">  
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span>网址分类过滤</span>
+        </div>
+    </div>
+    <div class="panel-body" id="urlFilterContainer">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="control-label col-xs-5 col-sm-3 col-sm-offset-2">网址分类过滤: </label>
+                <div class="col-xs-7">
+                    <label class="radio-inline">
+                        <input type="radio" name="urlFilterEn" value="true" checked>开启
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="urlFilterEn" value="false">关闭
+                    </label>
+                </div>
+            </div>
+        </form>
+        <div id="urlFilterSetting">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <button type="button" id="addRules" class="btn btn-default">+新增过滤规则</button>
+                        <button type="button" id="delRules" class="btn btn-default btn-del">删除</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover" data-bind="urlFilterRules">
+                                <thead>
+                                    <tr>
+                                        <th class="th-checkbox">
+                                            <input type="checkbox" id="selectAll" />
+                                        </th>
+                                        <th>IP组</th>
+                                        <th>时间</th>
+                                        <th>过滤网址</th>
+                                        <th>状态</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <hr>
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        网址分类管理
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered urlGroupTable" id="urlGroupTable">
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal" id="urlFilter-modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"> × </button>
+                <span> 新增规则</span>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <input type="hidden" name="urlFilterRuleIndex">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3">IP组：</label>
+                        <div class="col-xs-8 col-sm-9">
+                            <select class="form-control validatebox" name="IPGroupName" required>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3">时间组：</label>
+                        <div class="col-xs-8 col-sm-9">
+                            <select class="form-control validatebox" name="timeGroupName" required>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3">过滤网址：</label>
+                        <div class="col-xs-8 col-sm-9">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <span> 请选择</span>
+                                    <span class="pull-right">
+                                        <a id="selectAllList">全选</a>
+                                        <a id="reverseSelect">反选</a>
+                                    </span>
+                                </div>
+                                <div class="panel-body" style="height: 160px; overflow-y: scroll;">
+                                    <div class="checkbox-list" id="urlFilterGroupList">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-action">
+                        <input type="submit" class="btn btn-static-sm btn-primary" id="urlFilteModal-save" value="确定">
+                        <input type="reset" class="btn btn-static-sm btn-default" id="urlFilterModal-cancel" data-dismiss="modal" value="取消">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="addGroup-modal">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"> × </button>
+                <span> 新增分类</span>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-xs-3">组名称：</label>
+                        <div class="col-xs-7">
+                            <input type="text" class="form-control validatebox" name="urlGroupName" required data-options='{"type": "username", "args": [1,20]}'>
+                            <div class="help-block">组名称不能超过20个字符</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3">加入网址：</label>
+                        <div class="col-xs-offset-3 col-sm-offset-0 col-sm-4">
+                            <input type="text" class="form-control controls-sm validatebox" name="urlString" placeholder="输入网址" required data-options='[{"type": "url"}, {"type": "byteLen","args": [1, 64]}]'>
+                        </div>
+                        <span class="control-br">
+                            <div class="col-xs-offset-3 col-sm-offset-0 col-sm-4">
+                                <input type="text" class="form-control controls-sm validatebox" name="urlRemark" placeholder="输入描述" required data-options='{"type": "remarkTxt", "args": [1, 16]}'>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="form-action">
+                        <input type="submit" class="btn btn-static-sm btn-primary" id="addGroup-save" value="确定">
+                        <input type="reset" class="btn btn-static-sm btn-default" id="addGroup-cancel" data-dismiss="modal" value="取消">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="editGroup-modal">
+    <div class="modal-dialog modal-lg"> 
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"> × </button>
+                <span class="title" id="title">网址管理</span>
+            </div>
+            <div class="modal-body" style="overflow: hidden">
+                <div style="width: 100%">
+                    <div class="form-horizontal">
+
+                        <table id="urlListTable" class="table table-responsive table-bordered table-hover urlListTable">
+                            <thead>
+                                <th class="th-index">序号</th>
+                                <th>描述</th>
+                                <th>网址</th>
+                                <th>操作</th>
+                            </thead>
+                        </table>
+
+                        <div id="pagebar" class="text-right"></div>
+                        <form id="table-oprate">
+                            <div class="col-xs-12">
+                                <div class="form-group" style="padding:10px 0;">
+                                    <input type="hidden" name="urlGroupName">
+                                    <input type="hidden" name="urlIndex">
+                                    <div class="col-xs-offset-3 col-sm-offset-0 col-sm-4">
+                                        <input type="text" class="form-control controls-sm validatebox" name="urlString" placeholder="输入网址" required data-options='[{"type": "url"}, {"type": "byteLen","args": [1, 64]}]'>
+                                    </div>
+                                    <span class="control-br">
+                                        <div class="col-xs-offset-3 col-sm-offset-0 col-sm-4">
+                                            <input type="text" class="form-control controls-sm validatebox" name="urlRemark" placeholder="输入描述" required data-options='{"type": "remarkTxt", "args": [1, 16]}'>
+                                        </div>
+                                    </span>
+                                    <span class="control-br">
+                                        <div class="col-xs-offset-3 col-sm-offset-0 col-sm-3">
+                                            <label class="btn btn-default" id="addUrl">+加入网址库</label>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-action">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-action">
+    <label class="btn btn-static-sm btn-primary" id="urlFilter-save">确定</label>
+    <label class="btn btn-static-sm btn-default" id="urlFilter-cancel" data-dismiss="modal">取消</label>
+</div>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e/behavior/js/urlFilter.js?t=2016512174418"></script>
+
+    <script src="/w20e/common/js/placeholder.js?t=2016512174418"></script>
+
+</body>
+</html>

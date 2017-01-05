@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span>IP-MAC绑定</span>
+        </div>
+    </div>
+    <div class="panel-body" id="ipMacContainer">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-xs-4 col-sm-3 col-sm-push-2 control-label">IP-MAC绑定: </label>
+                <div class="radio-group col-xs-8 col-sm-4 col-sm-push-2" id="ipMacSwitch">
+                    <label class="radio-inline">
+                        <input type="radio" name="ipMacBindEn" value="true" checked>开启
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="ipMacBindEn" value="false">关闭
+                    </label>
+                </div>
+            </div>
+        </form>
+        <div id="formContainer">
+        <form class="form-horizontal" role="form" id="bindListForm">
+            <div class="form-group">
+                <label class="col-xs-12 col-sm-2 col-md-2">已绑定列表</label>
+                <div class="col-xs-12 col-sm-10">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <button type="button" id="addMacPolicy" class="btn btn-default">+新增绑定</button>
+                            <button type="button" id="delMacPolicy" class="btn btn-default btn-del">解绑</button>
+                            <span class="text-warning">注意：绑定后，IP与MAC不匹配的用户将无法访问互联网</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover" data-bind="ipMacBindList">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <input type="checkbox" name="choseBind1" id="choseBind1" />
+                                            </th>
+                                            <th>IP地址</th>
+                                            <th>MAC地址</th>
+                                            <th>备注</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <hr>
+        <form class="form-horizontal" role="form" id="autoBindForm">
+            <div class="form-group">
+                <label class="hidden-xs col-sm-2 control-legend">动态绑定</label>
+                <div class="col-xs-12 col-sm-10">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <button type="button" id="addMacBind" class="btn btn-default">绑定</button>
+                            <button type="button" id="addAllMacBind" class="btn btn-default">全部绑定</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover" data-bind="ipMacAutoBindList">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <input type="checkbox" name="choseBind2" id="choseBind2" />
+                                            </th>
+                                            <th>IP地址</th>
+                                            <th>MAC地址</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+<div class="modal modal-add none" id="ipmac-modal">
+    <div style="width:640px;" class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"> <span>×</span></button>
+                <span>新增绑定</span>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" action="/w20e/goform/addIpMacBind">
+                    <input type="hidden" name="IPMacBindIndex">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>IP地址</th>
+                                    <th>MAC地址</th>
+                                    <th>备注</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody class="add-tbody" id="ipMacAddTable">
+                                <tr>
+                                    <td>
+                                        <input type="text" class="form-control controls-sm validatebox ipcheck" id="" name="ipMacBindIP" required data-options=''>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control controls-sm validatebox" id="" name="ipMacBindMac" required data-options=''>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control controls-sm validatebox" id="" name="ipMacBindingRemark" data-options=''>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-default control-xs btn-add"> + </a>
+                                        <a class="btn btn-default control-xs btn-remove"> - </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="form-action">
+                        <input type="submit" class="btn btn-static-sm btn-primary" id="newMacGroup-save" value="确定">
+                        <input type="reset" class="btn btn-static-sm btn-default" id="newMacGroup-cancel" data-dismiss="modal" value="取消">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="ipmac-edit-modal">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                <span>修改绑定</span>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" action="/w20e/goform/modifyIpMacBind">
+                    <input type="hidden" name="IPMacBindRuleId">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-4">IP地址：</label>
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control controls-sm validatebox" name="IPMacBindRuleIp" required data-options=''>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-4">MAC地址：</label>
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control controls-sm validatebox" name="IPMacBindRuleMac" required data-options='{"type": "mac"}'>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-4">备注：</label>
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control controls-sm validatebox" name="IPMacBindRuleRemark" data-options='{"type": "remarkTxt", "args": [1,16]}'>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" class="btn btn-static-sm btn-primary" id="ipmac-edit-save" value="确定">
+                        <input type="reset" class="btn btn-static-sm btn-default" id="ipmac-edit-cancel" data-dismiss="modal" value="取消">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-action">
+    <button class="btn btn-static-sm btn-primary" id="saveBtn">确定</button>
+    <button class="btn btn-static-sm btn-default" id="cancelBtn" data-dismiss="modal">取消</button>
+</div>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e/security/js/ipMac.js?t=2016512174418"></script>
+
+</body>
+</html>

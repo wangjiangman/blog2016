@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span>静态路由</span>
+        </div>
+    </div>
+    <div class="panel-body" id="routeTableContainer">
+        <div class="row">
+            <label class="col-xs-12 col-sm-2 col-md-2">静态路由</label>
+            <div class="col-xs-12 col-sm-10">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <div class="col-xs-12 col-md-10">
+                            <button type="button" id="addRouterGroup" class="btn btn-default"><span>+</span>添加静态路由</button>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover" data-bind="staticRoute">
+                            <thead>
+                                <tr>
+                                    <th>目标网络</th>
+                                    <th>子网掩码</th>
+                                    <th>网关</th>
+                                    <th>接口</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <label class="col-xs-12 col-sm-2 col-md-2">路由表</label>
+            <div class="col-xs-12 col-sm-10">
+                <form class="form-horizontal" role="form">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover" data-bind="routingTable">
+                            <thead>
+                                <tr>
+                                    <th>目标网络</th>
+                                    <th>子网掩码</th>
+                                    <th>网关</th>
+                                    <th>接口</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal none" id="routetable-modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <span id="modalTitle"></span>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" action="/w20e/goform/setStaticRoute">
+                    <input type="hidden" name="staticRouteIndex">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">目标网段：</label>
+                        <div class="col-xs-7">
+                            <input type="text" class="form-control controls-ma validatebox" required data-options="" name="staticRouteNet" id="staticRouteNet">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">子网掩码：</label>
+                        <div class="col-xs-7">
+                            <input type="text" class="form-control controls-ma validatebox" required data-options='{"type":"mask"}' name="staticRouteMask">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">网关：</label>
+                        <div class="col-xs-7">
+                            <input type="text" class="form-control controls-ma validatebox" required data-options='{"type":"ip"}' name="staticRouteGateway" id="staticRouteGateway">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">接口：</label>
+                        <div class="col-xs-7">
+                            <div class="radio-group">
+                                <div>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="staticRouteWAN" value="wan1" checked>WAN1
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="staticRouteWAN" value="wan2">WAN2
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="staticRouteWAN" value="wan3">WAN3
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="staticRouteWAN" value="wan4">WAN4
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-action">
+                        <input type="submit" class="btn btn-static-sm btn-primary" id="routetable-save" value="确定">
+                        <input type="reset" class="btn btn-static-sm btn-default" id="routetable-cancel" data-dismiss="modal" value="取消">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e//network/js/routeTable.js?t=2016512174418"></script>
+
+</body>
+</html>

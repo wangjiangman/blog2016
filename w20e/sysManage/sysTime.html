@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">系统时间</h3>
+    </div>
+    <div class="panel-body" id="sysTimeContainer">
+        <form class="form-horizontal" role="form" id="timeSetForm">
+            <div class="form-group">
+                <label class="control-label col-xs-5 col-sm-3 col-sm-offset-1">系统时间：</label>
+                <div id="timeType">
+                    <div class="radio-group col-xs-7 col-sm-4">
+                        <label class="radio-inline">
+                            <input type="radio" name="sysTimePolicy" value="syncNet">与网络时间同步
+                        </label>
+                        <br class="control-br">
+                        <label class="radio-inline">
+                            <input type="radio" name="sysTimePolicy" value="manual">手动设置
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div id="syncNetOption">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="control-label col-xs-5 col-sm-3 col-sm-offset-1">同步时间周期：</label>
+                    <div class="col-xs-7 col-sm-4">
+                        <select class="form-control" name="syncTimeCycle">
+                            <option value="1800">0.5h</option>
+                            <option value="3600">1h</option>
+                            <option value="7200">2h</option>
+                            <option value="21600">6h</option>
+                            <option value="43200">12h</option>
+                            <option value="86400">24h</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-5 col-sm-3 col-sm-offset-1">选择时区:</label>
+                    <div class="col-xs-7">
+                        <select name="timeZone" id="timeZone" class="form-control" style="width:100%">
+                            <option value="0">（GMT-12:00）努库阿洛法</option>
+                            <option value="1">（GMT-11：00）中途岛，萨摩亚群岛</option>
+                            <option value="2">（GMT-10：00）夏威夷，火奴鲁鲁</option>
+                            <option value="3">（GMT-09：00）阿拉斯加</option>
+                            <option value="4">（GMT-08：00）太平洋时间（美国和加拿大）;蒂华纳</option>
+                            <option value="5">（GMT-07：00）山地时间（美国和加拿大）</option>
+                            <option value="5,01">（GMT-07：00）奇瓦瓦，拉巴斯，马萨特兰</option>
+                            <option value="5,02">（GMT-07：00）亚利桑那</option>
+                            <option value="6">（GMT-06：00）中部时间（美国和加拿大）</option>
+                            <option value="6,01">（GMT-06：00）瓜达拉哈拉，墨西哥城，蒙特雷</option>
+                            <option value="7">（GMT-05：00）东部时间（美国和加拿大）</option>
+                            <option value="7,01">（GMT-05：00）印地安那（东）</option>
+                            <option value="7,02">（GMT-05：00）波哥大，利马，基多</option>
+                            <option value="8">（GMT-04：00）大西洋时间（加拿大）</option>
+                            <option value="8,01">（GMT-04：00）马瑙斯</option>
+                            <option value="8,02">（GMT-04：00）拉巴斯</option>
+                            <option value="9,01">（GMT-03：00）巴西利亚</option>
+                            <option value="9,02">（GMT-03：00）格陵兰</option>
+                            <option value="9,03">（GMT-03：00）布宜诺斯艾利斯，乔治敦</option>
+                            <option value="10">（GMT-02：00）大西洋中部</option>
+                            <option value="11">（GMT-01：00）亚速尔群岛</option>
+                            <option value="11,01">（GMT-01：00）佛得角群岛</option>
+                            <option value="12">（GMT）格林威治标准时间：都柏林，爱丁堡，里斯本，伦敦</option>
+                            <option value="12,01">（GMT）卡萨布兰卡，蒙罗维亚</option>
+                            <option value="13">（GMT+01:00）贝尔格莱德，布拉迪斯拉发，布达佩斯，卢布尔雅那，布拉格</option>
+                            <option value="13,01">（GMT+01:00）萨拉热窝，斯科普里，华沙，萨格勒布</option>
+                            <option value="13,02">（GMT+01:00）布鲁塞尔，哥本哈根，马德里，巴黎</option>
+                            <option value="13,03">（GMT+01:00）西中非</option>
+                            <option value="13,04">（GMT+01:00）阿姆斯特丹，柏林，伯尔尼，罗马，斯德哥尔摩，维也纳</option>
+                            <option value="14">（GMT+02:00）雅典，布加勒斯特，伊斯坦布尔</option>
+                            <option value="14,01">（GMT+02:00）明斯克</option>
+                            <option value="14,02">（GMT+02:00）开罗</option>
+                            <option value="14,03">（GMT+02:00）赫尔辛基，基辅，里加，索非亚，塔林，维尔纽斯</option>
+                            <option value="14,04">（GMT+02:00）耶路撒冷</option>
+                            <option value="14,05">（GMT+02:00）温得和克</option>
+                            <option value="14,06">（GMT+02:00）哈拉雷，比勒陀利亚</option>
+                            <option value="15">（GMT+03:00）莫斯科，圣彼得堡，伏尔加格勒</option>
+                            <option value="15,01">（GMT+03:00）科威特，利雅得</option>
+                            <option value="15,02">（GMT+03:00）巴格达</option>
+                            <option value="15,03">（GMT+03:00）内罗毕</option>
+                            <option value="16">（GMT+04:00）阿布扎比，马斯喀特</option>
+                            <option value="16,01">（GMT+04:00）巴库</option>
+                            <option value="16,02">（GMT+04:00）埃里温</option>
+                            <option value="16,03">（GMT+04:00）第比利斯</option>
+                            <option value="17">（GMT+05:00）伊斯兰堡，卡拉奇，塔什干</option>
+                            <option value="17,01">（GMT+05:00）叶卡捷琳堡</option>
+                            <option value="18">（GMT+06:00）阿斯塔纳，达卡</option>
+                            <option value="18,01">（GMT+06:00）阿拉木图，新西伯利亚</option>
+                            <option value="18,02">（GMT+06:00）科伦坡</option>
+                            <option value="19">（GMT+07:00）克拉斯诺亚尔斯克</option>
+                            <option value="19,01">（GMT+07:00）曼谷，河内，雅加达</option>
+                            <option value="20">（GMT+08:00）北京，重庆，香港特别行政区，乌鲁木齐</option>
+                            <option value="20,01">（GMT+08:00）伊尔库次克，乌兰巴托</option>
+                            <option value="20,02">（GMT+08:00）吉隆坡，新加坡</option>
+                            <option value="20,03">（GMT+08:00）珀斯</option>
+                            <option value="21">（GMT+09:00）雅库茨克</option>
+                            <option value="21,01">（GMT+09:00）大阪，札幌，东京</option>
+                            <option value="21,02">（GMT+09:00）首尔</option>
+                            <option value="22">（GMT+10:00）布里斯班</option>
+                            <option value="22,01">（GMT+10:00）堪培拉，墨尔本，悉尼</option>
+                            <option value="22,02">（GMT+10:00）关岛，莫尔兹比港</option>
+                            <option value="22,03">（GMT+10:00）符拉迪沃斯托克</option>
+                            <option value="22,04">（GMT+10:00）霍巴特</option>
+                            <option value="23">（GMT+11:00）马加丹，所罗门群岛，新喀里多</option>
+                            <option value="24">（GMT+12:00）斐济群岛，堪察加半岛，马绍尔群岛</option>
+                            <option value="24,01">（GMT+12:00）奥克兰，惠灵顿</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="manualOption">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="control-label col-xs-5 col-sm-3 col-sm-offset-1">日期/时间：</label>
+                    <div class="col-xs-7 input-groups">
+                        <span>
+                            <input type="text" maxlength="4" class="form-control controls-xs validatebox"
+                                data-options='{"type": "num","args": [1970,2037]}' id="sysYear" name="sysYear">年
+                            <input type="text" class="form-control controls-xs validatebox"
+                                data-options='{"type": "num","args": [1,12]}' id="sysMonth" name="sysMonth">月
+                        <span>
+                        <span class="control-br">
+                            <input type="text" class="form-control controls-xs validatebox"
+                                data-options='{"type": "num","args": [1,31]}' id="sysDay" name="sysDay">日
+                            <input type="text" class="form-control controls-xs validatebox"
+                                data-options='{"type": "num","args": [0,23]}' id="sysClock" name="sysClock">时
+                        <span>
+                        <span class="control-br">
+                            <input type="text" class="form-control controls-xs validatebox"
+                                data-options='{"type": "num","args": [0,59]}' id="sysMinute" name="sysMinute">分
+                            <input type="text" class="form-control controls-xs validatebox"
+                                data-options='{"type": "num","args": [0,59]}' id="sysSecond" name="sysSecond">秒
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-5 col-sm-3 col-sm-offset-1"></label>
+                    <div class="col-xs-7">
+                        <button type="button" class="btn btn-default" id="matchPC">与电脑同步</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="form-action">
+    <button class="btn btn-static-sm btn-primary" id="timeSet-save">确定</button>
+    <button class="btn btn-static-sm btn-default" id="timeSet-cancel" data-dismiss="modal">取消</button>
+</div>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e/sysManage/js/sysTime.js?t=2016512174418"></script>
+
+</body>
+</html>

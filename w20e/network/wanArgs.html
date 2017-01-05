@@ -1,0 +1,256 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e//network/css/select.css?t=2016512174418">  
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span>WAN口参数</span>
+        </div>
+    </div>
+    <div class="panel-body" id="wanArgsContainer">
+        <input if="wanNum" type="text" value="" style="display: none">
+        <div class="row none" id="wanArgs1" >
+            <label class="col-xs-12 col-sm-2 col-md-2"> WAN1参数</label>
+            <div class="col-xs-12 col-sm-10">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3">WAN口速率：</label>
+                        <div class="col-xs-8 col-sm-4">
+                            <select name="wan1Speed">
+                                <option value="auto">自动协商</option>
+                                <!-- <option value="1000">1000M</option> -->
+                                <option value="100">100M全双工</option>
+                                <option value="-100">100M半双工</option>
+                                <option value="10">10M全双工</option>
+                                <option value="-10">10M半双工</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3">MTU：</label>
+                        <div class="col-xs-8 col-sm-4">
+                            <select name="wan1Mtu" id="wan1Mtu">
+                                <option value="auto">自动协商</option>
+                                <option value="1492">1492</option>
+                                <option value="1480">1480</option>
+                                <option value="1450">1450</option>
+                                <option value="1400">1400</option>
+                                <option value="" data-options='{"type":"num","args":[576,1500]}' writeable>手动输入</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3">MAC地址：</label>
+                        <div class="col-xs-8 col-sm-4">
+                            <select name="wan1MacType">
+                                <option value="current">当前MAC</option>
+                                <option value="default">默认MAC</option>
+                                <option value="currentPc">克隆本机MAC</option>
+                                <option value="" data-options='{"type":"mac"}' writeable>手动输入</option>
+                            </select>
+                        </div>
+                        <div style="color:#8a6d3b" class="col-xs-8 col-xs-offset-4 col-sm-5 col-sm-offset-0 help-block" id="wan1Mac">&nbsp;</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <div class="row none" id="wanArgs2" >
+            <label class="col-xs-12 col-sm-2 col-md-2">WAN2参数</label>
+            <div class="col-xs-12 col-sm-10">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3">WAN口速率：</label>
+                        <div class="col-xs-8 col-sm-4">
+                            <select name="wan2Speed">
+                                <option value="auto">自动协商</option>
+                                <!-- <option value="1000">1000M</option> -->
+                                <option value="100">100M全双工</option>
+                                <option value="-100">100M半双工</option>
+                                <option value="10">10M全双工</option>
+                                <option value="-10">10M半双工</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3">MTU：</label>
+                        <div class="col-xs-8 col-sm-4">
+                            <select name="wan2Mtu" id="wan2Mtu">
+                                <option value="auto">自动协商</option>
+                                <option value="1492">1492</option>
+                                <option value="1480">1480</option>
+                                <option value="1450">1450</option>
+                                <option value="1400">1400</option>
+                                <option value="" data-options='{"type":"num","args":[576,1500]}' writeable>手动输入</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3">MAC地址：</label>
+                        <div class="col-xs-8 col-sm-4">
+                            <select name="wan2MacType">
+                                <option value="current">当前MAC</option>
+                                <option value="default">默认MAC</option>
+                                <option value="currentPc">克隆本机MAC</option>
+                                <option value="" data-options='{"type":"mac"}' writeable>手动输入</option>
+                            </select>
+                        </div>
+                        <div style="color:#8a6d3b" class="col-xs-8 col-xs-offset-4 col-sm-5 col-sm-offset-0 help-block" id="wan2Mac">&nbsp;</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <div class="row none" id="wanArgs3" >
+            <label class="col-xs-12 col-sm-2 col-md-2">WAN3参数</label>
+            <div class="col-xs-12 col-sm-10">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3">WAN口速率：</label>
+                        <div class="col-xs-8 col-sm-4">
+                            <select name="wan3Speed">
+                                <option value="auto">自动协商</option>
+                                <!-- <option value="1000">1000M</option> -->
+                                <option value="100">100M全双工</option>
+                                <option value="-100">100M半双工</option>
+                                <option value="10">10M全双工</option>
+                                <option value="-10">10M半双工</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3">MTU：</label>
+                        <div class="col-xs-8 col-sm-4">
+                            <select name="wan3Mtu" id="wan3Mtu">
+                                <option value="auto">自动协商</option>
+                                <option value="1492">1492</option>
+                                <option value="1480">1480</option>
+                                <option value="1450">1450</option>
+                                <option value="1400">1400</option>
+                                <option value="" data-options='{"type":"num","args":[576,1500]}' writeable>手动输入</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3">MAC地址：</label>
+                        <div class="col-xs-8 col-sm-4">
+                            <select name="wan3MacType">
+                                <option value="current">当前MAC</option>
+                                <option value="default">默认MAC</option>
+                                <option value="currentPc">克隆本机MAC</option>
+                                <option value="" data-options='{"type":"mac"}' writeable>手动输入</option>
+                            </select>
+                        </div>
+                        <div style="color:#8a6d3b" class="col-xs-8 col-xs-offset-4 col-sm-5 col-sm-offset-0 help-block" id="wan3Mac">&nbsp;</div>
+                    </div>
+                </form>
+            </div> 
+        </div>
+        <hr>
+        <div class="row none" id="wanArgs4" >
+            <label class="col-xs-12 col-sm-2 col-md-2">WAN4参数</label>
+            <div class="col-xs-12 col-sm-10">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3">WAN口速率：</label>
+                        <div class="col-xs-8 col-sm-4">
+                            <select name="wan4Speed">
+                                <option value="auto">自动协商</option>
+                                <!-- <option value="1000">1000M</option> -->
+                                <option value="100">100M全双工</option>
+                                <option value="-100">100M半双工</option>
+                                <option value="10">10M全双工</option>
+                                <option value="-10">10M半双工</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3">MTU：</label>
+                        <div class="col-xs-8 col-sm-4">
+                            <select name="wan4Mtu" id="wan4Mtu">
+                                <option value="auto">自动协商</option>
+                                <option value="1492">1492</option>
+                                <option value="1480">1480</option>
+                                <option value="1450">1450</option>
+                                <option value="1400">1400</option>
+                                <option value="" data-options='{"type":"num","args":[576,1500]}' writeable>手动输入</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3">MAC地址：</label>
+                        <div class="col-xs-8 col-sm-4">
+                            <select name="wan4MacType">
+                                <option value="current">当前MAC</option>
+                                <option value="default">默认MAC</option>
+                                <option value="currentPc">克隆本机MAC</option>
+                                <option value="" data-options='{"type":"mac"}' writeable>手动输入</option>
+                            </select>
+                        </div>
+                        <div style="color:#8a6d3b" class="col-xs-8 col-xs-offset-4 col-sm-5 col-sm-offset-0 help-block" id="wan4Mac">&nbsp;</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <div class="row" id="fastNat">
+            <label class="control-legend col-xs-12 col-sm-2 col-md-2">快速转发</label>
+            <div class="col-xs-12 col-sm-10">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4 col-sm-3">FastNAT：</label>
+                        <div class="col-xs-8 col-sm-4">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="fastnatEn" id="fastnatEn">开启
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-action">
+    <button class="btn btn-static-sm btn-primary" id="submitBtn">确定</button>
+    <button class="btn btn-static-sm btn-default" id="cancelBtn" data-dismiss="modal">取消</button>
+</div>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e//network/js/wanArgs.js?t=2016512174418"></script>
+
+    <script src="/w20e//network/js/select.js?t=2016512174418"></script>
+
+</body>
+</html>

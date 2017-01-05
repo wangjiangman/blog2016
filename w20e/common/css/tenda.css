@@ -1,0 +1,133 @@
+.navbar {
+  background: #ED7020;
+}
+
+/* ::-webkit-scrollbar-track-piece {
+    background: -webkit-linear-gradient(top, $tenda-color 0, $tenda-color 46px, $brand-color 46px, $brand-color 100%);
+    border-left: 1px solid $tenda-color;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $tenda-color;
+} */
+.field-label {
+  color: #ED7020;
+}
+
+.brand {
+  display: none;
+}
+
+.navbar-text {
+  display: none;
+}
+
+.navbar-login img {
+  height: 26px;
+}
+
+.exit {
+  padding-top: 10px;
+}
+
+.list-group-item {
+  color: #ED7020;
+  background: url(/w20e/common/img/sidebar_active_tenda.png) #f5f5f5 no-repeat;
+}
+
+#bar1, #bar2, #bar3, #bar4 {
+  color: #ED7020;
+}
+
+.btn-primary {
+  background-color: #ED7020;
+  border-color: #ED7020;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.open > .dropdown-toggle.btn-primary {
+  color: #ffffff;
+  background-color: #ED7020;
+  border-color: #ED7020;
+}
+
+.menu-group a.active {
+  background: #ED7020;
+}
+
+#tendaWebsite a:hover,
+#tendaWebsite a:focus,
+#tendaWebsite a:active {
+  color: #ED7020;
+}
+
+#tendaAuthWebsite a:hover,
+#tendaAuthWebsite a:focus,
+#tendaAuthWebsite a:active {
+  color: #ED7020;
+}
+
+#tendaLoginWebsite a:hover,
+#tendaLoginWebsite a:focus,
+#tendaLoginWebsite a:active {
+  color: #ED7020;
+}
+
+#showAuthPage,
+#showAuthPage:hover,
+#showAuthPage:focus,
+#showAuthPage:active {
+  color: #ED7020;
+}
+
+#wewifiHelp,
+#wewifiHelp:hover,
+#wewifiHelp:focus,
+#wewifiHelp:active {
+  color: #ED7020;
+}
+
+#wewifiBack,
+#wewifiBack:hover,
+#wewifiBack:focus,
+#wewifiBack:active {
+  color: #ED7020;
+}
+
+.self-select-wrapper .self-select-option:hover {
+  background-color: #ED7020;
+}
+
+#ddnsContanier a, #sysInfo a,
+#cloudDetail a {
+  color: #555555;
+}
+
+#ddnsContanier a:hover, #sysInfo a:hover,
+#sysInfo a:focus, #cloudDetail a:hover {
+  color: #FF7F00;
+}
+
+#sysInfo li.active a {
+  color: #ED7020;
+}
+
+.progress-bar {
+  background-color: #FF7F00;
+}
+
+.refresh-icon {
+  background: url(/w20e/common/img/refresh-tenda.png) center no-repeat;
+}
+
+.refresh-icon.refreshing {
+  background: url(/w20e/common/img/refreshing-tenda.gif) center no-repeat;
+}
+
+#helpBtn > span > span {
+  color: #ED7020;
+}
+
+/*# sourceMappingURL=tenda.css.map */

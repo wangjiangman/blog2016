@@ -1,0 +1,36 @@
+{
+    "blackList": [
+        {
+            "devName": "dev1ff4732984732947<?&",
+            "devMac": "c8:3a:35:03:35:e4"
+        },
+        {
+            "devName": "&&&&&\"<><>fjdk",
+            "devMac": "c8:3a:35:03:35:e4"
+        },
+        {
+            "devName": "dev3",
+            "devMac": "c8:3a:35:03:35:e4"
+        }
+    ],
+    "onlineList": [
+        {
+            "blackNum": 8
+        },
+        {
+            "devName": "dev1ff4732984732947nnnnnnnnnnnnnnnnnn4444444444444444",
+            "devMac": "c8:3a:35:d1:d9:a1",
+            "devIp": "192.168.0.109"
+        },
+        {
+            "devName": "dev1ff4732984732947<?&444444444444444444",
+            "devMac": "c8:3a:35:d1:d9:a2",
+            "devIp": "192.168.110.109"
+        },
+        {
+            "devName": "dev1ff4732984732947<?&444444444444444444",
+            "devMac": "c8:3a:35:d1:d9:a3",
+            "devIp": "192.168.0.109"
+        }
+    ]
+}

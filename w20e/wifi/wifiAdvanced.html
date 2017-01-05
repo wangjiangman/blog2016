@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span>无线高级设置</span>
+        </div>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" role="form" id="wifiAdvWrap">
+            <div class="form-group">
+                <label class="control-label col-xs-4 col-sm-2 col-sm-offset-2">射频开关：</label>
+                <div class="col-xs-8 col-sm-4">
+                    <label class="radio-inline">
+                        <input type="radio" name="wifiRadioEn" value="true" checked>开启
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="wifiRadioEn" value="false">关闭
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-4 col-sm-2 col-sm-offset-2">无线功率：</label>
+                <div class="col-xs-8 col-sm-4">
+                    <select class="form-control" name="wifiPower">
+                        <option value="high">增强</option>
+                        <option value="medium">正常</option>
+                        <option value="low">减弱</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-4 col-sm-2 col-sm-offset-2">网络模式：</label>
+                <div class="col-xs-8 col-sm-4">
+                    <select class="form-control" name="wifiMode">
+                        <option value="b">11B 模式</option>
+                        <option value="g">11G 模式</option>
+                        <option value="bg">11B/G 混合模式</option>
+                        <option value="bgn">11B/G/N 混合模式</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-4 col-sm-2 col-sm-offset-2">SSID隔离：</label>
+                <div class="col-xs-8 col-sm-4">
+                    <label class="radio-inline">
+                        <input type="radio" name="wifiIsolate" value="true" checked>开启
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="wifiIsolate" value="false">关闭
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-4 col-sm-2 col-sm-offset-2">无线频宽：</label>
+                <div class="col-xs-8 col-sm-4">
+                    <select class="form-control" name="wifiBandWidth">
+                        <option value="auto">自动</option>
+                        <option value="20">20MHz</option>
+                        <option value="40">40MHz</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-4 col-sm-2 col-sm-offset-2">无线信道：</label>
+                <div class="col-xs-8 col-sm-4">
+                    <select class="form-control" name="wifiChannel">
+                        <option value="0">自动</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                    </select>
+                </div>
+            </div>
+            <div id="extendChannel" class="none">
+                <div class="form-group">
+                    <label class="control-label col-xs-4 col-sm-2 col-sm-offset-2">扩展信道：</label>
+                    <div class="col-xs-8 col-sm-4">
+                        <select class="form-control" name="wifiExtendChannel">
+                            <option value="0">自动</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-4 col-sm-2 col-sm-offset-2">WMM：</label>
+                <div class="col-xs-8 col-sm-4">
+                    <label class="radio-inline">
+                        <input type="radio" name="wifiWMM" value="on" checked>开启
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="wifiWMM" value="off">关闭
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-4 col-sm-2 col-sm-offset-2">ATF：</label>
+                <div class="col-xs-8 col-sm-4">
+                    <label class="radio-inline">
+                        <input type="radio" name="wifiATF" value="on" checked>开启
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="wifiATF" value="off">关闭
+                    </label>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="form-action">
+    <button class="btn btn-static-sm btn-primary" id="wifiAdvSet-save">确定</button>
+    <button class="btn btn-static-sm btn-default" id="wifiAdvSet-cancel" data-dismiss="modal">取消</button>
+</div>
+</body>
+
+</html>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e/wifi/js/wifiAdvanced.js?t=2016512174418"></script>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+.settype {
+    width: 224px;
+    text-align: center;
+}
+
+.modal-add .modal-header {
+    padding: 0px;
+}
+
+.userlist-tabs > li.active > a, .userlist-tabs > li.active > a:hover, .userlist-tabs > li.active > a:focus {
+  background: #e8e8e8;
+  color: #ED7020;
+  border: none;
+}
+
+a {
+    color: #555555;
+}
+
+.form-group {
+    margin-bottom: 5px;
+}

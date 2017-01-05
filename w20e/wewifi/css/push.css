@@ -1,0 +1,370 @@
+body {
+    font-family: "å¾®è½¯é›…é»‘", "Microsoft YaHei", "å®‹ä½“";
+}
+
+.main-wrapper {
+    position: static;
+    display: table;
+}
+
+.main-wrapper .middle {
+    display: table-cell;
+    vertical-align: middle;
+    position: static;
+}
+
+.masthead {
+    padding-top: 5px;
+    height: 60px;
+    background: #4e4d49;
+    border-bottom: 1px solid #444;
+    -webkit-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.masthead .logo {
+    height: 85%;
+    float: left;
+    margin-left: 20px;
+}
+
+.masthead .nav-bar {
+    height: 100%;
+    float: right;
+    padding-right: 70px;
+}
+
+.masthead .nav-bar ul > li {
+    display: inline-block;
+    padding-right: 50px;
+}
+
+.masthead .nav-bar ul > li a {
+    color: #ccc;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+#mainBody {
+    padding-left: 0px;
+    padding-right: 0px;
+    -webkit-transition: all ease-in-out 1s;
+    -moz-transition: all ease-in-out 1s;
+    -o-transition: all ease-in-out 1s;
+    transition: all ease-in-out 1s;
+}
+
+.html-content-ad-title {
+    font-size: 12px;
+    color:#fff;
+    font-weight: bold;
+    overflow: hidden;
+    height: 36px;
+    margin: 0;
+    padding: 10px 0;
+    text-align: center;
+    word-wrap: break-word;
+    word-break: break-all;
+    background: #ED7020;
+}
+
+.slider-container {
+    overflow: hidden;
+    width: 100%;
+    height: 400px;
+    -webkit-box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.slider-container .slider {
+    width: 100%;
+    float: left;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.slider-container .slider .slider-items {
+    height: 100%;
+    position: absolute;
+    -webkit-transition: all ease-in 0.8s;
+    -moz-transition: all ease-in 0.8s;
+    -o-transition: all ease-in 0.8s;
+    transition: all ease-in 0.8s;
+    width: 100%;
+}
+
+.slider-container .slider .play-text {
+    display: none;
+}
+
+.slider-container .slider-right {
+    width: 100%;
+    float: left;
+    display: table;
+    background: #f3f3f3;
+    position: absolute;
+    bottom: 0;
+    height: 30px;
+}
+
+.slider-container .slider-right .postext {
+    text-align: center;
+    display: table-cell;
+    width: 1%;
+    cursor: pointer;
+}
+
+.slider-container .slider-right .postext .inner {
+    vertical-align: middle;
+}
+
+.slider-container .slider-right .postext + .postext > .inner {
+    /* border-top: #ddd 1px solid; */
+}
+
+.slider-container .slider-right .postext:hover {
+    background: #fcfcfc;
+}
+
+.slider-container .slider-right .postext.active {
+    background: #8484D0;
+    color: #FFF;
+    /* background: #fcfcfc;
+                border: 1px solid #F4F4F4;
+                border-right: none;
+                border-bottom: none;
+                box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.3); */
+}
+
+.slider-container .slider-right .postext:first-child {
+    /* border-top: none !important; */
+}
+
+.slider-container img {
+    width: 100%;
+}
+
+.form-container {
+    margin: auto;
+}
+
+.form-bottom ul {
+    overflow: hidden;
+    padding: 0;
+}
+
+.form-bottom ul li {
+    list-style: none;
+    float: left;
+    padding: 0 5px;
+}
+
+.login-section {
+    padding-top: 50px;
+}
+
+.goBtn {
+    padding: 50px 0;
+    width: 100px;
+    margin: auto;
+}
+
+.footer {
+    padding: 10px 0;
+    border-top: 1px dotted #888;
+    line-height: 18px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #444;
+}
+
+.footer .copyright {
+    text-align: center;
+    color: #999;
+    font-size: 0.8em;
+}
+
+#save {
+    position: relative;
+    top: -9px;
+    /* background:#d82228;
+    border:1px solid #d82228; */
+    color: #fff;
+}
+
+
+/* Placeholder */
+
+
+/* Placeholder */
+
+input.placeholder-text {
+    color: #c6c3c0;
+}
+
+.placeholder-content {
+    position: relative;
+}
+
+input.placeholder-text,
+.placeholder-text {
+    color: #c6c3c0;
+    opacity: 1;
+}
+
+.placeholder-content .placeholder-text {
+    position: absolute;
+    min-width: 200px;
+    top: 26px;
+    left: 12px;
+}
+
+@media (max-width: 767px) {
+    .slider {
+        width: 100% !important;
+    }
+    .slider-right {
+        width: 100% !important;
+        height: 1px !important;
+    }
+    .slider-right .postext {
+        display: table-cell !important;
+        border-bottom: 4px solid gray;
+    }
+    .slider-right .postext .inner {
+        display: none !important;
+    }
+    .slider-right .postext.active {
+        border-bottom-color: #AF7DED;
+    }
+    .masthead .nav-bar {
+        width: 100%;
+        height: 40px;
+        padding-right: 0;
+        background: #333;
+        padding-top: 7px;
+    }
+    #mainBody {
+        padding-bottom: 20px;
+        position: relative;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    section {
+        height: auto !important;
+    }
+    .form-container {
+        max-width: 100% !important;
+    }
+}
+
+.tip-text {
+    font-size: 12px;
+    background: #3f0;
+    border: 1px solid #d00;
+    display: inline-block;
+    width: 150px;
+    color: #000;
+    position: absolute;
+    right: 20px;
+    padding: 8px;
+}
+
+.none {
+    display: none;
+}
+
+.bs-example-modal-sm .modal-header {
+    padding: 10px;
+}
+
+#loginSubmit {
+    background: #d82228;
+    border: 1px solid #d82228;
+}
+
+.slide-position {
+    position: absolute;
+    bottom: -15px;
+    width: 100%;
+    text-align: center;
+}
+
+#slider .slide-position ul > li {
+    background: url('/w20e/common/img/slide-switch.png') no-repeat;
+    padding: 9px;
+    margin: 5px 8px;
+    display: inline;
+    background-position: 1px 0px;
+    cursor: pointer;
+}
+
+#slider .slide-position ul > li.active {
+    background-position: -17px 0px;
+}
+
+.form-control {
+    /* width:100%;
+        margin-left:75px; */
+    margin-bottom: 0px;
+}
+
+.help-section div {
+    white-space: normal;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.validatebox-tip {
+    color: red;
+    position: relative;
+    left: 0px;
+}
+
+.weichart-code {
+    text-align: center;
+}
+
+.weichart-main-content {
+    position: absolute;
+    top: -230px;
+    background: #666;
+    padding-left: 5px;
+    color: #fff;
+    left: 50%;
+    margin-left: -100px;
+}
+
+.weichart-main-content-qrcode {
+    text-align: center;
+    margin: 10px auto;
+    width: 200px;
+}
+
+.btn.btn-weichart {
+    width: 140px;
+    background-color: #06bf04;
+    margin-left: 0;
+    color: #fff;
+}
+
+.form-label {
+    width: 65px;
+    float: left;
+}
+
+.form-controls {
+    margin-left: 70px;
+}
+
+#weichart_qrcode {
+    cursor: pointer;
+}

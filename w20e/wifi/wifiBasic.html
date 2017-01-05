@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>TENDA</title>
+
+    <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span>无线基本设置</span>
+        </div>
+    </div>
+    <div class="panel-body" id="formWrap">
+        <div class="row">
+            <label class="col-sm-2 control-legend">主网络 </label>
+            <div class="col-xs-12 col-sm-10">
+                <form class="form-horizontal" role="form" id="wifiForm">
+                    <div class="form-group">
+                        <label class="control-label col-xs-6 col-sm-3">无线开关：</label>
+                        <div class="radio-group col-xs-6 col-sm-4">
+                            <label class="radio-inline">
+                                <input type="radio" name="wifiEn" value="true" checked>开启
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="wifiEn" value="false">关闭
+                            </label>
+                        </div>
+                    </div>
+                    <div class="wifi-on-wrap none">
+                        <div class="form-group">
+                            <label class="control-label col-xs-6 col-sm-3">SSID广播：</label>
+                            <div class="radio-group col-xs-6 col-sm-4">
+                                <label class="radio-inline">
+                                    <input type="radio" name="wifiBroadCast" value="false" checked>开启
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="wifiBroadCast" value="true" checked>关闭
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-6 col-sm-3">无线名称：</label>
+                            <div class="col-xs-6 col-sm-4">
+                                <input class="form-control controls-ma validatebox" name="wifiSSID" maxlength="32" required data-options='[{"type":"byteLen", "args": [1, 32], "msg": "无线名称不能超过32个字节"},{"type":"chkHalf"}]'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-6 col-sm-3">无线名称编码：</label>
+                            <div class="col-xs-6 col-sm-4">
+                                <select class="form-control" name="wifiSSIDEncode">
+                                    <option value="utf-8">UTF-8</option>
+                                    <option value="gb2312">GB2312</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-6 col-sm-3">加密方式：</label>
+                            <div class="col-xs-6 col-sm-4">
+                                <select class="form-control" name="wifiSecurity">
+                                    <option value="none">不加密</option>
+                                    <option value="wpapsk">WPA个人加密</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="encryption-wrap none">
+                            <div class="form-group">
+                                <label class="control-label col-xs-6 col-sm-3">认证类型：</label>
+                                <div class="col-xs-6 col-sm-4">
+                                    <select class="form-control" name="wifiAuthType">
+                                        <option value="psk">WPA-PSK</option>
+                                        <option value="psk2">WPA2-PSK</option>
+                                        <option value="psk psk2">WPA-PSK&WPA2-PSK</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-6 col-sm-3">加密算法：</label>
+                                <div class="col-xs-6 col-sm-4">
+                                    <select class="form-control" name="wifiEncryption">
+                                        <option value="aes">AES</option>
+                                        <option value="tkip">TKIP</option>
+                                        <option value="tkip+aes">AES&TKIP</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-6 col-sm-3">无线密码：</label>
+                                <div class="col-xs-6 col-sm-4">
+                                    <input type="password" class="form-control controls-ma validatebox" name="wifiPwd" required data-options='[{"type": "ascii", "args": [8, 63]},{"type": "chkHalf"},{"type": "noBlank"}]'>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-6 col-sm-3">密钥更新周期：</label>
+                                <div class="col-xs-6 col-sm-4">
+                                    <input class="form-control control-sm validatebox" maxlength="5" name="wifiUpdate" maxlength="5" required data-options='{"type": "wifiUpdate"}'> 秒
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-6 col-sm-3">最多可接入设备数：</label>
+                            <div class="col-xs-6 col-sm-4">
+                                <input class="form-control control-sm validatebox" name="wifiMaxClient" maxlength="2" required data-options='{"type": "num", "args": [1, 60]}'> 台
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <label class="col-sm-2 control-legend">次网络</label>
+            <div class="col-xs-12 col-sm-10">
+                <form class="form-horizontal" role="form" id="wifiForm1">
+                    <div class="form-group">
+                        <label class="control-label col-xs-6 col-sm-3">无线开关：</label>
+                        <div class="radio-group col-xs-6 col-sm-4">
+                            <label class="radio-inline">
+                                <input type="radio" name="wifiEn" value="true" checked>开启
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="wifiEn" value="false">关闭
+                            </label>
+                        </div>
+                    </div>
+                    <div class="wifi-on-wrap none">
+                        <div class="form-group">
+                            <label class="control-label col-xs-6 col-sm-3">SSID广播：</label>
+                            <div class="radio-group col-xs-6 col-sm-4">
+                                <label class="radio-inline">
+                                    <input type="radio" name="wifiBroadCast" value="false" checked>开启
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="wifiBroadCast" value="true" checked>关闭
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-6 col-sm-3">无线名称：</label>
+                            <div class="col-xs-6 col-sm-4">
+                                <input class="form-control controls-ma validatebox" name="wifiSSID" maxlength="32" required data-options='[{"type":"byteLen", "args": [1, 32], "msg": "无线名称不能超过32个字节"},{"type":"chkHalf"}]'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-6 col-sm-3">无线名称编码：</label>
+                            <div class="col-xs-6 col-sm-4">
+                                <select class="form-control" name="wifiSSIDEncode">
+                                    <option value="utf-8">UTF-8</option>
+                                    <option value="gb2312">GB2312</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-6 col-sm-3">加密方式：</label>
+                            <div class="col-xs-6 col-sm-4">
+                                <select class="form-control" name="wifiSecurity">
+                                    <option value="none">不加密</option>
+                                    <option value="wpapsk">WPA个人加密</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="encryption-wrap none">
+                            <div class="form-group">
+                                <label class="control-label col-xs-6 col-sm-3">认证类型：</label>
+                                <div class="col-xs-6 col-sm-4">
+                                    <select class="form-control" name="wifiAuthType">
+                                        <option value="psk">WPA-PSK</option>
+                                        <option value="psk2">WPA2-PSK</option>
+                                        <option value="psk psk2">WPA-PSK&WPA2-PSK</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-6 col-sm-3">加密算法：</label>
+                                <div class="col-xs-6 col-sm-4">
+                                    <select class="form-control" name="wifiEncryption">
+                                        <option value="aes">AES</option>
+                                        <option value="tkip">TKIP</option>
+                                        <option value="tkip+aes">AES&TKIP</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-6 col-sm-3">无线密码：</label>
+                                <div class="col-xs-6 col-sm-4">
+                                    <input type="password" class="form-control controls-ma validatebox" name="wifiPwd" maxlength="63" required data-options='[{"type": "ascii", "args": [8, 63]},{"type": "chkHalf"},{"type": "noBlank"}]'>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-6 col-sm-3">密钥更新周期：</label>
+                                <div class="col-xs-6 col-sm-4">
+                                    <input class="form-control control-sm validatebox" maxlength="5" name="wifiUpdate" maxlength="5" data-options='{"type": "wifiUpdate"}'> 秒
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-6 col-sm-3">最多可接入设备数：</label>
+                            <div class="col-xs-6 col-sm-4">
+                                <input class="form-control control-sm validatebox" style="display:inline-block;" name="wifiMaxClient" maxlength="2" required data-options='{"type": "num", "args": [1, 60]}'> 台
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-action">
+    <button class="btn btn-static-sm btn-primary" id="save">确定</button>
+    <button class="btn btn-static-sm btn-default" id="cancel">取消</button>
+</div>
+</body>
+
+</html>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e/wifi/js/wifiBasic.js?t=2016512174418"></script>
+
+</body>
+</html>

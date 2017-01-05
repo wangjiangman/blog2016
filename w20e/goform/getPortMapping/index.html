@@ -1,0 +1,30 @@
+{
+    "lanIP": "192.168.0.1",
+    "lanMask":"255.255.255.0",
+    "portMapping": [
+        {
+            "portMappingServer": "192.168.0.100",
+            "porMappingtInternal": "100-200",
+            "portMappingExternal": "100-200",
+            "portMappingProtocol": "TCP",
+            "portMappingWan": "WAN1",
+            "portMappingEn": true
+        },
+        {
+            "portMappingServer": "192.168.0.111",
+            "porMappingtInternal": "800-800",
+            "portMappingExternal": "900-900", 
+            "portMappingProtocol": "ALL",
+            "portMappingWan": "WAN2",
+            "portMappingEn": false
+        },
+        {
+            "portMappingServer": "192.168.0.112",
+            "porMappingtInternal": "800-820",
+            "portMappingExternal": "800-820",
+            "portMappingProtocol": "UDP",
+            "portMappingWan": "WAN2",
+            "portMappingEn": true
+        }
+    ]
+}

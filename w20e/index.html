@@ -1,0 +1,300 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache,no-store">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>微企一体化网关</title>
+
+    <!--让index和子框不共用boostrap缓存，以解决ie9 ie8 bug-->
+
+    <!--[if !IE]><!--> 
+        <link rel="stylesheet" href="/w20e/common/css/bootstrap.css">
+    <!--<![endif]--> 
+
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="/w20e/common/css/bootstrap.css?t=2016512174418">
+    <![endif]--> 
+
+    <!--[if gt IE 8]>
+       <link rel="stylesheet" href="/w20e/common/css/bootstrap.css#index">
+    <![endif]-->
+
+    <link rel="stylesheet" href="/w20e/common/css/reasy-ui.css?t=2016512174418">
+
+    <link rel="stylesheet" href="/w20e/index/css/index.css">  
+
+    <!-- 打开以下链接为Tenda页面风格；注释掉为IP-COM页面风格 -->
+    <link rel="stylesheet" href="/w20e/common/css/tenda.css">
+
+    <!--[if lte IE 8]>
+      <script src="/w20e/common/js/libs/respond/respond.min.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/excanvas.js?t=2016512174418"></script>
+      <script src="/w20e/common/js/libs/html.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+  <div class="navbar-fixed-top navbar navbar-default">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="true">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <div class="container">
+      <div class="navbar-login">
+
+        <img id="tendaLogo" src="/w20e/common/img/logo-inverse-tenda.png" width="150" height="18" alt="TENDA LOGO">
+
+        <span class="brand">WiFi 方案解决专家</span> 
+        <a class="exit" href="/w20e/goform/logout">退出登录</a>
+      </div>
+    </div>
+  </div> 
+  <div class="index-main none">
+      <div class="container">
+          <div class="aside-left col-sm-3">
+              <div class="aside-left-modal-mask"></div>
+              <div class="nav" id="sideNav">
+                  <div class="list-group">
+
+    <span class="list-group-item network collapsed" data-toggle="collapse" data-target="#network" aria-expanded="true" data="network">网络设置</span>
+
+    <ul class="menu-group panel-collapse collapse" role="menu" id="network">
+
+        <li><a href="#network/wanSet.html">上网设置</a></li>
+
+        <li><a href="#network/wanArgs.html">WAN口参数</a></li>
+
+        <li><a href="#network/lanSet.html">局域网设置</a></li>
+
+        <li><a href="#network/portMirror.html">端口镜像</a></li>
+
+        <li><a href="#network/routeTable.html">静态路由</a></li>
+
+        <li><a href="#network/vlanSet.html">VLAN设置</a></li>
+
+        <li><a href="#network/plugAndPlay.html">酒店模式</a></li>
+
+    </ul>
+
+    <span class="list-group-item wifi collapsed" data-toggle="collapse" data-target="#wifi" aria-expanded="true" data="wifi">无线设置</span>
+
+    <ul class="menu-group panel-collapse collapse" role="menu" id="wifi">
+
+        <li><a href="#wifi/wifiBasic.html">无线基本设置</a></li>
+
+        <li><a href="#wifi/wifiAdvanced.html">无线高级设置</a></li>
+
+        <li><a href="#wifi/wifiGuest.html">访客网络</a></li>
+
+        <li><a href="#wifi/wifiRelay.html">无线中继</a></li>
+
+        <li><a href="#wifi/wifiFilter.html">无线访问过滤</a></li>
+
+    </ul>
+
+    <span class="list-group-item behavior collapsed" data-toggle="collapse" data-target="#behavior" aria-expanded="true" data="behavior">行为管理</span>
+
+    <ul class="menu-group panel-collapse collapse" role="menu" id="behavior">
+
+        <li><a href="#behavior/ipTimeGroup.html">IP组和时间组</a></li>
+
+        <li><a href="#behavior/macFilter.html">MAC地址过滤</a></li>
+
+        <li><a href="#behavior/portFilter.html">端口过滤</a></li>
+
+        <li><a href="#behavior/appFilter.html">网络应用过滤</a></li>
+
+        <li><a href="#behavior/urlFilter.html">网址分类过滤</a></li>
+
+        <li><a href="#behavior/multiWan.html">多WAN策略</a></li>
+
+    </ul>
+
+    <span class="list-group-item qos collapsed" data-toggle="collapse" data-target="#qos" aria-expanded="true" data="qos">流量控制</span>
+
+    <ul class="menu-group panel-collapse collapse" role="menu" id="qos">
+
+        <li><a href="#qos/qosManage.html">流量控制</a></li>
+
+    </ul>
+
+    <span class="list-group-item vpn collapsed" data-toggle="collapse" data-target="#vpn" aria-expanded="true" data="vpn">VPN服务</span>
+
+    <ul class="menu-group panel-collapse collapse" role="menu" id="vpn">
+
+        <li><a href="#vpn/pptpClient.html">PPTP/L2TP客户端</a></li>
+
+        <li><a href="#vpn/pptpServer.html">PPTP/L2TP服务端</a></li>
+
+        <li><a href="#vpn/ipsec.html">IPSec</a></li>
+
+    </ul>
+
+    <span class="list-group-item security collapsed" data-toggle="collapse" data-target="#security" aria-expanded="true" data="security">安全设置</span>
+
+    <ul class="menu-group panel-collapse collapse" role="menu" id="security">
+
+        <li><a href="#security/ipMac.html">IP-MAC绑定</a></li>
+
+        <li><a href="#security/attackDefend.html">攻击防御</a></li>
+
+    </ul>
+
+    <span class="list-group-item authServer collapsed" data-toggle="collapse" data-target="#authServer" aria-expanded="true" data="authServer">WEB认证</span>
+
+    <ul class="menu-group panel-collapse collapse" role="menu" id="authServer">
+
+        <li><a href="#authServer/basicSetting.html">基本设置</a></li>
+
+        <li><a href="#authServer/userManage.html">用户管理</a></li>
+
+    </ul>
+
+    <span class="list-group-item pppoeAuth collapsed" data-toggle="collapse" data-target="#pppoeAuth" aria-expanded="true" data="pppoeAuth">PPPoE认证</span>
+
+    <ul class="menu-group panel-collapse collapse" role="menu" id="pppoeAuth">
+
+        <li><a href="#pppoeAuth/pppoeBasicSetting.html">基本设置</a></li>
+
+        <li><a href="#pppoeAuth/pppoeCountManage.html">帐号管理</a></li>
+
+    </ul>
+
+    <span class="list-group-item cloudAuth collapsed" data-toggle="collapse" data-target="#cloudAuth" aria-expanded="true" data="cloudAuth">云认证</span>
+
+    <ul class="menu-group panel-collapse collapse" role="menu" id="cloudAuth">
+
+        <li><a href="#cloudAuth/cloudManage.html">云认证</a></li>
+
+    </ul>
+
+    <span class="list-group-item weixin collapsed" data-toggle="collapse" data-target="#weixin" aria-expanded="true" data="weixin">微信连WiFi</span>
+
+    <ul class="menu-group panel-collapse collapse" role="menu" id="weixin">
+
+        <li><a href="#weixin/weWifi.html">微信连WiFi</a></li>
+
+        <li><a href="#weixin/weWifiWelcome.html">微信连WiFi欢迎页</a></li>
+
+    </ul>
+
+    <span class="list-group-item virtualServer collapsed" data-toggle="collapse" data-target="#virtualServer" aria-expanded="true" data="virtualServer">虚拟服务器</span>
+
+    <ul class="menu-group panel-collapse collapse" role="menu" id="virtualServer">
+
+        <li><a href="#virtualServer/portMapping.html">端口映射</a></li>
+
+        <li><a href="#virtualServer/upnpConfig.html">UPnP</a></li>
+
+        <li><a href="#virtualServer/dmzConfig.html">DMZ主机</a></li>
+
+        <li><a href="#virtualServer/ddnsConfig.html">DDNS</a></li>
+
+    </ul>
+
+    <span class="list-group-item USB collapsed" data-toggle="collapse" data-target="#USB" aria-expanded="true" data="USB">USB应用</span>
+
+    <ul class="menu-group panel-collapse collapse" role="menu" id="USB">
+
+        <li><a href="#USB/usbFileShare.html">USB文件共享</a></li>
+
+        <li><a href="#USB/usbPrintShare.html">USB打印共享</a></li>
+
+    </ul>
+
+    <span class="list-group-item sysManage collapsed" data-toggle="collapse" data-target="#sysManage" aria-expanded="true" data="sysManage">系统管理</span>
+
+    <ul class="menu-group panel-collapse collapse" role="menu" id="sysManage">
+
+        <li><a href="#sysManage/namePwd.html">用户名与密码</a></li>
+
+        <li><a href="#sysManage/reboot.html">重启</a></li>
+
+        <li><a href="#sysManage/backupRecover.html">配置备份/恢复</a></li>
+
+        <li><a href="#sysManage/update.html">软件升级</a></li>
+
+        <li><a href="#sysManage/policyUpdate.html">策略升级</a></li>
+
+        <li><a href="#sysManage/backtoInitial.html">恢复出厂设置</a></li>
+
+        <li><a href="#sysManage/sysTime.html">系统时间</a></li>
+
+        <li><a href="#sysManage/remoteManage.html">远端WEB管理</a></li>
+
+    </ul>
+
+    <span class="list-group-item sysStatus collapsed" data-toggle="collapse" data-target="#sysStatus" aria-expanded="true" data="sysStatus">系统状态</span>
+
+    <ul class="menu-group panel-collapse collapse" role="menu" id="sysStatus">
+
+        <li><a href="#sysStatus/sysInfo.html">系统信息</a></li>
+
+        <li><a href="#sysStatus/userList.html">用户列表</a></li>
+
+        <li><a href="#sysStatus/qosCount.html">流量统计</a></li>
+
+        <li><a href="#sysStatus/dosLog.html">防攻击日志</a></li>
+
+        <li><a href="#sysStatus/sysLog.html">系统日志</a></li>
+
+    </ul>
+
+</div>
+
+              </div>
+          </div>
+          <div class="nav-mask"></div>
+          <div class="main-container col-sm-9">
+            <div class="embed-responsive" id="embedFrame">
+              <i id="helpBtn" class="help-icon">
+                  <span>?<br><span>?</span></span>
+              </i>
+              <iframe class="embed-responsive-item" src="" frameborder="0"></iframe>
+            </div>
+          </div>
+      </div> 
+  </div>
+  <div id="progress-dialog" class="none">
+      <div class="modal in" style="display:block;">
+          <div class="modal-dialog modal-md" aria-hidden="false">
+              <div class="modal-content">
+                  <div class="modal-header" style="padding: 7px 15px;">
+                      <h4 class="modal-title">温馨提示</h4>
+                  </div>
+                  <div class="modal-body">
+                      <div class="progress" id="upgradeProcess">
+                          <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                          <p>Error!</p>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="modal-backdrop  in"></div>
+  </div>
+
+  <div class="index-footer">
+    <div class="copyright">服务热线：400-6622-666 丨<span id="tendaWebsite">官网：<a href="http://www.tenda.com.cn" target="_blank">tenda.com.cn</a></span>丨©2016 深圳市吉祥腾达科技有限公司</div>
+  </div>
+
+    <script src="/w20e/common/js/libs/jquery.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/bootstrap.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/libs/reasy-ui-1.0.5.js?t=2016512174418"></script>
+    <script src="/w20e/common/lang/b28n_async.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/valid.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/macro_config.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/util.js?t=2016512174418"></script>
+    <script src="/w20e/common/js/msg.js?t=2016512174418"></script>
+
+    <script src="/w20e/index/js/index.js?t=2016512174418"></script>
+
+</body>
+</html>
